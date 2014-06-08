@@ -1,3 +1,5 @@
+Scott, nico, apo
+
 Feature: A user can sign up 
 Feature: A user can sign in
 Feature: A user can sign out

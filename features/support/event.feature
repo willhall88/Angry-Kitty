@@ -1,3 +1,5 @@
+Scott, Nico, Apo
+
 Feature: Making an events
 Feature: Setting the anger level for an event
 Feature: Viewing the anger level as a chart
