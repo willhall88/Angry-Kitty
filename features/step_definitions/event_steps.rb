@@ -1,16 +1,26 @@
 Before do
   christmas_day = Date.new(2014, 12, 25)
   @user = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
-  @event = Event.create(description: "Amazing Stag Party", title:"Stag Party", deadline: christmas_day, total: 500, organiser: @user.id)
+end
+
+Given(/^I am signed in$/) do
   login_as @user
 end
 
+When(/^I create an event$/) do
+  visit('/events/new')
+end
+
 Then(/^I want to set an event title$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Title', with: 'Stag Party'
+  click_on('Create Event')
+  expect(page).to have_content('Stag Party')
 end
 
 Then(/^I want to be able to add a brief description$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Description', with: 'This is the most outrageous party ever'
+  click_on('Create Event')
+  expect(page).to have_content('This is the most outrageous party ever')
 end
 
 Then(/^I want to be able to set a payment deadline$/) do
