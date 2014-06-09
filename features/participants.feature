@@ -22,4 +22,7 @@ Feature: Participant
 		And have a user account
 		And be forwarded to my dashboard
 		
-
+	Scenario: Decline participation
+		Given I have received an invite
+		And I have clicked on the DECLINE link in my email
+		Then the user should be deleted from the event
