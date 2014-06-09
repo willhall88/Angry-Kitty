@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: Angry-Kitty_development
+  database: angry_kitty_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test: &test
   <<: *default
-  database: Angry-Kitty_test
+  database: angry_kitty_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,7 +80,7 @@ test: &test
 #
 production:
   <<: *default
-  database: Angry-Kitty_production
+  database: angry_kitty_production
   username: Angry-Kitty
   password: <%= ENV['ANGRY-KITTY_DATABASE_PASSWORD'] %>
 
