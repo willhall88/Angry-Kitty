@@ -24,7 +24,9 @@ Then(/^I want to be able to add a brief description$/) do
 end
 
 Then(/^I want to be able to set a payment deadline$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Deadline', with: "2014-06-06"
+  click_on('Create Event')
+  expect(page).to have_content('Event created for 2014-06-06')
 end
 
 Then(/^I want to be able to set the anger level$/) do
@@ -32,7 +34,9 @@ Then(/^I want to be able to set the anger level$/) do
 end
 
 Then(/^I want to be able to set a total payment amount$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Total', with: "500"
+  click_on('Create Event')
+  expect(page).to have_content("500")
 end
 
 Then(/^I want it to be divided automatically by the participants count$/) do

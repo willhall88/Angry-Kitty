@@ -1,5 +1,12 @@
 <ul>
 <% @events.each do |event| %>
-	<li><%= event.title %><br><%= event.description %></li>
+	<li>
+    <%= event.title %><br>
+    <%= event.description %>
+    Event created for <%= event.deadline %>
+  </li>
+  <li>
+    Total: <%= event.total.to_s %>
+  </li>
 <% end %>
 </ul>
