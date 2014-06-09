@@ -1,5 +1,8 @@
 Given(/^there is an event with a due date and participants$/) do
 
+  event = create(:event)
+  user = create(:user)
+  debt = create(:debt, user_id: user.id, event_id: event.id)
 end
 
 Given(/^there is a schedule$/) do
@@ -7,7 +10,7 @@ Given(/^there is a schedule$/) do
 end
 
 Then(/^the participant will receive all emails as per schedule$/) do
-  pending # express the regexp above with the code you wish you had
+  
 end
 
 Then(/^they will be removed from the mailing list$/) do

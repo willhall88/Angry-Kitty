@@ -26,4 +26,4 @@ module NavigationHelpers
   end
 end
 
-World(NavigationHelpers)
+World(FactoryGirl::Syntax::Methods)
