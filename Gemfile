@@ -35,7 +35,7 @@ group :test, :development do
   gem 'capybara-email'
   gem 'poltergeist'
   gem 'launchy'
-
+  gem 'mailcatcher'
 end
 
 
