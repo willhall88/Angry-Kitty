@@ -26,7 +26,7 @@ Feature: Creating an event
 	Scenario: Adding participants to event at creation
 		Then I want to be able to add users to the event right away
 		And fill in their mobile number
-		And fill in their email
+		And fill in their email	
 
 	
 
