@@ -1,6 +1,7 @@
 Before do
+  christmas_day = Date.new(2014, 12, 25)
   @user = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
-  @event = Event.create
+  @event = Event.create(description: "Amazing Stag Party", title:"Stag Party", deadline: christmas_day, total: 500, organiser: @user.id)
   login_as @user
 end
 
