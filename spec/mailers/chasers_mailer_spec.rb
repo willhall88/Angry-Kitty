@@ -1,5 +1,7 @@
 require "rails_helper"
 
+include Capybara::Email::DSL
+
 RSpec.describe ChasersMailer, :type => :mailer do
 
   context 'sending mail' do
