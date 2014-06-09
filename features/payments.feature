@@ -27,5 +27,3 @@ Feature: Payments
     And I am a participant
     And I have paid
     Then I should not see the button 'Pay Now'
-
-  Scenario: Payment status is automatically confirmed if paid through the app
