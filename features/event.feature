@@ -23,15 +23,12 @@ Feature: Creating an event
 		Then I want to be able to set a total payment amount
 		And I want it to be divided automatically by the participants count
 
-	Scenario: Adding participants to event
-		Then I want to be able to add users to the event
+	Scenario: Adding participants to event at creation
+		Then I want to be able to add users to the event right away
 		And fill in their mobile number
 		And fill in their email
 
 	
-
-
-
 
 	# Scenario: Viewing the anger level as a chart
 	# 	Given I am logged in

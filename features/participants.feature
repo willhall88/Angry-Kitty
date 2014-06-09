@@ -11,4 +11,12 @@ Feature: Participant
 		Then I want to be able to see a list of all participants
 		And I want to see every payment status
 
-	
+	Background:
+
+	Scenario: Confirm participation
+		Given I have received an invite 
+		And I click on the confirmation link
+		Then I want to be able to fill in my password
+		And have a user account
+		And am forwarded to your dashboard
+

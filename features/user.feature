@@ -18,7 +18,7 @@ Feature: Creating a user
 	Scenario: A user signs in with wrong credentials
 		When I sign in with wrong credentials
 		Then I see 'Wrong credentials'
-		And am not forwarded to the dashboard
+		And am still on the sign in page
 
 	Scenario: A user can sign out
 		And I am signed in
