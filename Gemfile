@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'devise'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record

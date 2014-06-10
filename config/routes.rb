@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   resources :events
+
+  get 'users/:user_id/:event_id/charges/new', to: 'charges#new', as: 'new_charges'
+  post 'users/:user_id/:event_id/charges', to: 'charges#create', as: 'charges'
+
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
