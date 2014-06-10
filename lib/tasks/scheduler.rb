@@ -14,8 +14,8 @@ def send_mail?(deadline,last_harassed)
 
   return true if last_harassed == nil 
 
-  maturity = (deadline - DateTime.now.in_time_zone).to_f / 86400
-  elapsed_time = (DateTime.now.in_time_zone - last_harassed).to_f / 86400 
+  maturity = seconds_to_hours((deadline - DateTime.now.in_time_zone).to_f)
+  elapsed_time = seconds_to_hours((DateTime.now.in_time_zone - last_harassed).to_f) 
 
   if maturity <= 7 && elapsed_time > 1
     true
@@ -33,4 +33,7 @@ def send_mail?(deadline,last_harassed)
 
 end
 
+def seconds_to_hours(time)
+  time / 24 / 60 / 60
+end
 
