@@ -42,18 +42,30 @@ Then(/^I want to be able to set a total payment amount$/) do
 end
 
 Then(/^I want to be able to add users to the event$/) do
-  pending # express the regexp above with the code you wish you had
+  pending fill_in 'Name', with: "Zultan"
+end
+
+Then(/^I want it to be divided automatically by the participants count$/) do
+  
+end
+
+Then(/^fill in their name$/) do
+  fill_in 'Name', with: "Zultan"
+  click_on('Create Event')
+  expect(page).to have_content("Zultan")
 end
 
 
 Then(/^fill in their mobile number$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Mobile', with: "07740605789"
+  click_on('Create Event')
+  expect(page).to have_content("07740605789")
 end
 
 Then(/^fill in their email$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Email', with: "dave@d.com"
+  click_on('Create Event')
+  expect(page).to have_content("dave@d.com")
 end
 
-Then(/^I want it to be divided automatically by the participants count$/) do
-  pending # express the regexp above with the code you wish you had
-end
+

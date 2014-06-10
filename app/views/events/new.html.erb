@@ -7,7 +7,7 @@
   <%= f.text_field :description %>
 
   <%= f.label :deadline %>
-  <%= f.text_field :deadline %>
+  <%= f.date_field :deadline %>
 
   <%= f.label :total %>
   <%= f.number_field :total %>
@@ -32,5 +32,6 @@
     </fieldset>
   <% end %> 
 
-	<%= f.submit 'Create userinvite' %>
+	<%= f.submit 'Create event' %>
+
 <% end %>
