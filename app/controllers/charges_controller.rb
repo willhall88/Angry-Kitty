@@ -26,6 +26,10 @@ class ChargesController < ApplicationController
     :currency    => 'gbp'
   )
 
+  debt.paid = true
+  ConfirmationMailer.receipt(debt).deliver!
+  ConfirmationMailer.notification(debt).deliver!
+
 rescue Stripe::CardError => e
   flash[:error] = e.message
   redirect_to events
