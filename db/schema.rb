@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140609173119) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "deadline"
+    t.datetime "due_date"
     t.datetime "last_harassed"
     t.boolean  "paid"
   end
