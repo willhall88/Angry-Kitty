@@ -15,7 +15,6 @@ class EventsController < ApplicationController
 	def create
 		@event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email, :payment_amount]))
 		@event.organiser = current_user
-		# @event.userinvitees_attributes[:payment_amount] = 
 		@event.save
 		redirect_to('/events')
 	end

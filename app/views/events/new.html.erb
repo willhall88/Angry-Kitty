@@ -15,7 +15,7 @@
   <%= f.label :angerlevel, "Anger level" %>
   <%= f.select(:angerlevel, (1..3)) %>
 
-  <%= f.fields_for :userinvitees do |x| %>
+  <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
     <fieldset>
       <%= x.label :name, "Name" %>
       <%= x.text_area :name %>
