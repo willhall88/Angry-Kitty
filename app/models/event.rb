@@ -10,6 +10,6 @@ class Event < ActiveRecord::Base
   #validates that there is a pay due date
   validates :deadline, presence: true
 
-  
-
+  has_and_belongs_to_many :userinvitees
+  accepts_nested_attributes_for :userinvitees, allow_destroy: true
 end

@@ -7,26 +7,20 @@ Feature: Creating an event
 		Given I am signed in
 		When I create an event
 
-	Scenario: Event title 
-		Then I want to set an event title
-
-	Scenario: Setting a brief description
-		Then I want to be able to add a brief description
-
-	Scenario: Setting the payment deadline
-		Then I want to be able to set a payment deadline
-
-	Scenario: Setting the anger level 
-		Then I want to be able to set the anger level
-
-	Scenario: Setting the total payment amount
-		Then I want to be able to set a total payment amount
+	Scenario: Event creation
+		When I want to set an event title
+		And I want to be able to add a brief description
+		And I want to be able to set a payment deadline
+		And I want to be able to set the anger level
+		And I fill in their name
+		And I fill in their mobile number
+		And I fill in their email
+		And I click on submit
+		And I want to be able to set a total payment amount
 		And I want it to be divided automatically by the participants count
+		Then I expect an invitee with a name, number, email to be created
+		And I expect an event with a title, description, payment amount per person and an anger level
 
-	Scenario: Adding participants to event at creation
-		Then I want to be able to add users to the event right away
-		And fill in their mobile number
-		And fill in their email	
 
 	
 
