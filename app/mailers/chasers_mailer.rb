@@ -1,9 +1,10 @@
 class ChasersMailer < ActionMailer::Base
-  default from: "iwillhuntyoudown@angrykitty.co.uk"
+  default from: "noreply@angrykitty.co.uk"
 
-  def harass(user)
-    @user = user
-    mail(to: user.email, subject: 'Pay the kitty')
+  def harass(debt)
+    @user = debt.user
+    @event = debt.event
+    mail(to: @user.email, subject: 'Pay the kitty')
   end
 
 end
