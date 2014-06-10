@@ -49,10 +49,9 @@ describe "Scheduler" do
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
-      debt.last_harassed = DateTime.now - 0.5
+      debt.last_harassed = DateTime.now - 0.4
       debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
-
     end
 
   
