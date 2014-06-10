@@ -118,7 +118,7 @@ describe "Scheduler" do
     end
 
     it 'will not send an email if the last harassment email is within 14 days' do
-     @event.deadline = DateTime.now + 120
+      @event.deadline = DateTime.now + 120
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
@@ -128,16 +128,30 @@ describe "Scheduler" do
      end
   end
 
-  # context 'days 121+' do
+  context 'days 121+' do
     
-  # it 'will send an email if the due date is over 4 months' do
-  #     user = double :user, maturity: 125, last_harassed: 32
-  #     expect(send_mail?(user)).to eq true
-  #   end
+  it 'will send an email if the due date is over 4 months' do
+      @event.deadline = DateTime.now + 121
+      @event.save
+      @event.users << user2
+      debt = Debt.find_by(user: user2, event: @event)
+      debt.last_harassed = DateTime.now - 31
+      debt.save
+      expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
+    end
 
-  # it 'will not send an email if the last harassment email is within 30 days' do
-  #     user = double :user, maturity: 125, last_harassed: 29 
-  #     expect(send_mail?(user)).to eq false
-  #   end
-  # end
+  it 'will not send an email if the last harassment email is within 30 days' do
+      @event.deadline = DateTime.now + 121
+      @event.save
+      @event.users << user2
+      debt = Debt.find_by(user: user2, event: @event)
+      debt.last_harassed = DateTime.now - 30
+      debt.save
+      expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
+    end
+  end
 end
+
+
+
+
