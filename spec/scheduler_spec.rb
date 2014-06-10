@@ -15,7 +15,7 @@ describe "Scheduler" do
   context 'when last_harassed date is nil' do
 
     it 'will send an email if last harrassment date is nil' do
-      @event.deadline = 4.days.from_now
+      @event.deadline = DateTime.now + 4
       @event.save
       @event.users << user2
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
@@ -25,38 +25,56 @@ describe "Scheduler" do
 
   context 'days 7 down to 4' do
 
-    it 'will send an email if the due date more than 3' do
-      @event.deadline = 4.days.from_now
+    it 'will send an email if the due date more than 3 days away' do
+      @event.deadline = DateTime.now + 4
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
-      debt.last_harassed = 2.days.ago
+      debt.last_harassed = DateTime.now - 2
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
     end
 
-    it 'will send an email if the due date is less than 7' do
-      @event.deadline = 7.days.from_now
+    it 'will send an email if the due date is less than or equal to 7 days away' do
+      @event.deadline = DateTime.now + 7
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
-      debt.last_harassed = 2.days.ago
+      debt.last_harassed = DateTime.now - 2
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
     end
+
+    it 'will not send an email if last harassed date is less than 1 day before' do
+      @event.deadline = DateTime.now + 7
+      @event.save
+      @event.users << user2
+      debt = Debt.find_by(user: user2, event: @event)
+      debt.last_harassed = DateTime.now - 0.5
+      expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
+
+    end
+
   
   end
 
-  context 'days 30 down to 8' do
+  # context 'days 30 down to 8' do
 
-    it 'will send an email if the due date is between 1 week and 1 month' do
-      user = double :user, maturity: 25, last_harassed: 4
-      expect(send_mail?(user)).to eq true
-    end
+  #   it 'will send an email if the due date is between 1 week and 1 month' do
+  #     user = double :user, maturity: 8, last_harassed: 4
+  #     expect(send_mail?(user)).to eq true
 
-    it 'will not send an email if the last harassment email is within 3 days' do
-      user = double :user, maturity: 25, last_harassed: 2 
-      expect(send_mail?(user)).to eq false
-    end
-  end
+  #     @event.deadline = 7.days.from_now
+  #     @event.save
+  #     @event.users << user2
+  #     debt = Debt.find_by(user: user2, event: @event)
+  #     debt.last_harassed = 2.days.ago
+
+  #   end
+
+    # it 'will not send an email if the last harassment email is within 3 days' do
+    #   user = double :user, maturity: 25, last_harassed: 2 
+    #   expect(send_mail?(user)).to eq false
+    # end
+  # end
 
   # context 'days 60 down to 31' do
     
