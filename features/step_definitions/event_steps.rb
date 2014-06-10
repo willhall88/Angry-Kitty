@@ -30,7 +30,9 @@ Then(/^I want to be able to set a payment deadline$/) do
 end
 
 Then(/^I want to be able to set the anger level$/) do
-  pending # express the regexp above with the code you wish you had
+  select('2', :from => 'Anger level')
+  click_on('Create Event')
+  expect(page).to have_content('Anger Level: 2')
 end
 
 Then(/^I want to be able to set a total payment amount$/) do
@@ -39,18 +41,19 @@ Then(/^I want to be able to set a total payment amount$/) do
   expect(page).to have_content("500")
 end
 
-Then(/^I want it to be divided automatically by the participants count$/) do
+Then(/^I want to be able to add users to the event$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I want to be able to add users to the event right away$/) do
-  pending # express the regexp above with the code you wish you had
-end
 
 Then(/^fill in their mobile number$/) do
   pending # express the regexp above with the code you wish you had
 end
 
 Then(/^fill in their email$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I want it to be divided automatically by the participants count$/) do
   pending # express the regexp above with the code you wish you had
 end

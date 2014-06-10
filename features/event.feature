@@ -18,15 +18,17 @@ Feature: Creating an event
 
 	Scenario: Setting the anger level 
 		Then I want to be able to set the anger level
+	
+	Scenario: Adding participants to event at creation
+		Then I want to be able to add users to the event 
+		And fill in their mobile number
+		And fill in their email	
 
 	Scenario: Setting the total payment amount
 		Then I want to be able to set a total payment amount
 		And I want it to be divided automatically by the participants count
 
-	Scenario: Adding participants to event at creation
-		Then I want to be able to add users to the event right away
-		And fill in their mobile number
-		And fill in their email	
+
 
 	
 
