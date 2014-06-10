@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140609173119) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "due_date"
+    t.datetime "deadline"
     t.datetime "last_harassed"
     t.boolean  "paid"
   end
@@ -37,11 +37,6 @@ ActiveRecord::Schema.define(version: 20140609173119) do
   end
 
   add_index "events", ["organiser_id"], name: "index_events_on_organiser_id", using: :btree
-
-  create_table "events_users", id: false, force: true do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id",  null: false
-  end
 
   create_table "payments", force: true do |t|
     t.datetime "created_at"
