@@ -27,3 +27,4 @@ module NavigationHelpers
 end
 
 World(FactoryGirl::Syntax::Methods)
+World(Capybara::Email::DSL)

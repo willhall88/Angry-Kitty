@@ -1,0 +1,16 @@
+<%= form_for @event do |f| %>
+
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+
+	<%= f.label :description %>
+	<%= f.text_field :description %>
+
+  <%= f.label :deadline %>
+  <%= f.text_field :deadline %>
+
+  <%= f.label :total %>
+  <%= f.number_field :total %>
+
+	<%= f.submit 'Create Event' %>
+<% end %>
