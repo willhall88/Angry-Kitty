@@ -130,7 +130,7 @@ describe "Scheduler" do
 
   context 'days 121+' do
     
-  it 'will send an email if the due date is over 4 months' do
+    it 'will send an email if the due date is over 4 months' do
       @event.deadline = DateTime.now + 121
       @event.save
       @event.users << user2
@@ -140,7 +140,7 @@ describe "Scheduler" do
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
     end
 
-  it 'will not send an email if the last harassment email is within 30 days' do
+    it 'will not send an email if the last harassment email is within 30 days' do
       @event.deadline = DateTime.now + 121
       @event.save
       @event.users << user2
@@ -149,6 +149,19 @@ describe "Scheduler" do
       debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
     end
+  end
+
+  context 'last three days to deadline' do
+    it 'will send an email if the due date less than three days' do
+      @event.deadline = DateTime.now + 2
+      @event.save
+      @event.users << user2
+      debt = Debt.find_by(user: user2, event: @event)
+      debt.last_harassed = DateTime.now - 1
+      debt.save
+      expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
+    end
+
   end
 end
 
