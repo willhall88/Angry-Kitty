@@ -8,7 +8,11 @@
 #     end
 #   end
 # end
+def select_debtors
+  debtors = Debt.all.select {|debt| debt.paid != true }
+  debtors.select{|debt| send_mail?(debt.event.deadline, debt.last_harassed)}
 
+end
 
 def send_mail?(deadline,last_harassed)
 
@@ -16,6 +20,7 @@ def send_mail?(deadline,last_harassed)
 
   maturity = seconds_to_days((deadline - DateTime.now.in_time_zone).to_f)
   elapsed_time = seconds_to_days((DateTime.now.in_time_zone - last_harassed).to_f) 
+  
   if maturity <= 3 && elapsed_time > 0.33
     true
   elsif maturity <= 7 && elapsed_time > 1

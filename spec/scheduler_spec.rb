@@ -171,7 +171,50 @@ describe "Scheduler" do
       debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
     end
+  end
+end
 
+describe 'accessing unpaid debts from database' do
+  let(:user1){ create( :user ) }
+  let(:user2){ build( :user, email: 'will@test.com'  ) }
+  let(:user3){ build( :user, email: 'robin@test.com' ) }
+  let(:user4){ build( :user, email: 'scott@test.com' ) }
+  let(:user5){ build( :user, email: 'dan@test.com'   ) }
+  let(:user6){ build( :user, email: 'nico@test.com'  ) }
+  let(:user7){ build( :user, email: 'apo@test.com'   ) }
+
+  before do 
+    @event = Event.new
+    @event.organiser = user1
+    @event.deadline = DateTime.now + 5
+    @event.save
+    @event.users << [user2, user3, user4, user5, user6, user7]
+  end
+
+  it 'should only select the unpaid participants' do
+    Debt.first(3).each do|debt|
+      debt.paid = true
+      debt.save
+    end
+    expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first]
+  end
+
+  it 'unpaying people in multiple events can be emailed multiple times' do
+    Debt.first(3).each do|debt|
+      debt.last_harassed = DateTime.now - 1
+      debt.save
+    end
+    event2 = Event.new
+    event2.organiser = user2
+    event2.deadline = DateTime.now + 10
+    event2.save
+    event2.users << [user1, user3, user7]
+    event2.debts.each do|debt|
+      debt.last_harassed = DateTime.now - 4
+      debt.save
+    end
+
+    expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first, user1.debts.first, user3.debts.second, user7.debts.second]
   end
 end
 
