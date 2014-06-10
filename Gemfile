@@ -34,6 +34,8 @@ group :test, :development do
   gem 'capybara-email'
   gem 'poltergeist'
   gem 'launchy'
+  gem 'mailcatcher'
+  gem 'factory_girl_rails'
 end
 
 gem 'validates_timeliness', '~> 3.0'
