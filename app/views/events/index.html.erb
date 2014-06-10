@@ -9,5 +9,10 @@
     Total: <%= event.total.to_s %>
     Anger Level: <%= event.angerlevel %>
   </li>
+  <% @userinvitees.each do |userinvitee| %>
+  	<%= userinvitee.name %>
+  	<%= userinvitee.email %>
+  	<%= userinvitee.mobile %>
+  <% end %>
 <% end %>
 </ul>

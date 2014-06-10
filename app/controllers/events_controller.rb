@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 		@events = Event.all
 		@users = User.all
 		@event = Event.new
+		@userinvitees = Userinvitee.all
 	end
 
 	def new

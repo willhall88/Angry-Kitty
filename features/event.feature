@@ -15,11 +15,10 @@ Feature: Creating an event
 		And I fill in their name
 		And I fill in their mobile number
 		And I fill in their email
-		And I click on submit
 		And I want to be able to set a total payment amount
-		And I want it to be divided automatically by the participants count
-		Then I expect an invitee with a name, number, email to be created
-		And I expect an event with a title, description, payment amount per person and an anger level
+		And I click on submit
+		Then I expect an event with a title, description, payment amount per person and an anger level
+		And I expect an invitee with a name, number, email to be created
 
 
 	

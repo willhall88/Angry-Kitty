@@ -31,7 +31,7 @@ group :test, :development do
   gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'capybara-email'
+  gem 'capybara-email', github: 'dockyard/capybara-email'
   gem 'poltergeist'
   gem 'launchy'
   gem 'mailcatcher'

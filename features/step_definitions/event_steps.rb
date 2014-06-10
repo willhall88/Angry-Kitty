@@ -1,7 +1,6 @@
 Before do
   christmas_day = Date.new(2014, 12, 25)
   @user = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
-  # @userinvitees = Userinvitee.first
 end
 
 Given(/^I am signed in$/) do
@@ -29,41 +28,23 @@ When(/^I want to be able to set the anger level$/) do
 end
 
 When(/^I want to be able to set a total payment amount$/) do
-  fill_in 'Total', with: "500"
-end
-
-When(/^I want it to be divided automatically by the participants count$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Total', with: 500
 end
 
 Then(/^I fill in their name$/) do
-  fill_in 'Name', with: "Zultan"
-  # click_on('Create Event')
-  # expect(Userinvitees.first.name).to eq("Zultan")
-  #expect(page).to have_content("Zultan")
+  fill_in 'Name', with: 'Zultan'
 end
 
 Then(/^I fill in their mobile number$/) do
-  fill_in 'Mobile', with: "07740605789"
-  # click_on('Create Event')
-  #expect(@userinvitees.mobile).to eq("07740605789")
+  fill_in 'Mobile', with: '07740605789'
 end
 
 Then(/^I fill in their email$/) do
-  fill_in 'Email', with: "dave@d.com"
-  # click_on('Create Event')
-  #expect(@userinvitees).to eq("dave@d.com")
+  fill_in 'Email', with: 'dave@d.com'
 end
 
 When(/^I click on submit$/) do
   click_on('Create Event')
-end
-
-Then(/^I expect an invitee with a name, number and email to be created$/) do
-  invitee = Userinvitee.first
-  expect(invitee.name).to eq "Zultan"
-  expect(invitee.mobile).to eq "07740605789"
-  expect(invitee.email).to eq "dave@d.com"
 end
 
 Then(/^I expect an event with a title, description, payment amount per person and an anger level$/) do
@@ -73,8 +54,15 @@ Then(/^I expect an event with a title, description, payment amount per person an
   expect(page).to have_content('500')
 end
 
-
-
+Then(/^I expect an invitee with a name, number, email to be created$/) do
+  invitee = Userinvitee.first
+  expect(invitee.name).to eq 'Zultan'
+  expect(invitee.mobile).to eq '07740605789'
+  expect(invitee.email).to eq 'dave@d.com'
+  expect(page).to have_content('Zultan')
+  expect(page).to have_content('07740605789')
+  expect(page).to have_content('dave@d.com')
+end
 
 # Then(/^I want to be able to add users to the event$/) do
 #   pending fill_in 'Name', with: "Zultan"
