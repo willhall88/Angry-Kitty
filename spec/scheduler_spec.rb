@@ -7,7 +7,6 @@ describe "Scheduler" do
   let(:user2){ build( :user, email: 'will@test.com' ) }
 
   before do 
-    # @now = DateTime.now
     @event = Event.new
     @event.organiser = user
   end
@@ -31,6 +30,7 @@ describe "Scheduler" do
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
       debt.last_harassed = DateTime.now - 2
+      debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
     end
 
@@ -40,6 +40,7 @@ describe "Scheduler" do
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
       debt.last_harassed = DateTime.now - 2
+      debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
     end
 
@@ -49,6 +50,7 @@ describe "Scheduler" do
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
       debt.last_harassed = DateTime.now - 0.5
+      debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
 
     end
