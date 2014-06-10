@@ -7,7 +7,7 @@
   <%= f.text_field :description %>
 
   <%= f.label :deadline %>
-  <%= f.text_field :deadline %>
+  <%= f.date_field :deadline %>
 
   <%= f.label :total %>
   <%= f.number_field :total %>
@@ -15,5 +15,15 @@
   <%= f.label :angerlevel, "Anger level" %>
   <%= f.select(:angerlevel, (1..3)) %>
 
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :mobile %>
+  <%= f.number_field :mobile %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
 	<%= f.submit 'Create Event' %>
+
 <% end %>
