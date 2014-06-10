@@ -1,0 +1,12 @@
+<%= form_tag charges_path do %>
+  <article>
+    <label class="amount">
+      <span>Amount: <%= @payment_amount %>p</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.application.secrets.stripe_public_key %>"
+          data-description="What I owe"
+          data-amount="<%= @payment_amount %>"></script>
+<% end %>
