@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140610155245) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "due_date"
+    t.datetime "deadline"
     t.datetime "last_harassed"
     t.boolean  "paid"
     t.integer  "payment_amount"
@@ -40,19 +40,11 @@ ActiveRecord::Schema.define(version: 20140610155245) do
 
   add_index "events", ["organiser_id"], name: "index_events_on_organiser_id", using: :btree
 
-<<<<<<< HEAD
   create_table "events_userinvitees", id: false, force: true do |t|
     t.integer "event_id",       null: false
     t.integer "userinvitee_id", null: false
   end
 
-  create_table "events_users", id: false, force: true do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id",  null: false
-  end
-
-=======
->>>>>>> 8a1fc99da307033cae8b797c80dbf12e17645487
   create_table "payments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,11 +57,6 @@ ActiveRecord::Schema.define(version: 20140610155245) do
     t.string   "name"
     t.string   "mobile"
     t.integer  "payment_amount"
-  end
-
-  create_table "userinvites", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
