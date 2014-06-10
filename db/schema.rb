@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140609173119) do
     t.datetime "updated_at"
     t.text     "description"
     t.string   "title"
-    t.date     "deadline"
+    t.datetime "deadline"
     t.integer  "total"
     t.integer  "organiser_id"
   end

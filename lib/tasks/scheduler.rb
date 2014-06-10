@@ -12,20 +12,28 @@
 
 def send_mail?(deadline,last_harassed)
 
-  return true if last_harassed == nil 
+  # return true if last_harassed == nil 
 
-  maturity = deadline - DateTime.now
-  elapsed_time = DateTime.now - last_harassed 
+  # true
+  # puts deadline.class
+  puts last_harassed
+  # puts last_harassed.class
+  # puts DateTime.now.class
+  # puts DateTime.now
 
-  if user.maturity <= 7 && user.elapsed_time > 1
+  maturity = (deadline - DateTime.now.in_time_zone).to_f
+  # puts maturity
+  elapsed_time = (DateTime.now.in_time_zone - last_harassed).to_f 
+
+  if maturity <= 7 && elapsed_time > 1
     true
-  elsif user.maturity <= 30 && user.elapsed_time > 3
+  elsif maturity <= 30 && elapsed_time > 3
     true
-  elsif user.maturity <= 60 && user.elapsed_time > 7
+  elsif maturity <= 60 && elapsed_time > 7
     true
-  elsif user.maturity <= 120 && user.elapsed_time > 14
+  elsif maturity <= 120 && elapsed_time > 14
     true
-  elsif user.maturity >= 120 && user.elapsed_time > 30
+  elsif maturity >= 120 && elapsed_time > 30
     true
   else
     false
