@@ -15,23 +15,19 @@
   <%= f.label :angerlevel, "Anger level" %>
   <%= f.select(:angerlevel, (1..3)) %>
 
-  <%= f.fields_for :userinvitees do |userinvitee| %>
+  <%= f.fields_for :userinvitees do |x| %>
     <fieldset>
-      <%= userinvitee.label :name, "Name" %>
-      <%= userinvitee.text_area :name %>
-      <%= userinvitee.check_box :_destroy %>
-      <%= userinvitee.label :_destroy, "Remove User"  %>
-      <%= userinvitee.check_box :_create %>
-      <%= userinvitee.label :_create, "Create User"  %>
+      <%= x.label :name, "Name" %>
+      <%= x.text_area :name %>
 
-      <%= userinvitee.label :mobile, "Mobile" %>
-      <%= userinvitee.text_area :mobile %>
+      <%= x.label :mobile, "Mobile" %>
+      <%= x.text_area :mobile %>
 
-      <%= userinvitee.label :email, "Email" %>
-      <%= userinvitee.text_area :email %>
+      <%= x.label :email, "Email" %>
+      <%= x.text_area :email %>
     </fieldset>
   <% end %> 
 
-	<%= f.submit 'Create event' %>
+	<%= f.submit 'Create Event' %>
 
 <% end %>
