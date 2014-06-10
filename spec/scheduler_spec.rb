@@ -153,13 +153,23 @@ describe "Scheduler" do
 
   context 'last three days to deadline' do
     it 'will send an email if the due date less than three days' do
-      @event.deadline = DateTime.now + 2
+      @event.deadline = DateTime.now + 3
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
       debt.last_harassed = DateTime.now - 1
       debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq true
+    end
+
+    it 'will not send an email if the last harrassment was less than 8 hours ago' do
+      @event.deadline = DateTime.now + 3
+      @event.save
+      @event.users << user2
+      debt = Debt.find_by(user: user2, event: @event)
+      debt.last_harassed = DateTime.now - 0.3
+      debt.save
+      expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
     end
 
   end
