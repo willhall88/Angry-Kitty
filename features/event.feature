@@ -7,7 +7,7 @@ Feature: Creating an event
 		Given I am signed in
 		When I create an event
 
-	Scenario: Event creation
+	Scenario: Event creation with 1 invitee only
 		When I want to set an event title
 		And I want to be able to add a brief description
 		And I want to be able to set a payment deadline
@@ -20,7 +20,7 @@ Feature: Creating an event
 		Then I expect an event with a title, description, payment amount per person and an anger level
 		And I expect an invitee with a name, number, email to be created
 
-
+		Scenario: Event creation with multiple invitee only
 	
 
 	# Scenario: Viewing the anger level as a chart

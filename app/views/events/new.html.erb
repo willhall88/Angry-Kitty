@@ -34,7 +34,7 @@
     <li>
       <%= f.fields_for :userinvitees, class: "userinvitees" do |x| %>
           
-          <%= x.text_field :email, placeholder: 'Email' %>
+          <%= x.text_field :email, placeholder: 'Email', class: 'email' %>
           <%= x.text_field :name, placeholder: 'Name' %>        
           <%= x.text_field :mobile, placeholder: 'Mobile' %>
 

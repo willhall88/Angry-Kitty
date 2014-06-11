@@ -31,16 +31,19 @@ When(/^I want to be able to set a total payment amount$/) do
   fill_in 'Total', with: 500
 end
 
+Then(/^I fill in their email$/) do
+  # fill_in 'Email', with: 'dave@d.com'
+  first('li').fill_in 'Email', with: 'dave@d.com'
+end
+
 Then(/^I fill in their name$/) do
-  fill_in 'Name', with: 'Zultan'
+  # fill_in 'Name', with: 'Zultan'
+  first('li').fill_in 'Name', with: 'Zultan'
 end
 
 Then(/^I fill in their mobile number$/) do
-  fill_in 'Mobile', with: '07740605789'
-end
-
-Then(/^I fill in their email$/) do
-  fill_in 'Email', with: 'dave@d.com'
+  # fill_in 'Mobile', with: '07740605789'
+  first('li').fill_in 'Mobile', with: '07740605789'
 end
 
 When(/^I click on submit$/) do
