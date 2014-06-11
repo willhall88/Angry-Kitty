@@ -1,12 +1,10 @@
 class EventsController < ApplicationController
 
-	before_action :authenticate_user!	
+	before_action :authenticate_user!
 
 	def index
-		@events = Event.all
-		@users = User.all
-		@event = Event.new
-		@userinvitees = Userinvitee.all
+		@organising = Event.where(organiser: current_user)
+		@participating = current_user.events
 	end
 
 	def new
@@ -20,5 +18,12 @@ class EventsController < ApplicationController
 		@event.organiser = current_user
 		@event.save
 		redirect_to('/events')
+	end
+
+	def show
+		@event = Event.find(params[:id])
+		@users = @event.users
+		# @userinvitees = Userinvitee.all
+		@userinvitees = @event.userinvitees
 	end
 end

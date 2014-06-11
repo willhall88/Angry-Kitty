@@ -1,0 +1,7 @@
+Event title: <%= %>
+
+<% @userinvitees.each do |userinvitee| %>
+  <%= userinvitee.name %>
+  <%= userinvitee.email %>
+  <%= userinvitee.mobile %>
+<% end %>
