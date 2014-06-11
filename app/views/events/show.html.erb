@@ -1,7 +1,21 @@
-Event title: <%= %>
+<% if @event.debts.any? %>
 
-<% @userinvitees.each do |userinvitee| %>
-  <%= userinvitee.name %>
-  <%= userinvitee.email %>
-  <%= userinvitee.mobile %>
+	<h3>Event title: <%= @event.title %></h3>
+	
+	<h4> Angry Kitty is purrring </h4>
+		<% @paid.each do |debt| %>
+		  <%= debt.name %> owes ,
+		  <%= debt.payment_amount %>
+		<% end %>
+
+	<h4> Angry Kitty is still chasing </h4>
+		<% @unpaid.each do |debt| %>
+		  <%= debt.name %> owes ,
+		  <%= debt.payment_amount %>
+		<% end %>
+
+<% else %>
+
+	<h3>No payments for this event - note debts will in future always exists for an event</h3>
+
 <% end %>
