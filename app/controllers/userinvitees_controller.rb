@@ -8,9 +8,10 @@ class UserinviteesController < ApplicationController
     if @user.nil?
       redirect_to new_user_registration_path
     elsif current_user == @user
-      @user.events << @userinvitee.event
-      redirect_to "/events/#{@userinvitee.event}"
+      @user.events << @event
+      redirect_to "/events/#{@event.id}"
     else
+      @user.events << @event
       redirect_to new_user_session_path
     end
   end

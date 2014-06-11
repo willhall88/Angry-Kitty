@@ -9,11 +9,27 @@ Feature: Invitation email
     And there is a participant with an email address
 
   Scenario: sending the initial invitations
-    When I press the invite button
-    Then an email will be sent to all the participants
-    And it will contain links to accept or decline the invitation
+    Then an email containing a link will be sent to the participant
 
-  Scenario: resending the initial invitation
-    When I press the invite button for a participant
-    Then an email will be sent to the participant
-    And it will contain links to accept or decline the invitation
+  Scenario: an existing user clicks the link and they are not signed in
+    Given there is no current user 
+    And the invitee is already a user
+    When they click the link in the invitation email
+    And they will be added to the event
+    Then they will be re-directed to the sign in page
+    
+  Scenario: an existing user clicks the link and they are signed in
+    Given the invitee is the current user
+    When they click the link in the invitation email
+    And they will be added to the event
+    Then they will be re-directed to the event
+
+  Scenario: an new user clicks the link
+    Given the invitee not a current user
+    When they click the link in the invitation email
+    Then they will be re-directed to the sign up page
+
+     # Scenario: resending the initial invitation
+  #   When I press the invite button for a participant
+  #   Then an email will be sent to the participant
+  #   And it will contain links to accept or decline the invitation 
