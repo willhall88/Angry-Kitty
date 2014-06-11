@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :event do
-  	#TO DO
+  	deadline '2020-12-25 09:41:42 +0100'
   end
 end

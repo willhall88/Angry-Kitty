@@ -3,7 +3,8 @@ Feature: Confirmation email once payment has been made
   As a participant
   I want to receive an email with an receipt
 
-    Scenario: Successful payment
-      Given I have completed payment
-      Then I should receive a receipt by email
-      And the organiser should receive an email notification
+       Scenario: A participant has paid
+        Given I have completed payment
+        Then they should receive a receipt by email
+        And they will be removed from the mailing list
+        And the organiser should receive an email notification

@@ -9,8 +9,5 @@ Feature: Emailing participants who havent paid
       Scenario: A participant has not paid
         Then the participant will receive all emails as per schedule
 
-      Scenario: A participant has paid
-        Then they will be removed from the mailing list
-
       Scenario: All participants have paid
         Then a celebratory email is sent to the organiser

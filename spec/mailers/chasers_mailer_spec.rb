@@ -7,12 +7,14 @@ RSpec.describe ChasersMailer, :type => :mailer do
   context 'sending mail' do
     
     it 'can send a mail' do
-      user = User.create(email: 'foo@bar.com', password: '12345678', password_confirmation: '12345678')
-      event = user.events.create
-      debt = user.debts.first
+      organiser = create(:user)
+      user = create(:user, email: 'user@user.com')
+      event = create(:event, organiser: organiser)
+      debt = create(:debt, user_id: user.id, event_id: event.id)
       ChasersMailer.harass(debt).deliver!
-      open_email('foo@bar.com')
+      open_email(user.email)
       expect(current_email).to have_content "PAY ME!"
+      expect(current_email).to have_content "You owe money for #{debt.event}"
     end
 
 
