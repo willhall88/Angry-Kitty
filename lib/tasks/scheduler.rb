@@ -4,7 +4,6 @@ ANGER_CHART = {
   'really_angry' => [0.05, 0.2, 1, 3.5, 7]
 }
 
-
 def send_harassment
   Debt.unpaid.each do |debt|
     if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
@@ -17,7 +16,9 @@ end
 
 def send_mail?(deadline, last_harassed, angerlevel='polite')
   return true unless last_harassed
-  days_since(last_harassed) > harassment_delay(days_to(deadline), angerlevel)
+  days = days_since(last_harassed)
+  delay = harassment_delay(days_to(deadline), angerlevel)
+  days > delay
 end
 
 def harassment_delay(days_remaining, angerlevel='polite')

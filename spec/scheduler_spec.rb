@@ -186,7 +186,7 @@ describe 'accessing unpaid debts from database' do
   let(:user7){ create( :user, email: 'apo@test.com'   ) }
 
   before do
-    @event = Event.new(title: "birthday")
+    @event = Event.new(title: "birthday", angerlevel: 'polite')
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
     @event.save
@@ -206,7 +206,6 @@ describe 'accessing unpaid debts from database' do
     open_email('dan@test.com')
     expect(current_email).to have_content('PAY ME!')
     expect(open_email('scott@test.com')).to eq(nil)
-    # expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first]
   end
 
   it 'unpaying people in multiple events can be emailed multiple times' do
@@ -214,7 +213,7 @@ describe 'accessing unpaid debts from database' do
       debt.last_harassed = DateTime.now - 1
       debt.save
     end
-    event2 = Event.new(title: "diving")
+    event2 = Event.new(title: "diving", angerlevel: 'polite')
     event2.organiser = user2
     event2.deadline = DateTime.now + 10
     event2.save
@@ -263,6 +262,10 @@ describe 'updating database' do
 end
 
 describe 'anger level' do
+
+  before do
+    clear_emails #(╯°□°）╯︵ ┻━┻) 
+  end
 
   let(:user1){ create( :user, email: 'nico@test.com'  ) }
   let(:user2){ create( :user, email: 'sroop@test.com' ) }
