@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   
   validates :organiser_id, presence: true
   
-  #validates that there is a pay due date
+  
   validates :deadline, presence: true
 
   has_and_belongs_to_many :userinvitees

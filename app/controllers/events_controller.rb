@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+	before_action :authenticate_user!	
+
 	def index
 		@events = Event.all
 		@users = User.all
@@ -13,6 +15,8 @@ class EventsController < ApplicationController
 	end
 
 	def create
+		# raise 'hello'
+		# @event = Event.new(params[:event].permit(:title, :description, :deadline, :total))
 		@event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email]))
 		@event.organiser = current_user
 		@event.save
