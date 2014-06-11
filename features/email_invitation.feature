@@ -15,19 +15,33 @@ Feature: Invitation email
     Given there is no current user 
     And the invitee is already a user
     When the registered user clicks the link in the invitation email
-    And they will be added to the event
+    And the existing user will be added to the event
     Then they will be re-directed to the sign in page
     
   Scenario: an existing user clicks the link and they are signed in
     Given the invitee is the current user
     When the registered user clicks the link in the invitation email
-    And they will be added to the event
+    And the existing user will be added to the event
     Then they will be re-directed to the event
 
   Scenario: an new user clicks the link
     Given the invitee is not a current user
     When the unregistered user clicks the link in the invitation email
-    Then they will be re-directed to the sign up page
+    Then they will be re-directed to the sign in page
+    And they press "Sign up"
+    Then they can fill in their invitee details on the sign up page
+    And they press "Sign up"
+    Then the new user will be added to the event
+    And they will be re-directed to the event
+
+
+
+  # Scenario: an existing user receives an invite via a different email address
+  #   Given the invitee is a user
+  #   And they are not logged in
+  #   When the existing 
+
+
 
      # Scenario: resending the initial invitation
   #   When I press the invite button for a participant

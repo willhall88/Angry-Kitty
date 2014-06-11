@@ -1,10 +1,10 @@
 Before do
   christmas_day = Date.new(2014, 12, 25)
-  @user = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
+  @nico = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
 end
 
 Given(/^I am signed in$/) do
-  login_as @user
+  login_as @nico
 end
 
 When(/^I create an event$/) do

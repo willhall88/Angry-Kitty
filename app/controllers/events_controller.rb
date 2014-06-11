@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
 
 	def index
+		if session[:event_id] && user_signed_in?
+			redirect_to event_path(session[:event_id])
+			session[:event_id] = nil
+		end
 		@events = Event.all
 		@users = User.all
 		@event = Event.new

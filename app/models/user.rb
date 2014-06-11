@@ -10,8 +10,11 @@ class User < ActiveRecord::Base
   after_create :add_user_to_invited_events
 
   def add_user_to_invited_events
-    Userinvitee.where(email: self.email).each do |invite|
-      events << invite.event
+    @invitee = Userinvitee.find_by(email: self.email)
+    return true unless @invitee
+
+    @invitee.events.each do |event|
+      events << event
     end
   end
   
