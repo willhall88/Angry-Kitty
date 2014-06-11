@@ -26,30 +26,36 @@
   </p>
 
   <p>
-    Add friends below, when finished click Create Event:
+    Add friends, when finished click create event:
+    <button type='button' class='add_userinvitee'>Add Friend</button> 
   </p>
 
-  <p>
-  <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
-    <!-- <fieldset> -->
-      <%= x.label :email, "Email" %>
-      <%= x.text_field :email %>
+  <ol class='userinvitees_list'>
+    <li>
+      <%= f.fields_for :userinvitees, class: "userinvitees" do |x| %>
+          
+          <%= x.text_field :email, placeholder: 'Email' %>
+          <%= x.text_field :name, placeholder: 'Name' %>        
+          <%= x.text_field :mobile, placeholder: 'Mobile' %>
 
-      <%= x.label :name, "Name" %>
-      <%= x.text_field :name %>
-
-      <%= x.label :mobile, "Mobile" %>
-      <%= x.text_field :mobile %>
-
-    <!-- </fieldset> -->
-  <% end %> 
-  </p>
+      <% end %> 
+        <button type='button' class='de'>&#10006;</button>
+    </li>
+  </ol>
 
   <p>
 	<%= f.submit 'Create Event' %>
   </p>
 
+<template id='userinvitee_fields'>
+  <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
+
+          <%= x.text_field :email, placeholder: 'Email' %>
+          <%= x.text_field :name, placeholder: 'Name' %>        
+          <%= x.text_field :mobile, placeholder: 'Mobile' %>
+
+  <% end %> 
+    <button type='button' class='de'>&#10006;</button>
+</template>
+
 <% end %>
-
-
-
