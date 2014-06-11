@@ -241,6 +241,29 @@ describe 'accessing unpaid debts from database' do
 
 end
 
+describe 'updating database' do
 
+  let(:user1){ build( :user, email: 'nico@test.com'  ) }
+  let(:user2){ build( :user, email: 'sroop@test.com' ) }
+  let(:user3){ build( :user, email: 'will@test.com'  ) }
 
+  before do 
+    @event = Event.new(title: "Nico´s Birthday Bash Xtreme")
+    @event.organiser = user1
+    @event.deadline = DateTime.now + 5
+    @event.save
+    @event.users << [user3, user2]
+  end
 
+  it 'writes last harassment into debt table' do
+    send_harassment
+    debt = @event.debts.first
+    # debt = Debt.all
+    # puts debt
+      # puts "H I I IIIIII"
+      # puts Debt.first
+      # puts "----------------------------------------"
+      # puts Debt.last
+    expect(debt.last_harassed).to be_an DateTime
+  end
+end

@@ -12,8 +12,8 @@ end
 def send_harassment
   Debt.unpaid.each do |debt|
     debt.harass! if send_mail?(debt.deadline, debt.last_harassed)
-    # debt.last_harassed = time_now
-    # debt.save
+    debt.last_harassed = time_now
+    debt.save
   end
 end
 
