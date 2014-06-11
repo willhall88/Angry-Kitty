@@ -8,7 +8,7 @@ describe "Scheduler" do
   let(:user){ create( :user ) }
   let(:user2){ create( :user, email: 'will@test.com' ) }
 
-  before do 
+  before do
     @event = Event.new
     @event.organiser = user
   end
@@ -56,7 +56,7 @@ describe "Scheduler" do
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
     end
 
-  
+
   end
 
   context 'days 30 down to 8' do
@@ -72,7 +72,7 @@ describe "Scheduler" do
     end
 
     it 'will not send an email if the last harassment email is within 3 days' do
-     @event.deadline = DateTime.now + 30
+      @event.deadline = DateTime.now + 30
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
@@ -80,12 +80,12 @@ describe "Scheduler" do
       debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
     end
-  
+
 
   end
 
   context 'days 60 down to 31' do
-    
+
     it 'will send an email if the due date is between 1 month and 2 months' do
       @event.deadline = DateTime.now + 31
       @event.save
@@ -108,7 +108,7 @@ describe "Scheduler" do
   end
 
   context 'days 61-120' do
-    
+
     it 'will send an email if the due date is between 2 months and 4 months' do
       @event.deadline = DateTime.now + 61
       @event.save
@@ -127,11 +127,11 @@ describe "Scheduler" do
       debt.last_harassed = DateTime.now - 14
       debt.save
       expect(send_mail?(@event.deadline, Debt.first.last_harassed)).to eq false
-     end
+    end
   end
 
   context 'days 121+' do
-    
+
     it 'will send an email if the due date is over 4 months' do
       @event.deadline = DateTime.now + 122
       @event.save
@@ -185,7 +185,7 @@ describe 'accessing unpaid debts from database' do
   let(:user6){ create( :user, email: 'nico@test.com'  ) }
   let(:user7){ create( :user, email: 'apo@test.com'   ) }
 
-  before do 
+  before do
     @event = Event.new(title: "birthday")
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
@@ -247,7 +247,7 @@ describe 'updating database' do
   let(:user2){ create( :user, email: 'sroop@test.com' ) }
   let(:user3){ create( :user, email: 'will@test.com'  ) }
 
-  before do 
+  before do
     @event = Event.new(title: "Nico´s Birthday Bash Xtreme")
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
@@ -271,8 +271,10 @@ describe 'anger level' do
   it 'will set the harassment frequency based upon the anger level' do
     event1 = Event.create(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10)
     event2 = Event.create(angerlevel: 'really_angry', organiser_id: user1.id, deadline: DateTime.now + 10)
-    event1.user << user2
-    event2.user << user3
+    expect(event1.angerlevel).to eq('polite')
+    expect(event2.angerlevel).to eq('really_angry')
+    event1.users << user2
+    event2.users << user3
     event2.debts.each do|debt|
       debt.last_harassed = DateTime.now - 2
       debt.save
@@ -282,7 +284,9 @@ describe 'anger level' do
       debt.save
     end
     send_harassment
-
+    emails_sent_to('will@test.com')
+    expect(current_emails.first).to have_content('PAY ME!')
+    expect(open_email('sroop@test.com')).to eq(nil)
   end
 
 end
