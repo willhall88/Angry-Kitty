@@ -15,12 +15,14 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		# puts params
+		puts params
 		# raise 'hello'
 		# @event = Event.new(params[:event].permit(:title, :description, :deadline, :total))
 		@event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email]))
 		@event.organiser = current_user
 		@event.save
+		# puts Userinvitee.all.count
+		# puts Userinvitee.any?
 		redirect_to('/events')
 	end
 end

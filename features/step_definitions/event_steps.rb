@@ -15,7 +15,7 @@ When(/^I want to set an event title$/) do
   fill_in 'Title', with: 'Stag Party'
 end
 
-When(/^I want to be able to add a brief description$/) do
+When(/^I want to be able to add a description$/) do
   fill_in 'Description', with: 'This is the most outrageous party ever'
 end
 
@@ -31,41 +31,88 @@ When(/^I want to be able to set a total payment amount$/) do
   fill_in 'Total', with: 500
 end
 
-Then(/^I fill in their email$/) do
+When(/^I fill in the invitees email$/) do
   # fill_in 'Email', with: 'dave@d.com'
   first('li').fill_in 'Email', with: 'dave@d.com'
 end
 
-Then(/^I fill in their name$/) do
+When(/^I fill in the invitees name$/) do
   # fill_in 'Name', with: 'Zultan'
   first('li').fill_in 'Name', with: 'Zultan'
 end
 
-Then(/^I fill in their mobile number$/) do
+When(/^I fill in the invitees mobile number$/) do
   # fill_in 'Mobile', with: '07740605789'
   first('li').fill_in 'Mobile', with: '07740605789'
+end
+
+When(/^I click on Add Friend$/) do
+  click_on 'Add Friend'
+end
+
+When(/^I fill in the second invitees email$/) do
+  within '.userinvitees_list li:last-child' do
+    fill_in 'Email', with: 'daffyduck@test.com'
+  end
+end
+
+When(/^I fill in the second the invitees name$/) do
+  within '.userinvitees_list li:last-child' do
+    fill_in 'Name', with: 'Daffy'
+  end
+end
+
+When(/^I fill in the second invitees mobile number$/) do
+  within '.userinvitees_list li:last-child' do
+    fill_in 'Mobile', with: '07753205999'
+  end
 end
 
 When(/^I click on submit$/) do
   click_on('Create Event')
 end
 
-Then(/^I expect an event with a title, description, payment amount per person and an anger level$/) do
+# Then(/^I expect an event with a title, description, payment amount per person and an anger level$/) do
+#   expect(page).to have_content('Stag Party')
+#   expect(page).to have_content('2014-06-06')
+#   # expect(page).to have_content('500')
+#   # expect(page).to have_content('This is the most outrageous party ever')
+# end
+
+Then(/^I expect to see the dashboard contain the new event with its title and description$/) do
   expect(page).to have_content('Stag Party')
-  expect(page).to have_content('This is the most outrageous party ever')
   expect(page).to have_content('2014-06-06')
-  expect(page).to have_content('500')
 end
 
 Then(/^I expect an invitee with a name, number, email to be created$/) do
+  # puts Userinvitee.count
+  puts Event.count
   invitee = Userinvitee.first
   expect(invitee.name).to eq 'Zultan'
   expect(invitee.mobile).to eq '07740605789'
   expect(invitee.email).to eq 'dave@d.com'
-  expect(page).to have_content('Zultan')
-  expect(page).to have_content('07740605789')
-  expect(page).to have_content('dave@d.com')
+  # expect(page).to have_content('Zultan')
+  # expect(page).to have_content('07740605789')
+  # expect(page).to have_content('dave@d.com')
 end
+
+Then(/^I expect two invitees with their names, numbers, and emails to be created$/) do
+  puts Userinvitee.count
+  invitee = Userinvitee.all[1]
+  expect(invitee.name).to eq 'Daffy'
+  expect(invitee.mobile).to eq '07753205999'
+  expect(invitee.email).to eq 'daffyduck@test.com'
+end
+
+
+
+# Then(/^I expect an invitee with a name, number, email to be created$/) do
+#   invitee = Userinvitee.second
+#   expect(invitee.name).to eq 'Daffy'
+#   expect(invitee.mobile).to eq '07753205999'
+#   expect(invitee.email).to eq 'daffyduck@test.com'
+# end
+
 
 # Then(/^I want to be able to add users to the event$/) do
 #   pending fill_in 'Name', with: "Zultan"
