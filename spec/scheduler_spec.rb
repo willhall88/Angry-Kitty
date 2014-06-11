@@ -198,7 +198,7 @@ describe 'accessing unpaid debts from database' do
       debt.paid = true
       debt.save
     end
-    select_debtors
+    send_harassment
     open_email('apo@test.com')
     expect(current_email).to have_content('PAY ME!')
     open_email('nico@test.com')
@@ -223,7 +223,7 @@ describe 'accessing unpaid debts from database' do
       debt.last_harassed = DateTime.now - 4
       debt.save
     end
-    select_debtors
+    send_harassment
     open_email('dan@test.com')
     expect(current_email).to have_content('PAY ME!')
     open_email('nico@test.com')
