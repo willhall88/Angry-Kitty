@@ -133,7 +133,7 @@ describe "Scheduler" do
   context 'days 121+' do
     
     it 'will send an email if the due date is over 4 months' do
-      @event.deadline = DateTime.now + 121
+      @event.deadline = DateTime.now + 122
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
@@ -143,7 +143,7 @@ describe "Scheduler" do
     end
 
     it 'will not send an email if the last harassment email is within 30 days' do
-      @event.deadline = DateTime.now + 121
+      @event.deadline = DateTime.now + 122
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
