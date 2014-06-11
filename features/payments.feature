@@ -3,7 +3,7 @@ Feature: Payments
   As a user
 
   Background:
-    Given I am on the event page
+    # Given I am on the event page
 
   Scenario: Viewing who has paid
     And I have five paid users

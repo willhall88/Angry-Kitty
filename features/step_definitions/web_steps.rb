@@ -16,6 +16,10 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /^these are our instance variables$/ do
+  
+end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
