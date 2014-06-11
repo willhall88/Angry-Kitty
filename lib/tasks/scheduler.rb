@@ -1,15 +1,4 @@
-
-
-
-# def debt_mailer
-#   Debt.all.each do |debt|
-#     if send_mail?(debt.deadline,debt.last_harassed)
-#       MAIL debt.user
-#     end
-#   end
-# end
 def select_debtors
-  puts "sometimg sometjomg"
   debtors = Debt.all.select {|debt| debt.paid != true }
   debtors.map{|debt| ChasersMailer.harass(debt).deliver! if send_mail?(debt.event.deadline, debt.last_harassed)}
 end
