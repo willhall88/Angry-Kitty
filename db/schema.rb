@@ -45,11 +45,6 @@ ActiveRecord::Schema.define(version: 20140611153434) do
     t.integer "userinvitee_id", null: false
   end
 
-  create_table "events_users", id: false, force: true do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id",  null: false
-  end
-
   create_table "payments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -62,11 +57,6 @@ ActiveRecord::Schema.define(version: 20140611153434) do
     t.string   "name"
     t.string   "mobile"
     t.integer  "payment_amount"
-  end
-
-  create_table "userinvites", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
