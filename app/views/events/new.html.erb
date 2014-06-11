@@ -1,5 +1,4 @@
 <%= form_for @event do |f| %>
-
   <p>
   <%= f.label :title %>
   <%= f.text_field :title %>
@@ -47,16 +46,17 @@
   <p>
 	<%= f.submit 'Create Event' %>
   </p>
+<% end %>
 
-<template id='userinvitee_fields'>
-  <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
+<%= form_for @event do |f| %>
+  <template id='userinvitee_fields'>
+    <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
 
-          <%= x.text_field :email, placeholder: 'Email', name: 'event[userinvitees_attributes][{{ index }}][email]' %>
-          <%= x.text_field :name, placeholder: 'Name', name: 'event[userinvitees_attributes][{{ index }}][name]' %>        
-          <%= x.text_field :mobile, placeholder: 'Mobile', name: 'event[userinvitees_attributes][{{ index }}][mobile]' %>
+            <%= x.text_field :email, placeholder: 'Email', name: 'event[userinvitees_attributes][{{ index }}][email]' %>
+            <%= x.text_field :name, placeholder: 'Name', name: 'event[userinvitees_attributes][{{ index }}][name]' %>        
+            <%= x.text_field :mobile, placeholder: 'Mobile', name: 'event[userinvitees_attributes][{{ index }}][mobile]' %>
 
-  <% end %> 
-    <button type='button' class='delete_userinvitee'>&#10006;</button>
-</template>
-
+    <% end %> 
+      <button type='button' class='delete_userinvitee'>&#10006;</button>
+  </template>
 <% end %>

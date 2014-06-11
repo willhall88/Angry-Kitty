@@ -72,33 +72,20 @@ When(/^I click on submit$/) do
   click_on('Create Event')
 end
 
-# Then(/^I expect an event with a title, description, payment amount per person and an anger level$/) do
-#   expect(page).to have_content('Stag Party')
-#   expect(page).to have_content('2014-06-06')
-#   # expect(page).to have_content('500')
-#   # expect(page).to have_content('This is the most outrageous party ever')
-# end
-
 Then(/^I expect to see the dashboard contain the new event with its title and description$/) do
   expect(page).to have_content('Stag Party')
   expect(page).to have_content('2014-06-06')
 end
 
 Then(/^I expect an invitee with a name, number, email to be created$/) do
-  # puts Userinvitee.count
-  puts Event.count
   invitee = Userinvitee.first
   expect(invitee.name).to eq 'Zultan'
   expect(invitee.mobile).to eq '07740605789'
   expect(invitee.email).to eq 'dave@d.com'
-  # expect(page).to have_content('Zultan')
-  # expect(page).to have_content('07740605789')
-  # expect(page).to have_content('dave@d.com')
 end
 
 Then(/^I expect two invitees with their names, numbers, and emails to be created$/) do
-  puts Userinvitee.count
-  invitee = Userinvitee.all[1]
+  invitee = Userinvitee.second
   expect(invitee.name).to eq 'Daffy'
   expect(invitee.mobile).to eq '07753205999'
   expect(invitee.email).to eq 'daffyduck@test.com'
@@ -106,18 +93,4 @@ end
 
 
 
-# Then(/^I expect an invitee with a name, number, email to be created$/) do
-#   invitee = Userinvitee.second
-#   expect(invitee.name).to eq 'Daffy'
-#   expect(invitee.mobile).to eq '07753205999'
-#   expect(invitee.email).to eq 'daffyduck@test.com'
-# end
 
-
-# Then(/^I want to be able to add users to the event$/) do
-#   pending fill_in 'Name', with: "Zultan"
-# end
-
-# Then(/^I want it to be divided automatically by the participants count$/) do
-#   pending
-# end
