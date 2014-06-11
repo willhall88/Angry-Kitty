@@ -261,3 +261,28 @@ describe 'updating database' do
     expect(debt.last_harassed).not_to be_blank
   end
 end
+
+describe 'anger level' do
+
+  let(:user1){ create( :user, email: 'nico@test.com'  ) }
+  let(:user2){ create( :user, email: 'sroop@test.com' ) }
+  let(:user3){ create( :user, email: 'will@test.com'  ) }
+
+  it 'will set the harassment frequency based upon the anger level' do
+    event1 = Event.create(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10)
+    event2 = Event.create(angerlevel: 'really_angry', organiser_id: user1.id, deadline: DateTime.now + 10)
+    event1.user << user2
+    event2.user << user3
+    event2.debts.each do|debt|
+      debt.last_harassed = DateTime.now - 2
+      debt.save
+    end
+    event1.debts.each do|debt|
+      debt.last_harassed = DateTime.now - 2
+      debt.save
+    end
+    send_harassment
+
+  end
+
+end
