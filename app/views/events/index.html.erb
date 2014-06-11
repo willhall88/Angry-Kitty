@@ -1,18 +1,31 @@
-<ul>
-<% @events.each do |event| %>
-	<li>
-    <%= event.title %><br>
-    <%= event.description %>
-    Event created for <%= event.deadline %>
-  </li>
-  <li>
+<h1>DASHBOARD</h1>
+
+<h2>Organising Events</h2>
+
+<% if !@organising.nil? %>
+  <ul>
+  <% @organising.each do |event| %>
+    <li> <%= link_to "#{event.title}", event_path(event) %> <%= event.deadline.to_date %> </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Create Event', new_event_path %>
+
+
+<h2>Participanting in Events</h2>
+<% if !@participanting.nil? %>
+  <ul>
+  <% @participanting.each do |event| %>
+    <li>
+      <%= event.title %>
+      <%= event.description %>
+      <%= event.deadline %>
+    </li>
+
     Total: <%= event.total.to_s %>
     Anger Level: <%= event.angerlevel %>
-  </li>
-  <% @userinvitees.each do |userinvitee| %>
-  	<%= userinvitee.name %>
-  	<%= userinvitee.email %>
-  	<%= userinvitee.mobile %>
+
   <% end %>
+  </ul>
 <% end %>
-</ul>

@@ -17,7 +17,6 @@ RSpec.describe ChasersMailer, :type => :mailer do
       expect(current_email).to have_content "You owe money for #{debt.event}"
     end
 
-
   end
 
 end

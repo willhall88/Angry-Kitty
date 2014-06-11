@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610155245) do
+ActiveRecord::Schema.define(version: 20140611153434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140610155245) do
     t.datetime "updated_at"
     t.datetime "deadline"
     t.datetime "last_harassed"
-    t.boolean  "paid"
+    t.boolean  "paid",           default: false
     t.integer  "payment_amount"
   end
 
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140610155245) do
     t.datetime "deadline"
     t.integer  "total"
     t.integer  "organiser_id"
-    t.integer  "angerlevel"
+    t.string   "angerlevel"
   end
 
   add_index "events", ["organiser_id"], name: "index_events_on_organiser_id", using: :btree

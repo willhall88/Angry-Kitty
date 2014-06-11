@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :users #, :controllers => { :registrations => "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  root 'events#index'
+
   resources :events
+
 
   get 'users/:user_id/:event_id/charges/new', to: 'charges#new', as: 'new_charges'
   post 'users/:user_id/:event_id/charges', to: 'charges#create', as: 'charges'

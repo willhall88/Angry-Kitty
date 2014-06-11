@@ -1,33 +1,62 @@
 <%= form_for @event do |f| %>
-
+  <p>
   <%= f.label :title %>
   <%= f.text_field :title %>
+  </p>
 
+  <p>
   <%= f.label :description %>
   <%= f.text_field :description %>
+  </p>
 
+  <p>
   <%= f.label :deadline %>
   <%= f.date_field :deadline %>
+  </p>
 
+  <p>
+  <%= f.label :angerlevel, "Anger level" %>
+  <%= f.select(:angerlevel, ['polite','angry','very angry']) %>
+  </p>
+
+  <p>
   <%= f.label :total %>
   <%= f.number_field :total %>
+  </p>
 
-  <%= f.label :angerlevel, "Anger level" %>
-  <%= f.select(:angerlevel, (1..3)) %>
 
-  <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
-    <fieldset>
-      <%= x.label :name, "Name" %>
-      <%= x.text_area :name %>
+  <p>
+    Add friends, when finished click create event:
+    <button type='button' class='add_userinvitee'>Add Friend</button> 
+  </p>
 
-      <%= x.label :mobile, "Mobile" %>
-      <%= x.text_area :mobile %>
+  <ol class='userinvitees_list'>
+    <li >
+      <%= f.fields_for :userinvitees, class: "userinvitees" do |x| %>
+          
+          <%= x.text_field :email, placeholder: 'Email' %>
+          <%= x.text_field :name, placeholder: 'Name' %>        
+          <%= x.text_field :mobile, placeholder: 'Mobile' %>
 
-      <%= x.label :email, "Email" %>
-      <%= x.text_area :email %>
-    </fieldset>
-  <% end %> 
+      <% end %> 
+        <button type='button' class='delete_userinvitee'>&#10006;</button>
+    </li>
+  </ol>
 
+  <p>
 	<%= f.submit 'Create Event' %>
+  </p>
+<% end %>
 
+<%= form_for @event do |f| %>
+  <template id='userinvitee_fields'>
+    <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
+
+            <%= x.text_field :email, placeholder: 'Email', name: 'event[userinvitees_attributes][{{ index }}][email]' %>
+            <%= x.text_field :name, placeholder: 'Name', name: 'event[userinvitees_attributes][{{ index }}][name]' %>        
+            <%= x.text_field :mobile, placeholder: 'Mobile', name: 'event[userinvitees_attributes][{{ index }}][mobile]' %>
+
+    <% end %> 
+      <button type='button' class='delete_userinvitee'>&#10006;</button>
+  </template>
 <% end %>
