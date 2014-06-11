@@ -24,7 +24,7 @@ When(/^I want to be able to set a payment deadline$/) do
 end
 
 When(/^I want to be able to set the anger level$/) do
-  select('2', :from => 'Anger level')
+  select('angry', :from => 'Anger level')
 end
 
 When(/^I want to be able to set a total payment amount$/) do
