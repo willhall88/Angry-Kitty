@@ -1,6 +1,8 @@
 require 'rails_helper'
 require_relative '../lib/tasks/scheduler'
 
+include Capybara::Email::DSL
+
 describe "Scheduler" do
 
   let(:user){ create( :user ) }
@@ -184,19 +186,27 @@ describe 'accessing unpaid debts from database' do
   let(:user7){ build( :user, email: 'apo@test.com'   ) }
 
   before do 
-    @event = Event.new
+    @event = Event.new(title: "birthday")
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
     @event.save
     @event.users << [user2, user3, user4, user5, user6, user7]
   end
 
-  it 'should only select the unpaid participants' do
+  it 'should only email the unpaid participants' do
     Debt.first(3).each do|debt|
       debt.paid = true
       debt.save
     end
-    expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first]
+    select_debtors
+    open_email('apo@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('nico@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('dan@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    expect(open_email('scott@test.com')).to eq(nil)
+    # expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first]
   end
 
   it 'unpaying people in multiple events can be emailed multiple times' do
@@ -204,7 +214,7 @@ describe 'accessing unpaid debts from database' do
       debt.last_harassed = DateTime.now - 1
       debt.save
     end
-    event2 = Event.new
+    event2 = Event.new(title: "diving")
     event2.organiser = user2
     event2.deadline = DateTime.now + 10
     event2.save
@@ -213,9 +223,24 @@ describe 'accessing unpaid debts from database' do
       debt.last_harassed = DateTime.now - 4
       debt.save
     end
-
-    expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first, user1.debts.first, user3.debts.second, user7.debts.second]
+    select_debtors
+    open_email('dan@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('nico@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('sroop@sunar.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('robin@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('apo@test.com')
+    current_email.save_and_open
+    # expect(current_email).to have_content('birthday')
+    # open_email('apo@test.com')
+    # expect(current_email.count).to eq(2)
+    # expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first, user1.debts.first, user3.debts.second, user7.debts.second]
   end
+
+
 end
 
 

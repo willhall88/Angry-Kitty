@@ -10,7 +10,7 @@
 # end
 def select_debtors
   debtors = Debt.all.select {|debt| debt.paid != true }
-  debtors.select{|debt| send_mail?(debt.event.deadline, debt.last_harassed)}
+  debtors.map{|debt| ChasersMailer.harass(debt).deliver! if send_mail?(debt.event.deadline, debt.last_harassed)}
 
 end
 
