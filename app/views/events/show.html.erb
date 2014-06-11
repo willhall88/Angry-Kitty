@@ -1,0 +1,7 @@
+<h2><%= @event.title %> </h2> 
+	<section class= 'description'><%= @event.description %></section>
+	<section class= 'users'>
+		<%= @event.users.each do |user| %>
+			<%= user.email %> 
+		<% end %>
+	</section>

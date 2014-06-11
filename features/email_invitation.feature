@@ -14,19 +14,19 @@ Feature: Invitation email
   Scenario: an existing user clicks the link and they are not signed in
     Given there is no current user 
     And the invitee is already a user
-    When they click the link in the invitation email
+    When the registered user clicks the link in the invitation email
     And they will be added to the event
     Then they will be re-directed to the sign in page
     
   Scenario: an existing user clicks the link and they are signed in
     Given the invitee is the current user
-    When they click the link in the invitation email
+    When the registered user clicks the link in the invitation email
     And they will be added to the event
     Then they will be re-directed to the event
 
   Scenario: an new user clicks the link
-    Given the invitee not a current user
-    When they click the link in the invitation email
+    Given the invitee is not a current user
+    When the unregistered user clicks the link in the invitation email
     Then they will be re-directed to the sign up page
 
      # Scenario: resending the initial invitation

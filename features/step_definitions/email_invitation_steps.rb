@@ -34,10 +34,16 @@ Given(/^the invitee is already a user$/) do
   @reginvitee.email == @user.email
 end
 
-When(/^they click the link in the invitation email$/) do
- InvitationMailer.invite(@reginvitee, @event).deliver!
- open_email('foo@bar.com')
- current_email.click_link 'Accept'
+When(/^the registered user clicks the link in the invitation email$/) do
+  InvitationMailer.invite(@reginvitee, @event).deliver!
+  open_email('foo@bar.com')
+  current_email.click_link 'Accept'
+end
+
+When(/^the unregistered user clicks the link in the invitation email$/) do
+  InvitationMailer.invite(@unreginvitee, @event).deliver!
+  open_email('new@newinvitee.com')
+  current_email.click_link 'Accept'
 end
 
 When(/^they will be added to the event$/) do
@@ -45,21 +51,21 @@ When(/^they will be added to the event$/) do
 end
 
 Then(/^they will be re\-directed to the sign in page$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(current_path).to eq '/users/sign_in'
 end
 
 Given(/^the invitee is the current user$/) do
-  pending # express the regexp above with the code you wish you had
+ login_as @user
 end
 
 Then(/^they will be re\-directed to the event$/) do
-  pending # express the regexp above with the code you wish you had
+ expect(current_path).to eq "/events/#{@event.id}"
 end
 
-Given(/^the invitee not a current user$/) do
-  pending # express the regexp above with the code you wish you had
+Given(/^the invitee is not a current user$/) do
+ current_user = nil
 end
 
 Then(/^they will be re\-directed to the sign up page$/) do
-  pending # express the regexp above with the code you wish you had
+ expect(current_path).to eq '/users/sign_up'
 end

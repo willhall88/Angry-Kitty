@@ -21,4 +21,8 @@ class EventsController < ApplicationController
 			InvitationMailer.invite(invitee).deliver!
 		end
 	end
+
+	def show
+		@event = Event.find(params[:id])
+	end
 end
