@@ -9,9 +9,9 @@
 #   end
 # end
 def select_debtors
+  puts "sometimg sometjomg"
   debtors = Debt.all.select {|debt| debt.paid != true }
   debtors.map{|debt| ChasersMailer.harass(debt).deliver! if send_mail?(debt.event.deadline, debt.last_harassed)}
-
 end
 
 def send_mail?(deadline,last_harassed)

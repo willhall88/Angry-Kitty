@@ -232,13 +232,11 @@ describe 'accessing unpaid debts from database' do
     expect(current_email).to have_content('PAY ME!')
     open_email('robin@test.com')
     expect(current_email).to have_content('PAY ME!')
-    open_email('apo@test.com')
-    current_email.save_and_open
-    # expect(current_email).to have_content('birthday')
-    # open_email('apo@test.com')
-    # expect(current_email.count).to eq(2)
-    # expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first, user1.debts.first, user3.debts.second, user7.debts.second]
+    emails_sent_to('apo@test.com')
+    expect(current_emails.first).to have_content 'birthday'
+    expect(current_emails.last).to have_content 'diving'
   end
+
 
 
 end

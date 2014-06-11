@@ -15,7 +15,6 @@ RSpec.describe ChasersMailer, :type => :mailer do
       expect(current_email).to have_content "PAY ME!"
     end
 
-
   end
 
 end
