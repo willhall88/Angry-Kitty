@@ -1,10 +1,12 @@
 require 'rails_helper'
 require_relative '../lib/tasks/scheduler'
 
+include Capybara::Email::DSL
+
 describe "Scheduler" do
 
   let(:user){ create( :user ) }
-  let(:user2){ build( :user, email: 'will@test.com' ) }
+  let(:user2){ create( :user, email: 'will@test.com' ) }
 
   before do 
     @event = Event.new
@@ -131,7 +133,7 @@ describe "Scheduler" do
   context 'days 121+' do
     
     it 'will send an email if the due date is over 4 months' do
-      @event.deadline = DateTime.now + 121
+      @event.deadline = DateTime.now + 122
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
@@ -141,7 +143,7 @@ describe "Scheduler" do
     end
 
     it 'will not send an email if the last harassment email is within 30 days' do
-      @event.deadline = DateTime.now + 121
+      @event.deadline = DateTime.now + 122
       @event.save
       @event.users << user2
       debt = Debt.find_by(user: user2, event: @event)
@@ -176,27 +178,35 @@ end
 
 describe 'accessing unpaid debts from database' do
   let(:user1){ create( :user ) }
-  let(:user2){ build( :user, email: 'will@test.com'  ) }
-  let(:user3){ build( :user, email: 'robin@test.com' ) }
-  let(:user4){ build( :user, email: 'scott@test.com' ) }
-  let(:user5){ build( :user, email: 'dan@test.com'   ) }
-  let(:user6){ build( :user, email: 'nico@test.com'  ) }
-  let(:user7){ build( :user, email: 'apo@test.com'   ) }
+  let(:user2){ create( :user, email: 'will@test.com'  ) }
+  let(:user3){ create( :user, email: 'robin@test.com' ) }
+  let(:user4){ create( :user, email: 'scott@test.com' ) }
+  let(:user5){ create( :user, email: 'dan@test.com'   ) }
+  let(:user6){ create( :user, email: 'nico@test.com'  ) }
+  let(:user7){ create( :user, email: 'apo@test.com'   ) }
 
   before do 
-    @event = Event.new
+    @event = Event.new(title: "birthday")
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
     @event.save
     @event.users << [user2, user3, user4, user5, user6, user7]
   end
 
-  it 'should only select the unpaid participants' do
+  it 'should only email the unpaid participants' do
     Debt.first(3).each do|debt|
       debt.paid = true
       debt.save
     end
-    expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first]
+    send_harassment
+    open_email('apo@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('nico@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('dan@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    expect(open_email('scott@test.com')).to eq(nil)
+    # expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first]
   end
 
   it 'unpaying people in multiple events can be emailed multiple times' do
@@ -204,7 +214,7 @@ describe 'accessing unpaid debts from database' do
       debt.last_harassed = DateTime.now - 1
       debt.save
     end
-    event2 = Event.new
+    event2 = Event.new(title: "diving")
     event2.organiser = user2
     event2.deadline = DateTime.now + 10
     event2.save
@@ -213,11 +223,66 @@ describe 'accessing unpaid debts from database' do
       debt.last_harassed = DateTime.now - 4
       debt.save
     end
+    send_harassment
+    open_email('dan@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('nico@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('sroop@sunar.com')
+    expect(current_email).to have_content('PAY ME!')
+    open_email('robin@test.com')
+    expect(current_email).to have_content('PAY ME!')
+    emails_sent_to('apo@test.com')
+    expect(current_emails.first).to have_content 'birthday'
+    expect(current_emails.last).to have_content 'diving'
+  end
 
-    expect(select_debtors).to eq [user5.debts.first, user6.debts.first, user7.debts.first, user1.debts.first, user3.debts.second, user7.debts.second]
+
+
+end
+
+describe 'updating database' do
+
+  let(:user1){ create( :user, email: 'nico@test.com'  ) }
+  let(:user2){ create( :user, email: 'sroop@test.com' ) }
+  let(:user3){ create( :user, email: 'will@test.com'  ) }
+
+  before do 
+    @event = Event.new(title: "Nico´s Birthday Bash Xtreme")
+    @event.organiser = user1
+    @event.deadline = DateTime.now + 5
+    @event.save
+    @event.users << [user3, user2]
+  end
+
+  it 'writes last harassment into debt table' do
+    send_harassment
+    debt = @event.debts.first
+    expect(debt.last_harassed).not_to be_blank
   end
 end
 
+describe 'anger level' do
 
+  let(:user1){ create( :user, email: 'nico@test.com'  ) }
+  let(:user2){ create( :user, email: 'sroop@test.com' ) }
+  let(:user3){ create( :user, email: 'will@test.com'  ) }
 
+  it 'will set the harassment frequency based upon the anger level' do
+    event1 = Event.create(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10)
+    event2 = Event.create(angerlevel: 'really_angry', organiser_id: user1.id, deadline: DateTime.now + 10)
+    event1.user << user2
+    event2.user << user3
+    event2.debts.each do|debt|
+      debt.last_harassed = DateTime.now - 2
+      debt.save
+    end
+    event1.debts.each do|debt|
+      debt.last_harassed = DateTime.now - 2
+      debt.save
+    end
+    send_harassment
 
+  end
+
+end
