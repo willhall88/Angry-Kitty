@@ -6,7 +6,7 @@ include Capybara::Email::DSL
 describe "Scheduler" do
 
   let(:user){ create( :user ) }
-  let(:user2){ build( :user, email: 'will@test.com' ) }
+  let(:user2){ create( :user, email: 'will@test.com' ) }
 
   before do 
     @event = Event.new
@@ -178,12 +178,12 @@ end
 
 describe 'accessing unpaid debts from database' do
   let(:user1){ create( :user ) }
-  let(:user2){ build( :user, email: 'will@test.com'  ) }
-  let(:user3){ build( :user, email: 'robin@test.com' ) }
-  let(:user4){ build( :user, email: 'scott@test.com' ) }
-  let(:user5){ build( :user, email: 'dan@test.com'   ) }
-  let(:user6){ build( :user, email: 'nico@test.com'  ) }
-  let(:user7){ build( :user, email: 'apo@test.com'   ) }
+  let(:user2){ create( :user, email: 'will@test.com'  ) }
+  let(:user3){ create( :user, email: 'robin@test.com' ) }
+  let(:user4){ create( :user, email: 'scott@test.com' ) }
+  let(:user5){ create( :user, email: 'dan@test.com'   ) }
+  let(:user6){ create( :user, email: 'nico@test.com'  ) }
+  let(:user7){ create( :user, email: 'apo@test.com'   ) }
 
   before do 
     @event = Event.new(title: "birthday")
@@ -243,9 +243,9 @@ end
 
 describe 'updating database' do
 
-  let(:user1){ build( :user, email: 'nico@test.com'  ) }
-  let(:user2){ build( :user, email: 'sroop@test.com' ) }
-  let(:user3){ build( :user, email: 'will@test.com'  ) }
+  let(:user1){ create( :user, email: 'nico@test.com'  ) }
+  let(:user2){ create( :user, email: 'sroop@test.com' ) }
+  let(:user3){ create( :user, email: 'will@test.com'  ) }
 
   before do 
     @event = Event.new(title: "Nico´s Birthday Bash Xtreme")
@@ -258,12 +258,6 @@ describe 'updating database' do
   it 'writes last harassment into debt table' do
     send_harassment
     debt = @event.debts.first
-    # debt = Debt.all
-    # puts debt
-      # puts "H I I IIIIII"
-      # puts Debt.first
-      # puts "----------------------------------------"
-      # puts Debt.last
-    expect(debt.last_harassed).to be_an DateTime
+    expect(debt.last_harassed).not_to be_blank
   end
 end
