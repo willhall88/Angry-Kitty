@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe InvitationMailer, :type => :mailer do
 
 
-	  let(:invitee) { double :invitee, email: "foo@bar.com", invitee_id: 1 }
+	  let(:invitee) { Userinvitee.new, email: "foo@bar.com" }
 	  let(:event) { Event.create }
       
     

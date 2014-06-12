@@ -1,5 +1,5 @@
 <h2> PAY ME! </h2>
 
-You owe money for <%= @event %>
+You owe money for <%= @event.title %>
 
 <%= link_to('Pay now', new_charges_url(@user.id, @event.id)) %>
