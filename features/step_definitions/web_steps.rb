@@ -17,11 +17,15 @@ end
 World(WithinHelpers)
 
 Given /^these are our instance variables$/ do
-  
+
 end
 
-Given /^(?:|I )am on (.+)$/ do |page_name|
-  visit path_to(page_name)
+Given /^I am on the event page$/ do
+  visit event_path(@event)
+end
+
+Given(/^I am signed in$/) do
+  login_as @nico
 end
 
 When /^(?:|I )go to (.+)$/ do |page_name|

@@ -1,19 +1,20 @@
 <% if @event.debts.any? %>
 
 	<h3>Event title: <%= @event.title %></h3>
-	
+
 	<h4> Angry Kitty is purrring </h4>
-		<% @paid.each do |debt| %>
-		  <%= debt.user.email %> owes ,
-		  <%= debt.payment_amount %>
-		<% end %>
+		<ul>
+			<% @paid.each do |debt| %>
+			  <li> <%= debt.user.email %> | ✓ | <%= debt.payment_amount %> </li>
+			<% end %>
+		</ul>
 
 	<h4> Angry Kitty is still chasing </h4>
+	<ul>
 		<% @unpaid.each do |debt| %>
-		  <%= debt.user.email %> owes ,
-		  <%= debt.payment_amount %>
+		  <li> <%= debt.user.email %> | ✗ | <%= debt.payment_amount %> </li>
 		<% end %>
-
+	</ul>
 <% else %>
 
 	<h3>No payments for this event - note debts will in future always exists for an event</h3>

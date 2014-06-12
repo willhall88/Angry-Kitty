@@ -50,8 +50,8 @@ Then(/^the new user will be added to the event$/) do
   expect(@event.users.first.email).to eq @unreginvitee.email
 end
 
-Then(/^they will be re\-directed to the sign in page$/) do
-  expect(current_path).to eq '/users/sign_in'
+Then(/^they will be re\-directed to the sign up page$/) do
+  expect(current_path).to eq '/users/sign_up'
 end
 
 Given(/^the invitee is the current user$/) do
@@ -78,4 +78,13 @@ end
 
 Then(/^they press "(.*?)"$/) do |arg1|
   click_on arg1.to_s
+end
+
+Given(/^the participant clicks the link in the invitation email$/) do
+  open_email('new@newinvitee.com')
+  current_email.click_link 'Accept'
+end
+
+Then(/^the participant will not be added to the event$/) do
+  expect(@event.users.count).to eq(1)  
 end

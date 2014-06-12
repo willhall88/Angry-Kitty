@@ -26,10 +26,10 @@ class EventsController < ApplicationController
 		@event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email]))
 		@event.organiser = current_user
 		@event.save
-		# @event.userinvitees.each do |invitee|
-		# 	InvitationMailer.invite(invitee).deliver!
-		# end
 		redirect_to('/events')
+		@event.userinvitees.each do |invitee|
+			InvitationMailer.invite(invitee, @event).deliver!
+		end
 	end
 
 	def show
