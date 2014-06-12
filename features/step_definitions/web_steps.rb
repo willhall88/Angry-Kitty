@@ -16,8 +16,11 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-Given /^these are our instance variables$/ do
+Before do
+  @nico = User.create!(email: 'nico@test.com', password: '12345678', password_confirmation: '12345678')
+end
 
+Given /^these are our instance variables$/ do
 end
 
 Given /^I am on the event page$/ do

@@ -15,9 +15,9 @@ def send_harassment
       end
     end
   # else
-  rescue
-    puts 'No emails to send'
-  # end
+  # rescue
+  #   puts 'No emails to send'
+  # # end
 end
 
 def send_mail?(deadline, last_harassed, angerlevel='polite')

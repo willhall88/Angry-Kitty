@@ -4,11 +4,17 @@ require_relative '../../lib/tasks/scheduler'
 describe 'Sending SMS' do
 
     before do
-      user = User.create(email: 'foo@bar.com', mobile: '+447432865747', password: '12345678', password_confirmation: '12345678')
-      organiser = User.create(email: 'bar@foo.com', password: '12345678', password_confirmation: '12345678')
-      event = user.events.create(organiser_id: organiser.id, deadline: 3.days.from_now)
+      user = User.create(email: 'goo@bar.com', mobile: '+447432865747', password: '12345678', password_confirmation: '12345678')
+      puts user.mobile
+      puts '===='
+      organiser = User.create(email: 'bar@goo.com', password: '12345678', password_confirmation: '12345678')
+      event = Event.create(organiser_id: organiser.id, deadline: 3.days.from_now)
       event.users << user
+      puts event.users.count
+      puts '===='
       @debt = user.debts.first 
+      puts @debt.user.mobile
+      puts '===='
     end
 
 
@@ -21,7 +27,5 @@ describe 'Sending SMS' do
     it 'returns a confirmation' do
       expect(@debt.send_sms!).to eq "Order confirmation has been sent to your phone!"
     end
-
-  # end
 
 end

@@ -18,6 +18,4 @@ Then(/^the organiser should receive an email notification$/) do
   expect(current_email).to have_content "You have been paid"
 end
 
-Then(/^they will be removed from the mailing list$/) do
-  expect(@debt.paid?).to be true
-end
+

@@ -1,5 +1,8 @@
 Given(/^I have an event$/) do
-  @event = create(:event, organiser: @nico)
+  @event = Event.new
+  @event.deadline = DateTime.now + 4 
+  @event.organiser_id = @nico.id
+  @event.save!
 end
 
 And(/^I have one paid user$/) do

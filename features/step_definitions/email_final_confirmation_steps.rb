@@ -1,5 +1,5 @@
 Given(/^I am an organiser of an event$/) do
-  user = User.create!(email:"nico@test.com", password:"12345678", password_confirmation:"12345678")
+  user = User.create!(email:"nico@tester.com", password:"12345678", password_confirmation:"12345678")
   user2 = User.create!(email:"robin@test.com", password:"12345678", password_confirmation:"12345678")
   user3 = User.create!(email:"apo@test.com", password:"12345678", password_confirmation:"12345678")
   @event = Event.new(title:"Stag Party", deadline: DateTime.now + 2, organiser_id: user.id)
@@ -15,7 +15,7 @@ end
 
 Then(/^I want to receive an email with the content "(.*?)"$/) do |arg1|
   ConfirmationMailer.celebration(@event).deliver!
-  open_email('nico@test.com')
+  open_email('nico@tester.com')
   expect(current_email).to have_content(arg1)
   open_email('robin@test.com')
   expect(current_email).to eq nil
