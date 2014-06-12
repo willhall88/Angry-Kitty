@@ -1,11 +1,11 @@
 module SMSChaser
 
   def send_sms!
-    account_sid = 'ACa7ed7360f5a78cef143d2c88421751a6'
-    auth_token = 'b9b56c483acdf8d39838fbddc24fc595'
+    account_sid = Rails.application.secrets.twilio_account_sid
+    auth_token = Rails.application.secrets.twilio_auth_token
     @client = Twilio::REST::Client.new account_sid, auth_token
 
-    message = @client.account.sms.messages.create(:body => "#{sms_body}", :to => "#{self.user.mobile}", :from => "+442891042146")
+    message = @client.account.sms.messages.create(:body => "#{sms_body}", :to => "#{self.user.mobile}", :from => Rails.application.secrets.twilio_from_number)
     "Order confirmation has been sent to your phone!"
   end
 

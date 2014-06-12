@@ -7,6 +7,8 @@ class Debt < ActiveRecord::Base
   scope :unpaid, -> { where(paid: false) }
   scope :paid, -> { where(paid: true) }
 
+  include SMSChaser
+
   def harass!
     ChasersMailer.harass(self).deliver!
   end
