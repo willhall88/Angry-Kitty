@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'users/:user_id/:event_id/charges/new', to: 'charges#new', as: 'new_charges'
   post 'users/:user_id/:event_id/charges', to: 'charges#create', as: 'charges'
 
+  post 'users/:user_id/:event_id/payments', to: 'payments#create', as: 'payments'
+
+
   get 'userinvitees/:userinvitee_id/:event_id', to: 'userinvitees#show', as: 'userinvitee'
 
 
