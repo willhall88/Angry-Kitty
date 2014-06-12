@@ -3,9 +3,6 @@ Before do
   @nico = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
 end
 
-Given(/^I am signed in$/) do
-  login_as @nico
-end
 
 When(/^I create an event$/) do
   visit('/events/new')
