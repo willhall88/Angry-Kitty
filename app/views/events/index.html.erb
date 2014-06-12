@@ -13,10 +13,10 @@
 <%= link_to 'Create Event', new_event_path %>
 
 
-<h2>Participanting in Events</h2>
-<% if !@participanting.nil? %>
+<h2>Participating in Events</h2>
+<% if !@participating.nil? %>
   <ul>
-  <% @participanting.each do |event| %>
+  <% @participating.each do |event| %>
     <li>
       <%= event.title %>
       <%= event.description %>

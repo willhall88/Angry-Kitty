@@ -4,13 +4,13 @@
 	
 	<h4> Angry Kitty is purrring </h4>
 		<% @paid.each do |debt| %>
-		  <%= debt.name %> owes ,
+		  <%= debt.user.email %> owes ,
 		  <%= debt.payment_amount %>
 		<% end %>
 
 	<h4> Angry Kitty is still chasing </h4>
 		<% @unpaid.each do |debt| %>
-		  <%= debt.name %> owes ,
+		  <%= debt.user.email %> owes ,
 		  <%= debt.payment_amount %>
 		<% end %>
 
