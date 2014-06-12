@@ -27,6 +27,7 @@ class ChargesController < ApplicationController
   )
 
   debt.paid = true
+  debt.save
   ConfirmationMailer.receipt(debt).deliver!
   ConfirmationMailer.notification(debt).deliver!
 
