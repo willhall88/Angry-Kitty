@@ -10,6 +10,7 @@ class ChargesController < ApplicationController
   # Amount in pennys
   	user = User.find(params[:user_id])
   	debt = user.debts.find(params[:event_id])
+    event = Event.find(params[:event_id])
   	@payment_amount = debt.payment_amount
 
     @email = debt.user.email
@@ -26,7 +27,8 @@ class ChargesController < ApplicationController
     :currency    => 'gbp'
   )
 
-  debt.paid = true
+  debt.update(paid: true)
+  ConfirmationMailer.send_celebratory_email?(event).deliver! 
   ConfirmationMailer.receipt(debt).deliver!
   ConfirmationMailer.notification(debt).deliver!
 

@@ -19,5 +19,5 @@ Then(/^the organiser should receive an email notification$/) do
 end
 
 Then(/^they will be removed from the mailing list$/) do
-  @debt.paid?
+  expect(@debt.paid?).to be true
 end
