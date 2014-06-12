@@ -4,6 +4,8 @@ class Debt < ActiveRecord::Base
   scope :unpaid, -> { where(paid: false) }
   scope :paid, -> { where(paid: true) }
 
+  validates_uniqueness_of :user_id, scope: :event_id
+
   def harass!
     ChasersMailer.harass(self).deliver!
   end

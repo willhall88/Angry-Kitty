@@ -28,7 +28,7 @@ class EventsController < ApplicationController
 		@event.save
 		redirect_to('/events')
 		@event.userinvitees.each do |invitee|
-			InvitationMailer.invite(invitee).deliver!
+			InvitationMailer.invite(invitee, @event).deliver!
 		end
 	end
 

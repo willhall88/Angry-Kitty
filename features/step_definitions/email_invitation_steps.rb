@@ -79,3 +79,12 @@ end
 Then(/^they press "(.*?)"$/) do |arg1|
   click_on arg1.to_s
 end
+
+Given(/^the participant clicks the link in the invitation email$/) do
+  open_email('new@newinvitee.com')
+  current_email.click_link 'Accept'
+end
+
+Then(/^the participant will not be added to the event$/) do
+  expect(@event.users.count).to eq(1)  
+end

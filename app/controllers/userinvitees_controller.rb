@@ -8,14 +8,16 @@ class UserinviteesController < ApplicationController
     if @user.nil?
       session[:event_id] = params[:event_id]
       session[:userinvitee_id] = params[:userinvitee_id]
-      redirect_to new_user_session_path
-    elsif current_user == @user
-      @user.events << @event
-      redirect_to "/events/#{@event.id}"
+      redirect_to new_user_registration_path
     else
+      sign_in(:user, @user)
       @user.events << @event
-      redirect_to new_user_session_path
+      redirect_to @event
     end
+
+  rescue ActiveRecord::RecordInvalid
+    flash[:notice] = "already in the event!"
+    redirect_to @event
   end
 
 end
