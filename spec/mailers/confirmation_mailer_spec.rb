@@ -1,5 +1,4 @@
 require "rails_helper"
-include Capybara::Email::DSL
 
 RSpec.describe ConfirmationMailer, :type => :mailer do
 

@@ -7,6 +7,9 @@ require 'capybara/rails'
 require 'capybara/email/rspec'
 require 'capybara/email'
 
+include Capybara::Email::DSL
+
+
 include Warden::Test::Helpers
 Warden.test_mode!
 # Requires supporting ruby files with custom matchers and macros, etc, in
