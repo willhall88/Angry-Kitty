@@ -1,4 +1,7 @@
+require_relative '../mailers/chasers_texting'
+
 class Debt < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :event
   scope :unpaid, -> { where(paid: false) }
