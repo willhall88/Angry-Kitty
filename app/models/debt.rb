@@ -1,8 +1,8 @@
 class Debt < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
-  scope :unpaids, -> { where(paid: false) }
-  scope :paids, -> { where(paid: true) }
+  scope :unpaid, -> { where(paid: false) }
+  scope :paid, -> { where(paid: true) }
 
   validates_uniqueness_of :user_id, scope: :event_id
 

@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    debt = user.debts.find(params[:event_id])
+    debt = user.debts.find_by(event_id: params[:event_id])
     debt.paid = true
     debt.save
     @event = Event.find(params[:event_id])
