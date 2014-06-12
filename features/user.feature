@@ -4,7 +4,7 @@ Feature: Creating a user
 	I want to have a user account	
 
 	Background:
-		Given I am on the homepage
+		# Given I am on the homepage
 
 	Scenario: A user can sign up 
 		When I click sign up

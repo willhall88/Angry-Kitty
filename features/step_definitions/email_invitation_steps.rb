@@ -50,8 +50,8 @@ Then(/^the new user will be added to the event$/) do
   expect(@event.users.first.email).to eq @unreginvitee.email
 end
 
-Then(/^they will be re\-directed to the sign in page$/) do
-  expect(current_path).to eq '/users/sign_in'
+Then(/^they will be re\-directed to the sign up page$/) do
+  expect(current_path).to eq '/users/sign_up'
 end
 
 Given(/^the invitee is the current user$/) do

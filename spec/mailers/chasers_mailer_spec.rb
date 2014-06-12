@@ -1,6 +1,5 @@
 require "rails_helper"
 
-include Capybara::Email::DSL
 
 RSpec.describe ChasersMailer, :type => :mailer do
 
@@ -14,7 +13,7 @@ RSpec.describe ChasersMailer, :type => :mailer do
       ChasersMailer.harass(debt).deliver!
       open_email(user.email)
       expect(current_email).to have_content "PAY ME!"
-      expect(current_email).to have_content "You owe money for #{debt.event}"
+      expect(current_email).to have_content "You owe money for #{debt.event.title}"
     end
 
   end
