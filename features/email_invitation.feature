@@ -4,9 +4,10 @@ Feature: Invitation email
   I want to send an invitation email
 
   Background: participants are added by the organiser
-    Given There is an event
-    And the event has a title and a description
+    Given There is an event with an organiser
     And there is a participant with an email address
+    And there is an unregistered invitee
+    And there is a registered invitee 
 
   Scenario: sending the initial invitations
     Then an email containing a link will be sent to the participant
@@ -16,7 +17,7 @@ Feature: Invitation email
     And the invitee is already a user
     When the registered user clicks the link in the invitation email
     And the existing user will be added to the event
-    Then they will be re-directed to the sign in page
+    Then they will be re-directed to the event page
     
   Scenario: an existing user clicks the link and they are signed in
     Given the invitee is the current user
@@ -25,20 +26,16 @@ Feature: Invitation email
     Then they will be re-directed to the event
 
   Scenario: an new user clicks the link
-    Given the invitee is not a current user
-    When the unregistered user clicks the link in the invitation email
-    Then they will be re-directed to the sign in page
-    And they press "Sign up"
+    When an unregistered user clicks the link in the invitation email
+    Then they will be re-directed to the sign up page
     Then they can fill in their invitee details on the sign up page
     And they press "Sign up"
     Then the new user will be added to the event
     And they will be re-directed to the event
 
   Scenario: a new user clicks the link and signs up, then clicks the link again while signed in
-    Given the invitee is not a current user
-    When the unregistered user clicks the link in the invitation email
-    Then they will be re-directed to the sign in page
-    And they press "Sign up"
+    When an unregistered user clicks the link in the invitation email
+    Then they will be re-directed to the sign up page
     Then they can fill in their invitee details on the sign up page
     And they press "Sign up"
     Then the new user will be added to the event

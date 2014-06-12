@@ -1,9 +1,6 @@
-Before do
-  @nico = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
-end
-
 Given(/^I am signed in and on the dashboard$/) do
-  login_as @nico
+  nico = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
+  login_as nico
   visit '/events'
 end
 
