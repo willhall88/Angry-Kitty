@@ -6,9 +6,11 @@ ANGER_CHART = {
 
 def send_harassment
   Debt.unpaid.each do |debt|
-    debt.harass! if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
-    debt.last_harassed = time_now
-    debt.save!
+    if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
+      debt.harass! 
+      debt.last_harassed = time_now
+      debt.save!
+    end
   end
 end
 
