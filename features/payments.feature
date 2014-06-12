@@ -25,12 +25,16 @@ Feature: Payments
     And I am on the event page
     Then I should not see the 'Paid' button
 
-  # Scenario: An unpaid participant paying for the event
-  #   And I am a participant
-  #   And I havent paid
-  #   Then I should see the button 'Pay Now'
+  Scenario: An unpaid participant paying for the event
+    Given I am a participant
+    And I have an event
+    And I am the unpaid user
+    And I am on the event page
+    Then I should see the button 'Pay Now'
 
-  # Scenario: A paid participant viewing the event
-  #   And I am a participant
-  #   And I have paid
-  #   Then I should not see the button 'Pay Now'
+  Scenario: A paid participant viewing the event
+    Given I am a participant
+    And I have an event
+    And I am a paid user
+    And I am on the event page
+    Then I should not see the button 'Pay Now'

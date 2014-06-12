@@ -14,4 +14,9 @@ class Debt < ActiveRecord::Base
     event.deadline
   end
 
+  def pay!(authorising_user)
+    raise ActiveRecord::RecordInvalid.new('Unauthorised') unless authorising_user == event.organiser
+    update(paid: true)
+  end
+
 end

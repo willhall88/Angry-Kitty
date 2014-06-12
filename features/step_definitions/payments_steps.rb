@@ -36,9 +36,22 @@ Given(/^I am a participant$/) do
 end
 
 Then(/^I should not see the 'Paid' button$/) do
-  expect(page).to have_content('✗')
+  # expect(page).to have_content('✗')
+  expect(page).not_to have_link('Paid')
 end
 
 Given(/^I am the unpaid user$/) do
   @debt3 = create(:debt, user_id: @participant.id, event_id: @event.id, paid: false)
+end
+
+Then(/^I should see the button 'Pay Now'$/) do
+  expect(page).to have_link('PAY NOW!')
+end
+
+Given(/^I am a paid user$/) do
+  @debt3 = create(:debt, user_id: @participant.id, event_id: @event.id, paid: true)
+end
+
+Then(/^I should not see the button 'Pay Now'$/) do
+  expect(page).not_to have_link('PAY NOW!')
 end

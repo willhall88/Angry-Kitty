@@ -14,7 +14,11 @@
 		<% @unpaid.each do |debt| %>
 		  <li> 
 		  	<%= debt.user.email %> | ✗ | <%= debt.payment_amount %> 
-		  	<%= link_to 'Paid', payments_path(debt.user_id, debt.event_id,), method: :post %>
+		  	<% if current_user == debt.event.organiser %>
+		  	  <%= link_to 'Paid', payments_path(debt.user_id, debt.event_id,), method: :post %>
+		  	<% else %>
+		  	  <%= link_to 'PAY NOW!', new_charges_path(debt.user_id, debt.event_id,) %>
+		  	<% end %>
 		  </li>
 		<% end %>
 	</ul>
