@@ -7,33 +7,31 @@ class ChargesController < ApplicationController
   end
 
   def create
-  # Amount in pennys
+    # Amount in pennys
   	user = User.find(params[:user_id])
   	debt = user.debts.find(params[:event_id])
   	@payment_amount = debt.payment_amount
 
     @email = debt.user.email
 
-  customer = Stripe::Customer.create(
-    :email => @email,
-    :card  => params[:stripeToken]
-  )
+    customer = Stripe::Customer.create(
+      :email => @email,
+      :card  => params[:stripeToken]
+    )
 
-  charge = Stripe::Charge.create(
-    :customer    => customer.id,
-    :amount      => @payment_amount,
-    :description => "Angry Kitty customer - #{@email}",
-    :currency    => 'gbp'
-  )
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @payment_amount,
+      :description => "Angry Kitty customer - #{@email}",
+      :currency    => 'gbp'
+    )
 
-  debt.paid = true
-  debt.save
-  ConfirmationMailer.receipt(debt).deliver!
-  ConfirmationMailer.notification(debt).deliver!
+    debt.update(paid: true)
+    send_confirmation_emails(debt)
 
-rescue Stripe::CardError => e
-  flash[:error] = e.message
-  redirect_to events
-end
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to events
+  end
 
 end
