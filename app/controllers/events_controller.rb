@@ -7,13 +7,7 @@ class EventsController < ApplicationController
 			redirect_to event_path(session[:event_id])
 			session[:event_id] = nil
 		end
-		@events = Event.all
-		@users = User.all
-		@event = Event.new
-		@userinvitees = Userinvitee.all
-		#where returns an array (needed for the each iterator in view)
 		@organising = Event.where(organiser: current_user)
-		#need to check below does not include organisers (might need to be current_user.debts)
 		@participating = current_user.events
 	end
 
@@ -26,10 +20,8 @@ class EventsController < ApplicationController
 		@event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email]))
 		@event.organiser = current_user
 		@event.save
+		@event.invite!
 		redirect_to('/events')
-		@event.userinvitees.each do |invitee|
-			InvitationMailer.invite(invitee, @event).deliver!
-		end
 	end
 
 	def show

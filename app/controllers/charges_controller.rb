@@ -2,7 +2,7 @@ class ChargesController < ApplicationController
 
   def new
   	user = User.find(params[:user_id])
-  	@debt = user.debts.find(params[:event_id])
+  	@debt = user.debts.find_by(event_id: params[:event_id])
   	@payment_amount = @debt.payment_amount
   end
 

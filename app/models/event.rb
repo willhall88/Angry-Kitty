@@ -15,4 +15,10 @@ class Event < ActiveRecord::Base
     self.total / self.userinvitees.count
   end
 
+  def invite!
+    self.userinvitees.each do |invitee|
+      InvitationMailer.invite(invitee, self).deliver!
+    end
+  end
+
 end
