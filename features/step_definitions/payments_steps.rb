@@ -24,9 +24,21 @@ end
 When(/^I click on 'Paid' button next to that unpaid participant$/) do
   expect(current_path).to eq event_path(@event)
   click_on('Paid')
-  
 end
 
 Then(/^I should see the user has paid$/) do
   expect(page).to have_content "user2@user2.com | ✓"
+end
+
+Given(/^I am a participant$/) do
+  @participant = create(:user, email: 'participant@user.com')
+  login_as @participant
+end
+
+Then(/^I should not see the 'Paid' button$/) do
+  expect(page).to have_content('✗')
+end
+
+Given(/^I am the unpaid user$/) do
+  @debt3 = create(:debt, user_id: @participant.id, event_id: @event.id, paid: false)
 end

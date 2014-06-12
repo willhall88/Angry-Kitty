@@ -18,6 +18,13 @@ Feature: Payments
     When I click on 'Paid' button next to that unpaid participant
     Then I should see the user has paid
 
+  Scenario: Not being able to set the payment status as a participant
+    Given I am a participant
+    And I have an event
+    And I am the unpaid user
+    And I am on the event page
+    Then I should not see the 'Paid' button
+
   # Scenario: An unpaid participant paying for the event
   #   And I am a participant
   #   And I havent paid
