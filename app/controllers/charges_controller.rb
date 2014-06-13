@@ -9,7 +9,8 @@ class ChargesController < ApplicationController
   def create
     # Amount in pennys
   	user = User.find(params[:user_id])
-  	debt = user.debts.find(params[:event_id])
+  	debt = user.debts.find_by(event_id: params[:event_id])
+      event = debt.event
   	@payment_amount = debt.payment_amount
 
     @email = debt.user.email
@@ -27,7 +28,7 @@ class ChargesController < ApplicationController
     )
 
     debt.update(paid: true)
-    send_confirmation_emails(debt)
+    event.send_confirmation_emails(debt)
 
     rescue Stripe::CardError => e
       flash[:error] = e.message

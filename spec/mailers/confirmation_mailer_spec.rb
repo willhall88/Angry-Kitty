@@ -9,6 +9,8 @@ RSpec.describe ConfirmationMailer, :type => :mailer do
       organiser = User.create(email: 'bar@foo.com', password: '12345678', password_confirmation: '12345678')
       event = user.events.create(organiser_id: organiser.id, deadline: 3.days.from_now)
       @debt = user.debts.first
+      @debt.paid = true
+      @debt.save
     end
     
     it 'can send a receipt mail to the participant' do
@@ -23,6 +25,20 @@ RSpec.describe ConfirmationMailer, :type => :mailer do
       open_email('bar@foo.com')
       expect(current_email).to have_content "You have been paid"
     end
+
+    it 'can send a celebration email to the organiser' do
+      
+      ConfirmationMailer.celebration(@debt.event).deliver!
+      open_email('bar@foo.com')
+      expect(current_email).to have_content "Congratulations, all debts have been collected"
+    end
+
+    it 'can send all the emails when all payments complete' do
+      @debt.event.send_confirmation_emails(@debt)
+      open_email('bar@foo.com')
+      expect(current_email).to have_content "You have been paid"
+    end
+
 
 
   end
