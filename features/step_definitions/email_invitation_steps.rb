@@ -1,6 +1,9 @@
 Given(/^There is an event with an organiser$/) do
+  userinvitee = create(:userinvitee)
   @organiser = User.create(email: 'bar@foo.com', password: '12345678', password_confirmation: '12345678')
-  @event = Event.create!(organiser_id: @organiser.id, deadline: 3.days.from_now)
+  @event = Event.new(organiser_id: @organiser.id, deadline: 3.days.from_now, total:1000)
+  @event.userinvitees << userinvitee
+  @event.save
   @debt = @event.debts.first
 end
 

@@ -1,7 +1,9 @@
 Given(/^I have an event$/) do
-  @event = Event.new
+  userinvitee = create(:userinvitee)
+  @event = Event.new(total:1000)
   @event.deadline = DateTime.now + 4 
   @event.organiser_id = @nico.id
+  @event.userinvitees << userinvitee
   @event.save!
 end
 

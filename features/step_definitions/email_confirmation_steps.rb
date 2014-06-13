@@ -1,7 +1,10 @@
 Given(/^I have completed payment$/) do
+  userinvitee = create(:userinvitee)
   organiser = create(:user)
   user = create(:user, email: 'user@user.com')
-  event = create(:event, organiser: organiser)
+  event = build(:event, organiser: organiser)
+  event.userinvitees << userinvitee
+  event.save
   @debt = create(:debt, user_id: user.id, event_id: event.id)
 end
 
