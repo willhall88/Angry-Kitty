@@ -11,7 +11,7 @@ def send_harassment
         if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
           debt.harass! 
           debt.send_sms!
-          debt.last_harassed = time_now
+          debt.last_harassed = DateTime.now
           debt.save!
         end
       rescue => e
