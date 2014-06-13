@@ -9,7 +9,9 @@ describe "Scheduler" do
   let(:user2){ create( :user, email: 'will@test.com' ) }
 
   before do
-    @event = Event.new
+    userinvitee = create(:userinvitee)
+    @event = Event.new(total: 1000)
+    @event.userinvitees << userinvitee
     @event.organiser = user
   end
 
@@ -186,7 +188,9 @@ describe 'accessing unpaid debts from database' do
   let(:user7){ create( :user, email: 'apo@test.com'   ) }
 
   before do
-    @event = Event.new(title: "birthday", angerlevel: 'polite')
+    userinvitee = create(:userinvitee)
+    @event = Event.new(title: "birthday", angerlevel: 'polite', total: 1000)
+    @event.userinvitees << userinvitee
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
     @event.save
@@ -247,7 +251,9 @@ describe 'updating database' do
   let(:user3){ create( :user, email: 'will@test.com'  ) }
 
   before do
-    @event = Event.new(title: "Nico´s Birthday Bash Xtreme")
+    userinvitee = create(:userinvitee)
+    @event = Event.new(title: "Nico´s Birthday Bash Xtreme", total: 1000)
+    @event.userinvitees << userinvitee
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
     @event.save
@@ -272,8 +278,13 @@ describe 'anger level' do
   let(:user3){ create( :user, email: 'will@test.com'  ) }
 
   it 'will set the harassment frequency based upon the anger level' do
-    event1 = Event.create(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10)
-    event2 = Event.create(angerlevel: 'really_angry', organiser_id: user1.id, deadline: DateTime.now + 10)
+    userinvitee = create(:userinvitee)
+    event1 = Event.new(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
+    event1.userinvitees << userinvitee
+    event1.save
+    event2 = Event.new(angerlevel: 'really_angry', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
+    event2.userinvitees << userinvitee
+    event2.save
     expect(event1.angerlevel).to eq('polite')
     expect(event2.angerlevel).to eq('really_angry')
     event1.users << user2

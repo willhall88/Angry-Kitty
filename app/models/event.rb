@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   
   validates :organiser_id, presence: true
   validates :deadline, presence: true
+  validates :total, presence: true
 
   has_and_belongs_to_many :userinvitees
   accepts_nested_attributes_for :userinvitees, allow_destroy: true, reject_if: :email_blank

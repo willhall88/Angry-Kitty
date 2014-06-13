@@ -6,9 +6,12 @@ RSpec.describe ChasersMailer, :type => :mailer do
   context 'sending mail' do
     
     it 'can send a mail' do
+      userinvitee = create(:userinvitee)
       organiser = create(:user)
       user = create(:user, email: 'user@user.com')
-      event = create(:event, organiser: organiser)
+      event = build(:event, organiser: organiser, total: 1000)
+      event.userinvitees << userinvitee
+      event.save
       debt = create(:debt, user_id: user.id, event_id: event.id)
       ChasersMailer.harass(debt).deliver!
       open_email(user.email)
