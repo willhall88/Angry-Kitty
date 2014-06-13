@@ -1,7 +1,6 @@
 
 
 $(document).ready(function(){
-
 	$('.add_userinvitee').on('click',function() {
 
 		var template = $('#userinvitee_fields');

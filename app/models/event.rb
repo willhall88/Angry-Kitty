@@ -11,14 +11,25 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :userinvitees
   accepts_nested_attributes_for :userinvitees, allow_destroy: true
 
-  def payment_amount
-    self.total / self.userinvitees.count
+  after_create :payment_calculator
+
+  def payment_calculator
+    unless self.total == nil
+      self.payment_amount = self.total / self.userinvitees.count
+      self.save
+    end
   end
 
   def invite!
     self.userinvitees.each do |invitee|
       InvitationMailer.invite(invitee, self).deliver!
     end
+  end
+
+  def send_confirmation_emails(debt)
+    ConfirmationMailer.celebration(debt.event).deliver! 
+    ConfirmationMailer.receipt(debt).deliver!
+    ConfirmationMailer.notification(debt).deliver!
   end
 
 end

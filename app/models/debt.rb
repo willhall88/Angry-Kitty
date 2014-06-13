@@ -23,4 +23,8 @@ class Debt < ActiveRecord::Base
     update(paid: true)
   end
 
+  def payment_amount
+    event.payment_amount
+  end
+
 end
