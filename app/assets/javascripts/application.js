@@ -12,6 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require date-polyfill.min
 //= require mustache
 //= require_tree .
