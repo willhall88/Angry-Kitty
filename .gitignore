@@ -1,4 +1,4 @@
-config/secrets.yml
+secrets.yml
 
 # Ignore bundler config.
 /.bundle
