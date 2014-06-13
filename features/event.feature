@@ -37,3 +37,4 @@ Feature: Creating an event
 		And I click Create Event
 		Then I expect to see the dashboard contain the new event with its title and description
 		And I expect an invitee with a name, number, email to be created
+		

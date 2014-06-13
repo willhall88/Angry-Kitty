@@ -1,4 +1,4 @@
-require_dependency 'app/mailers/chasers_texting.rb'
+require_dependency Rails.root.join('app/mailers/chasers_texting.rb')
 
 class Debt < ActiveRecord::Base
 
