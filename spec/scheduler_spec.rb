@@ -190,11 +190,11 @@ describe 'accessing unpaid debts from database' do
   before do
     userinvitee = create(:userinvitee)
     @event = Event.new(title: "birthday", angerlevel: 'polite', total: 1000)
-    @event.userinvitees << userinvitee
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
-    @event.save
+    @event.userinvitees << userinvitee
     @event.users << [user2, user3, user4, user5, user6, user7]
+    @event.save
   end
 
   it 'should only email the unpaid participants' do
@@ -217,11 +217,13 @@ describe 'accessing unpaid debts from database' do
       debt.last_harassed = DateTime.now - 1
       debt.save
     end
-    event2 = Event.new(title: "diving", angerlevel: 'polite')
+    userinvitee2 = create(:userinvitee)
+    event2 = Event.new(title: "diving", angerlevel: 'polite', total:1000)
     event2.organiser = user2
     event2.deadline = DateTime.now + 10
-    event2.save
+    event2.userinvitees << userinvitee2
     event2.users << [user1, user3, user7]
+    event2.save
     event2.debts.each do|debt|
       debt.last_harassed = DateTime.now - 4
       debt.save

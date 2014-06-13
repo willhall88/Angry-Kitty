@@ -8,9 +8,10 @@ RSpec.describe ConfirmationMailer, :type => :mailer do
       userinvitee = create(:userinvitee)
       user = User.create(email: 'foo@bar.com', password: '12345678', password_confirmation: '12345678')
       organiser = User.create(email: 'bar@foo.com', password: '12345678', password_confirmation: '12345678')
-      event = user.events.new(organiser_id: organiser.id, deadline: 3.days.from_now, total:1000)
+      event = Event.new(organiser_id: organiser.id, deadline: 3.days.from_now, total:1000)
       event.userinvitees << userinvitee
       event.save
+      event.users << user
       @debt = user.debts.first
       @debt.paid = true
       @debt.save
