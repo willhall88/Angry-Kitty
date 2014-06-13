@@ -7,11 +7,15 @@ ANGER_CHART = {
 def send_harassment
   # if Debt.unpaid.nil?
     Debt.unpaid.each do |debt|
-      if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
-        debt.harass! 
-        debt.send_sms!
-        debt.last_harassed = time_now
-        debt.save!
+      begin
+        if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
+          debt.harass! 
+          debt.send_sms!
+          debt.last_harassed = time_now
+          debt.save!
+        end
+      rescue => e
+        puts e
       end
     end
   # else
