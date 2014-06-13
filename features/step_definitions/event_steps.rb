@@ -2,6 +2,7 @@ Given(/^I am signed in and on the dashboard$/) do
   nico = User.create(email: "nico@nicosaueressig.de", password: "12345678", password_confirmation:"12345678")
   login_as nico
   visit '/events'
+  expect(current_path).to eq('/events')
 end
 
 When(/^I click New Event$/) do
@@ -38,6 +39,14 @@ When(/^I fill in the second invitees name, mobile and email details$/) do
   end
 end
 
+When(/^I do not fill in the second invitees name, mobile and email details$/) do
+  within '.userinvitees_list li:last-child' do
+    fill_in 'Email', with: ''
+    fill_in 'Name', with: ''
+    fill_in 'Mobile', with: ''
+  end
+end
+
 Then(/^I expect to see the dashboard contain the new event with its title and description$/) do
   expect(page).to have_content('Stag Party')
   expect(page).to have_content('2014-06-06')
@@ -56,7 +65,6 @@ Then(/^I expect two invitees with their names, numbers, and emails to be created
   expect(invitee.mobile).to eq '07753205999'
   expect(invitee.email).to eq 'daffyduck@test.com'
 end
-
 
 
 

@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   validates :deadline, presence: true
 
   has_and_belongs_to_many :userinvitees
-  accepts_nested_attributes_for :userinvitees, allow_destroy: true
+  accepts_nested_attributes_for :userinvitees, allow_destroy: true, reject_if: :email_blank
 
   after_create :payment_calculator
 
@@ -30,6 +30,13 @@ class Event < ActiveRecord::Base
     ConfirmationMailer.celebration(debt.event).deliver! 
     ConfirmationMailer.receipt(debt).deliver!
     ConfirmationMailer.notification(debt).deliver!
+  end
+
+  private
+
+
+  def email_blank(attributes)
+    attributes['email'].blank?
   end
 
 end

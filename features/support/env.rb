@@ -9,7 +9,10 @@ require 'capybara/email'
 require 'capybara/poltergeist'
 
 Capybara.javascript_driver = :poltergeist
-
+Capybara.server do |app, port|
+  require 'rack/handler/thin'
+  Rack::Handler::Thin.run(app, :Port => port)
+end
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
