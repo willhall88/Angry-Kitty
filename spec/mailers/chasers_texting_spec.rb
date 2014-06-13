@@ -14,7 +14,7 @@ describe 'Sending SMS' do
 
     it 'connects to twilio' do
       # send_harassment
-      expect(Twilio::REST::Client).to receive(:new)
+      expect(Twilio::REST::Client).to receive(:new).and_call_original
       send_harassment
     end
 

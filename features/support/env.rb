@@ -6,6 +6,9 @@
 
 require 'cucumber/rails'
 require 'capybara/email'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
 
 
 # Capybara defaults to CSS3 selectors rather than XPath.

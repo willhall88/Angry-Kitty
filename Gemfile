@@ -43,6 +43,10 @@ group :test, :development do
   gem 'factory_girl_rails'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 gem 'validates_timeliness', '~> 3.0'
 
 # Use ActiveModel has_secure_password
