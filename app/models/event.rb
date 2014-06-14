@@ -1,10 +1,10 @@
 class Event < ActiveRecord::Base
-  
+
   belongs_to :organiser, :class_name => 'User', :foreign_key => "organiser_id"
-  
+
   has_many :users, through: :debts
   has_many :debts
-  
+
   validates :organiser_id, presence: true
   validates :deadline, presence: true
   validates :total, presence: true
@@ -28,9 +28,13 @@ class Event < ActiveRecord::Base
   end
 
   def send_confirmation_emails(debt)
-    ConfirmationMailer.celebration(debt.event).deliver! 
+    ConfirmationMailer.celebration(debt.event).deliver!
     ConfirmationMailer.receipt(debt).deliver!
     ConfirmationMailer.notification(debt).deliver!
+  end
+
+  def percentage_of_paid
+    (self.debts.where(paid: true).size / self.debts.size.to_f) * 100
   end
 
   private
