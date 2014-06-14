@@ -1,0 +1,26 @@
+.ui-accordion {
+
+    .panel-group {
+        .panel-heading + .panel-collapse .panel-body {
+            border-top: 1px solid $state-default-border;
+        }
+    }
+
+    .panel {
+        border: 1px solid $state-default-border;
+    }
+
+    .panel-heading {
+        padding: 0;
+        background-color: $state-default-bg;
+        .panel-title > a {
+            display: block;
+            padding: 15px;
+            font-size: 14px;
+            &:hover {
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+    }
+}

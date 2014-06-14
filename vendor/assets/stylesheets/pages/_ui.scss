@@ -1,0 +1,37 @@
+
+
+// icons
+.page-icons {
+    // Bootstrap Glyphicons
+    .bs-glyphicons {
+        overflow: hidden;
+
+        li {
+            float: left;
+            width: 25%;
+            height: 115px;
+            padding: 10px;
+            font-size: 10px;
+            line-height: 1.4;
+            text-align: center;
+            border: 1px solid #f9f9f9;
+            // &:hover { color: #fff; background-color: $brand-primary; }
+        }
+
+        .glyphicon {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .glyphicon-class {
+            display: block;
+            text-align: center;
+            word-wrap: break-word;
+        }
+    }
+    .bs-glyphicons-list {
+        padding-left: 0;
+        list-style: none;
+    }
+}

@@ -1,0 +1,86 @@
+body {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+::selection {
+    background: $brand-primary;
+    color: $reverse;
+}
+::-moz-selection {
+    background: $brand-primary;
+    color: $reverse;
+}
+
+span.block {
+    display: block;
+}
+
+.no-margin {
+    margin: 0;
+}
+.no-border {
+    border: 0;
+}
+
+// background
+.bg-primary {
+    background-color: $brand-primary;
+    color: $reverse;
+}
+.bg-primary-light {
+    background-color: $skin-light;
+    color: $reverse;
+}
+.bg-success {
+    background-color: $brand-success;
+    color: $reverse;
+}
+.bg-info {
+    background-color: $brand-info;
+    color: $reverse;
+}
+.bg-warning {
+    background-color: $brand-warning;
+    color: $reverse;
+}
+.bg-danger {
+    background-color: $brand-danger;
+    color: $reverse;
+}
+
+.bg-orange {
+    background-color: $color-orange;
+    color: $reverse;
+}
+.bg-violet {
+    background-color: $color-violet;
+    color: $reverse;    
+}
+
+.bg-dark {
+    background-color: $dark;
+    color: $reverse;
+}
+.bg-bright {
+    background-color: $bright;
+    color: $text-color;    
+}
+.bg-reverse {
+    background-color: $reverse;
+    color: $text-color;
+}
+
+.bg-facebook {
+    background-color: #335397;
+    color: $reverse;
+}
+.bg-twitter {
+    background-color: #00c7f7;
+    color: $reverse;
+}
+.bg-google-plus {
+    background-color: #df4a32;
+    color: $reverse;
+}

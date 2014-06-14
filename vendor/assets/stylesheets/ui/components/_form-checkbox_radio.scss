@@ -1,0 +1,112 @@
+
+// Radio
+.ui-radio {
+    position: relative;
+    margin: 0 20px 10px 20px;
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    input[type="radio"] + span {
+        font-weight: normal;
+    }
+
+    input[type="radio"] + span:before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        margin-left: -20px;
+        background: white;
+        border-radius: 50%;
+        border: 1px solid #ccc;         
+    }
+
+    input[type="radio"]:disabled + span:before {
+        opacity: .65;
+        border: 1px solid #ccc;
+        cursor: no-drop;
+    }
+
+    input[type="radio"]:checked + span:after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 7px;
+        left: -15px;
+        background-color: $brand-primary;
+        border-radius: 50%;
+        display: block;
+    }
+
+    input[type="radio"]:disabled:checked + span:after {
+        opacity: .65;
+        cursor: no-drop;
+        background-color: #ccc;
+    }
+}
+
+// Checkbox
+.ui-checkbox {
+    position: relative;
+    margin: 0 20px 10px 20px;
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    input[type="checkbox"] + span {
+        // position: relative;
+        font-weight: normal;
+    }
+
+    input[type="checkbox"] + span:before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        margin-left: -20px;
+        background-color: transparent;
+        border-radius: 3px;
+        border: 1px solid #ccc;         
+    }
+
+    input[type="checkbox"]:disabled + span:before {
+        opacity: .65;
+        border: 1px solid #ccc;
+        cursor: no-drop;
+    }
+
+    input[type="checkbox"]:checked + span:before {
+        background-color: $brand-primary;
+        border: 1px solid $brand-primary;         
+    }
+    input[type="checkbox"]:checked + span:after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 7px;
+        left: -15px;
+        background: url("img/checkmark.png") no-repeat center center;
+        background-size: 14px 14px;
+        display: block;
+    }
+
+    input[type="checkbox"]:disabled:checked + span:before {
+        opacity: .65;
+        background-color: #ccc;
+        border: 1px solid #ccc;         
+    }
+    input[type="checkbox"]:disabled:checked + span:after {
+        opacity: .65;
+        cursor: no-drop;
+        background: url("img/checkmark.png") no-repeat center center;
+    }
+}

@@ -1,0 +1,62 @@
+@media (min-width:$screen-sm) {
+    .nav-min {
+        #nav-container {
+            width: 50px;
+        }
+        #content {
+            left: 50px;
+        }
+        .slimScrollDiv {
+            overflow: visible !important; // overrides slimScroll plugin
+        }
+
+        #nav {
+            overflow: visible !important;
+            > li {
+                width: 50px;
+                // &:first-child {
+                //     > a {
+                //         background-color: $brand-danger;
+                //     }
+                // }
+                > a {
+                    > i {
+                        &:before {
+                            color: $reverse;
+                        }
+                        > .icon-bg {
+                            left: 0;
+                        }
+                    }
+
+                    > span {
+                        display: none;
+                    }
+                }
+
+                .icon-has-ul {
+                    display: none;
+                }
+
+                > ul {
+                    position: absolute;
+                    left: 100%;
+                    top: 0;
+                    width: 220px;
+                    @include box-shadow(1px 0 3px rgba(0,0,0,.2));
+                }
+
+                &:hover,
+                &.open {
+                    // > a {
+                    //     > i {
+                    //     }
+                    // }
+                    > ul {
+                        display: block !important;
+                    }
+                }
+            }
+        }
+    }
+}

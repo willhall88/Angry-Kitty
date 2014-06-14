@@ -1,0 +1,41 @@
+
+// Bootstrap, Note: files that has CONTENT changed are "_variables.scss", "_grid.scss"
+// -------------------------
+@import "global/var";
+@import "bootstrap-sass/bootstrap";
+
+@import "compass/css3";
+@import
+    // UI, uses Bootstrap's variables
+    "ui/ui"
+
+    // Plugins, overrides plugins' style
+,   "plugins/bootstrap-slider"
+,   "plugins/responsive-tables"
+,   "plugins/easypiecharts"
+,   "plugins/toastr"
+,   "plugins/sparkline"
+,   "plugins/jquery-steps"
+// ,   "plugins/angular-wizard"
+// ,   "plugins/bootstrap-tagsinput" // bugs, can not add tag with 'Enter' using AngularJS, even the online demo not works
+
+    // Pages
+,   "global/var-pages"
+,   "pages/dashboard"
+,   "pages/pages"
+,   "pages/err"
+,   "pages/lock-screen"
+,   "pages/tasks"
+,   "pages/signin_signup"
+,   "pages/profile"
+,   "pages/ui"
+,   "pages/demo"
+
+    // sections
+,   "sections/nav"
+,   "sections/nav-off-canvas"
+,   "sections/nav-min"
+,   "sections/header"
+,   "sections/content"
+,   "sections/form"
+;

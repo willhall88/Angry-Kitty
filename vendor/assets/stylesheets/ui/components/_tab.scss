@@ -1,0 +1,75 @@
+// Dependency: Angular UI Bootstrap
+
+.ui-tab-container {
+    border: 1px solid $panel-default-border;
+    border-radius: $border-radius-base;
+
+    .ui-tab .nav-tabs {
+        margin-bottom: 0;
+    }
+
+    .nav-tabs {
+        background-color: $panel-default-heading-bg;
+        border-bottom: 1px solid $panel-default-border;
+        &.nav-justified {
+            border-bottom: 0;
+            > li {
+                > a {
+                    border-bottom-color: transparent;
+                }
+            }
+        }
+
+        > li {
+            &.active {
+                > a {
+                    background-color: $reverse;
+                    border: 1px solid transparent;
+                    &:hover {
+                        border: 1px solid transparent;
+                    }
+                }
+            }
+            > a {
+                padding: 10px 15px;
+
+                &:hover {
+                    background-color: darken($panel-default-heading-bg, 2%);
+                    border: 1px solid darken($panel-default-heading-bg, 2%);
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        padding: 15px;
+    }
+}
+
+.ui-tab {
+    .nav-tabs {
+        margin-bottom: 15px;
+        &.nav-justified {
+            > li {
+                &.active {
+                    > a {
+                        border-bottom-color: transparent;
+                    }
+                }
+            }
+        }
+
+        > li {
+            &.active {
+                > a {
+                    background-color: $reverse;
+                }
+            }
+        }
+        a {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
