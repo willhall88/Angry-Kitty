@@ -5,7 +5,28 @@
 <% if !@organising.nil? %>
   <ul>
   <% @organising.each do |event| %>
-    <li> <%= link_to "#{event.title}", event_path(event) %> <%= event.deadline.to_date %> </li>
+    <li>
+    <%= link_to event_path(event) do %>
+      <article class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>
+            <%= event.title %>
+          </h3>
+          <span>
+            <%= event.deadline.to_date %>
+          </span>
+        </div>
+        <div class='panel-body'>
+          <%= event.description %>
+          Participants: <%= event.users.count %>
+          <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
+          <b class="ng-scope ng-binding"><%= event.percentage_of_paid %></b>
+          </div>
+          </div>
+        </div>
+      </article>
+    <% end %>
+    </li>
   <% end %>
   </ul>
 <% end %>
