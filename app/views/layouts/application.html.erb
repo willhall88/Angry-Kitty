@@ -5,6 +5,14 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+        <!-- needs images, font... therefore can not be part of ui.css -->
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css">
+        <!-- end needs images -->
+
+            <link rel="stylesheet" href="styles/ui.css"/>
+            <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <% if user_signed_in? %>
@@ -14,6 +22,11 @@
 <%= yield %>
 <%= alert %>
 <%= notice %>
+		
+        <script src="javascripts/vendor.js"></script>
 
+        <script src="javascripts/ui.js"></script>
+
+        <script src="javascripts/app.js"></script>
 </body>
 </html>
