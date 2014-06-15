@@ -27,6 +27,20 @@ li a:hover{
 	width: auto;
 }
 
-html {
+html, body {
 	overflow: auto !important;
+}
+
+.events {
+  overflow: auto;
+  width: auto;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+@media (min-width: 200px) and (max-width: 990px) {
+  .events {
+    margin: 0 50px;
+  }
 }

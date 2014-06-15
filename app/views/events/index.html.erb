@@ -4,7 +4,7 @@
 <br>
 
 <% if !@organising.nil? %>
-  <ul>
+  <ul class="events">
   <% @organising.each do |event| %>
     <li>
     <%= link_to event_path(event), class:"col-md-4 post" do %>
