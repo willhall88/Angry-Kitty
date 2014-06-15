@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'twilio-ruby', '~> 3.11'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
