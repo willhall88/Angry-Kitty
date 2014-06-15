@@ -1,31 +1,36 @@
+<div class="panel panel-default">
+<div class="panel-heading">
+Create your event
+</div>
+<div class="panel-body form-horizontal ng-pristine ng-valid">
 <%= form_for @event do |f| %>
-  <p>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <p class="form-group">
+  <%= f.label :title, class: "col-sm-1" %>
+  <%= f.text_field :title, class: "col-sm-2 form-control" %>
   </p>
 
-  <p>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+  <p class="form-group">
+  <%= f.label :description, class: "col-sm-1" %>
+  <%= f.text_area :description, class: "col-sm-2 form-control" %>
   </p>
 
-  <p>
-  <%= f.label :deadline %>
-  <%= f.date_field :deadline, placeholder: 'yyyy/mm/dd' %>
+  <p class="form-group">
+  <%= f.label :deadline, class: "col-sm-1" %>
+  <%= f.date_field :deadline, placeholder: 'yyyy/mm/dd', class: "col-sm-4 form-control input-group ui-datepicker" %>
   </p>
 
-  <p>
-  <%= f.label :angerlevel, "Anger level" %>
-  <%= f.select(:angerlevel, ['polite','angry','very angry']) %>
+  <p class="form-group">
+  <%= f.label :angerlevel, "Anger level", class: "col-sm-1" %>
+  <%= f.select(:angerlevel, ['polite','angry','very angry'] ) %>
   </p>
 
-  <p>
-  <%= f.label :total %>
-  <%= f.number_field :total %>
+  <p class="form-group">
+  <%= f.label :total, class: "col-sm-1" %>
+  <%= f.number_field :total, class: "col-sm-2 form-control" %>
   </p>
 
 
-  <p>
+  <p class="form-group">
     Add friends, when finished click create event:
     <button type='button' class='add_userinvitee'>Add Friend</button> 
   </p>
@@ -60,3 +65,5 @@
       <button type='button' class='delete_userinvitee'>&#10006;</button>
   </template>
 <% end %>
+</div>
+</div>

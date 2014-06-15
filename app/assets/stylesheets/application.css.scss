@@ -17,3 +17,16 @@
 li {
 	list-style-type: none;
 }
+
+li a:hover{
+	text-decoration: none;
+	box-shadow: 1px black solid;
+}
+
+.form-control {
+	width: auto;
+}
+
+html {
+	overflow: auto !important;
+}
