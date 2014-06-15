@@ -1,27 +1,33 @@
  <h1>DASHBOARD</h1>
-
+<hr>
 <h2>Organising Events</h2>
+<br>
 
 <% if !@organising.nil? %>
   <ul>
   <% @organising.each do |event| %>
     <li>
-    <%= link_to event_path(event) do %>
+    <%= link_to event_path(event), class:"col-md-4 post" do %>
       <article class='panel panel-default'>
         <div class='panel-heading'>
           <h3 class='panel-title'>
             <%= event.title %>
-          </h3>
           <span>
-            <%= event.deadline.to_date %>
+            <h6>Deadline <%= event.deadline.to_date %></h6>
           </span>
+          </h3>
         </div>
         <div class='panel-body'>
-          <%= event.description %>
+          <%= event.description %><br><br>
           Participants: <%= event.users.count %>
-          <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
-          <b class="ng-scope ng-binding"><%= event.percentage_of_paid %></b>
-          </div>
+          Invitees: <%= event.userinvitees.count %>
+            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
+            <b class="ng-scope ng-binding">
+            <% if event.users.size > 0 %>
+              <%= event.percentage_of_paid.to_i.ceil%>%
+            <% end %>
+            </b>
+            </div>
           </div>
         </div>
       </article>
@@ -31,9 +37,9 @@
   </ul>
 <% end %>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_event_path, class:'btn btn-default btn-lg col-md-12 post' %>
 
-
+<div class="col-md-12 post">
 <h2>Participating in Events</h2>
 <% if !@participating.nil? %>
   <ul>
@@ -50,3 +56,4 @@
   <% end %>
   </ul>
 <% end %>
+</div>

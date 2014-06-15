@@ -14,3 +14,6 @@
  *= require_tree .
  *= require_self
  */
+li {
+	list-style-type: none;
+}
