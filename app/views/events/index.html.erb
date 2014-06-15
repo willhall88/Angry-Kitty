@@ -13,7 +13,7 @@
           <h3 class='panel-title'>
             <%= event.title %>
           <span>
-            <h6>Deadline <%= event.deadline.to_date %></h6>
+            <h6>Deadline <%= event.deadline.strftime("%m/%d/%Y") %></h6>
           </span>
           </h3>
         </div>
