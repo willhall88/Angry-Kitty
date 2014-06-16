@@ -25,10 +25,13 @@ li a:hover{
 
 .form-control {
 	width: auto;
+  .display-none {
+    margin: auto;
+  }
 }
 
 html, body {
-	overflow: auto !important;
+  overflow: auto !important;
 }
 
 .events {
