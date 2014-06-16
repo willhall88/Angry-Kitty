@@ -1,76 +1,74 @@
 <section class="panel panel-default">
-        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Event</strong></div>
-        <div class="panel-body">
-                <%= form_for @event, class: "form-horizontal ng-pristine ng-valid" do |f| %>
-
-                <div class="form-group">
-                    <label for="" class="col-sm-2">Title</label>
-                    <div class="col-sm-10">
-                        <%= f.text_field :title, class: "form-control" %>
-                    </div>
+  <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Event</strong></div>
+  <div class="panel-body">
+    <%= form_for @event, class: "form-horizontal ng-pristine ng-valid" do |f| %>
+      <div class="form-group">
+          <label for="" class="col-sm-2">Title</label>
+          <div class="col-sm-10">
+              <%= f.text_field :title, class: "form-control" %>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="" class="col-sm-2">Description</label>
+          <div class="col-sm-10">
+              <%= f.text_area :description, class: "form-control", rows: "4" %>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="label-focus" class="col-sm-2">Total</label>
+          <div class="col-sm-10">
+              <%= f.text_field :total, class: "form-control", placeholder: "500 GBP" %>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="label-focus" class="col-sm-2">Deadline</label>
+          <div class="col-sm-10">
+            <%= f.date_field :deadline, placeholder: 'yyyy/mm/dd', class: "form-control dates", id: "label-focus", placeholder: "Total amount" %>
+          </div>
+      </div>
+      <div class="panel-body">
+        <span class="ui-select">
+          <label for="" class="col-sm-2">Angerlevel</label>
+          <%= f.select(:angerlevel, ['polite','angry','very angry'], class: "form-control" ) %>
+        </span>
+        <div class="form-group">
+            <label for="" class="col-sm-2 add-invitees">Add Invitees</label>
+            <div class="col-sm-10">
+               <div class="form-group">
+                  Add friends, when finished click create event:
+                  <button type='button' class='add_userinvitee btn btn-default'>Add Friend</button>
                 </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2">Description</label>
-                    <div class="col-sm-10">
-                        <%= f.text_area :description, class: "form-control", rows: "4" %>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="label-focus" class="col-sm-2">Total</label>
-                    <div class="col-sm-10">
-                      <%= f.text_field :total, class: 'form-control', placeholder: '500 GBP' %>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="label-focus" class="col-sm-2">Deadline</label>
-                    <div class="col-sm-10">
-                      <%= f.date_field :deadline, placeholder: 'yyyy/mm/dd', class: "form-control", id: "label-focus", placeholder: "Total amount" %>
-                    </div>
-                </div>
-                <div class="panel-body">
-                <span class="ui-select">
-                <label for="" class="col-sm-2">Angerlevel</label>
-                  <%= f.select(:angerlevel, ['polite','angry','very angry'], class: "form-control" ) %>
-                </span>
-                <div class="form-group">
-                    <label for="" class="col-sm-2">Add Invitees</label>
-                    <div class="col-sm-10">
-                       <p class="form-group">
-                          Add friends, when finished click create event:
-                          <button type='button' class='add_userinvitee'>Add Friend</button> 
-                        </p>
-
-                        <ol class='userinvitees_list'>
-                          <li >
-                            <%= f.fields_for :userinvitees, class: "userinvitees form-control" do |x| %>
-                                
-                                <%= x.text_field :email, placeholder: 'Email', required: true, class: "form-control display-inline" %>
-                                <%= x.text_field :name, placeholder: 'Name', class: "form-control display-inline" %>        
-                                <%= x.text_field :mobile, placeholder: 'Mobile', class: "form-control display-inline"%>
-
-                            <% end %> 
-                              <button type='button' class='delete_userinvitee'>&#10006;</button>
-                          </li>
-                        </ol>
-                        <p>
-                        </p>
-                    </div>
-                </div>
-                <%= f.submit 'Create Event', class: "btn btn-default btn-lg" %>
+                <ol class='userinvitees_list'>
+                  <li >
+                    <%= f.fields_for :userinvitees, class: "userinvitees form-control" do |x| %>
+                        <%= x.text_field :email, placeholder: 'Email', required: true, class: "form-control display-inline" %>
+                        <%= x.text_field :name, placeholder: 'Name', class: "form-control display-inline" %>
+                        <%= x.text_field :mobile, placeholder: 'Mobile', class: "form-control display-inline"%>
+                    <% end %>
+                    <button type='button' class='delete_userinvitee btn btn-danger'>&#10006;</button>
+                  </li>
+                </ol>
+            </div>
         </div>
+        <div class="create-event">
+          <%= f.submit 'Create Event', class: "btn btn-success btn-lg" %>
         </div>
-<% end %>
-    </section>
-    
+      </div> <!-- end of panel-body -->
+    <% end %>
+  </div>
+</section>
+
 <%= form_for @event do |f| %>
   <template id='userinvitee_fields'>
     <%= f.fields_for :userinvitees, class:"userinvitees" do |x| %>
-
-            <%= x.text_field :email, placeholder: 'Email', name: 'event[userinvitees_attributes][{{ index }}][email]', class: "form-control display-inline" %>
-            <%= x.text_field :name, placeholder: 'Name', name: 'event[userinvitees_attributes][{{ index }}][name]', class: "form-control display-inline" %>        
-            <%= x.text_field :mobile, placeholder: 'Mobile', name: 'event[userinvitees_attributes][{{ index }}][mobile]', class: "form-control display-inline" %>
-
-    <% end %> 
-      <button type='button' class='delete_userinvitee'>&#10006;</button>
+      <%= x.text_field :email, placeholder: 'Email', name: 'event[userinvitees_attributes][{{ index }}][email]', class: "form-control display-inline" %>
+      <%= x.text_field :name, placeholder: 'Name', name: 'event[userinvitees_attributes][{{ index }}][name]', class: "form-control display-inline" %>
+      <%= x.text_field :mobile, placeholder: 'Mobile', name: 'event[userinvitees_attributes][{{ index }}][mobile]', class: "form-control display-inline" %>
+    <% end %>
+    <button type='button' class='delete_userinvitee btn btn-danger'>&#10006;</button>
   </template>
 <% end %>
+
+
+
+

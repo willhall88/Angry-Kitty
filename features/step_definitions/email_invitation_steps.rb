@@ -77,7 +77,7 @@ Then(/^they can fill in their invitee details on the sign up page$/) do
 end
 
 Then(/^they press "(.*?)"$/) do |arg1|
-  within(".form-group") do
+  within("#actual-signup") do
     click_on arg1.to_s
   end
 end

@@ -531,6 +531,15 @@ cite {
   text-align: center;
 }
 
+.small-links {
+  text-align: center;
+}
+
+.small-link {
+  display: inline-block;
+}
+
+
 .text-justify {
   text-align: justify;
 }
@@ -9944,7 +9953,7 @@ button.toast-close-button {
   top: 0;
   left: 0;
   right: 0;
-  height: 100px;
+/*  height: 100px;*/
   background-color: white;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -10052,13 +10061,27 @@ button.toast-close-button {
 }
 .top-header .top-nav {
   width: 100%;
-  padding: 60px 0 0;
+  /*padding: 60px 0 0;*/
 }
+
+@font-face {
+  font-family: 'Airplane';
+  src: font-url('Airplane.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo {
+  font-family: Airplane;
+  font-size: 35px;
+}
+
 @media (min-width: 768px) {
   .top-header .top-nav {
-    padding: 10px 0 0 220px;
+    padding: 15px 0 0 220px;
   }
 }
+
 .top-header .top-nav .nav-left,
 .top-header .top-nav .nav-right {
   font-size: 16px;

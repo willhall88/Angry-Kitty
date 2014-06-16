@@ -24,31 +24,101 @@ li a:hover{
 }
 
 .form-control {
-	width: auto;
-  .display-none {
-    margin: auto;
-  }
+	width: 60%;
+  margin-bottom: 20px;
+}
+
+.display-inline {
+  display: inline-block;
+  width: 19.3%;
+}
+
+.userinvitees_list {
+  padding: 0;
+}
+
+.form-group .add-invitees {
+  margin-left: -20px;
+  margin-top: 6px;
 }
 
 html, body {
   overflow: auto !important;
 }
 
+body {
+  margin-top: 50px;
+}
 .events {
-  overflow: auto;
+
   width: auto;
   margin: 0 auto;
   padding: 0;
 }
 
+.ui-select label {
+  margin-left: -20px;
+  margin-top: 13px;
+}
+
+section.panel {
+  margin: 2% auto;
+  width: 97%;
+}
+
+.ui-select:after {
+  right: 34px;
+}
+
+.ui-select > select {
+  margin: 10px 24px;
+}
+
+.create-event {
+  margin-left: 193px;
+  margin-top: 150px;
+}
+
+input[type="date"] {
+  color: red;
+}
+
+.modal-content .panel {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+  width: 100%
+}
 
 @media (min-width: 200px) and (max-width: 990px) {
   .events {
-    margin: 0 50px;
+    margin: 0 5px;
   }
 
   .post {
-    width: auto;
+    width: 100%;
   }
 }
+
+.events-headline {
+  text-align: center;
+}
+
+.kitty-logo {
+  width: 300px;
+  height: 300px;
+  margin-top: -5px;
+}
+
+a.white-text-please {
+  color: #cccccc;
+  margin-left: 10px;
+}
+
+a.white-text-please:hover {
+  color: #ffffff;
+
+}
+
 
