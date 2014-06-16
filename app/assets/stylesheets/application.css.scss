@@ -35,7 +35,7 @@ html, body {
 }
 
 .events {
-  overflow: auto;
+  
   width: auto;
   margin: 0 auto;
   padding: 0;
@@ -44,7 +44,7 @@ html, body {
 
 @media (min-width: 200px) and (max-width: 990px) {
   .events {
-    margin: 0 50px;
+    margin: 0 5px;
   }
 
   .post {
@@ -52,3 +52,8 @@ html, body {
   }
 }
 
+@media(min-width: 992px) {
+  .organising, .participating {
+    height: 0px;
+  }
+}

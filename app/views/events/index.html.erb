@@ -1,8 +1,25 @@
- <h1>DASHBOARD</h1>
-<hr>
-<h2>Organising Events</h2>
-<br>
+<h1>Events</h1>
 
+<%= link_to 'New Event', new_event_path, class:'btn btn-default btn-lg col-md-12 post' %>
+
+<section class="task-container ng-scope" data-ng-controller="taskCtrl">
+                <section>
+                    <ul class="filters list-inline nav nav-tabs">
+                        <li data-ng-class="{active: statusFilter == ''}"  class="active">
+                            <a href="" data-toggle="tab" data-ng-click="participating-organizing" class="click-all">All</a>
+                        </li>
+                        <li data-ng-class="{active: statusFilter.completed == false }">
+                            <a href="" data-toggle="tab" data-ng-click="organizing" class="click-organising">Organising</a>
+                        </li>
+                        <li data-ng-class="{active: statusFilter.completed == true }">
+                            <a href="" data-toggle="tab" data-ng-click="participating" class="click-participating">Participating</a>
+                        </li>
+                    </ul>
+                </section>
+</section>
+
+<div class="organising">
+<br>
 <% if !@organising.nil? %>
   <ul class="events">
   <% @organising.each do |event| %>
@@ -11,7 +28,7 @@
       <article class='panel panel-default'>
         <div class='panel-heading'>
           <h3 class='panel-title'>
-            <%= event.title %>
+            <strong><%= event.title %></strong>
           <span>
             <h6>Deadline <%= event.deadline.strftime("%m/%d/%Y") %></h6>
           </span>
@@ -19,8 +36,8 @@
         </div>
         <div class='panel-body'>
           <%= event.description %><br><br>
-          Participants: <%= event.users.count %>
-          Invitees: <%= event.userinvitees.count %>
+          <h6>Participants: <%= event.users.count %>
+          Invitees: <%= event.userinvitees.count %></h6>
             <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
             <b class="ng-scope ng-binding">
             <% if event.users.size > 0 %>
@@ -36,24 +53,44 @@
   <% end %>
   </ul>
 <% end %>
-
-<%= link_to 'New Event', new_event_path, class:'btn btn-default btn-lg col-md-12 post' %>
-
-<div class="col-md-12 post">
-<h2>Participating in Events</h2>
-<% if !@participating.nil? %>
-  <ul>
-  <% @participating.each do |event| %>
-    <li>
-      <%= link_to "#{event.title}", event_path(event) %>
-      <%= event.description %>
-      <%= event.deadline %>
-    </li>
-
-    Total: <%= event.total.to_s %>
-    Anger Level: <%= event.angerlevel %>
-
-  <% end %>
-  </ul>
-<% end %>
 </div>
+
+
+<div class="participating">
+<br>
+  <% if !@participating.nil? %>
+    <ul class="events">
+    <% @participating.each do |event| %>
+    <li>
+    <%= link_to event_path(event), class:"col-md-4 post" do %>
+      <article class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>
+            <strong><%= event.title %></strong>
+          <span>
+            <h6>Deadline <%= event.deadline.strftime("%m/%d/%Y") %></h6>
+          </span>
+          </h3>
+        </div>
+        <div class='panel-body'>
+          <%= event.description %><br><br>
+          <h6>Participants: <%= event.users.count %>
+          Invitees: <%= event.userinvitees.count %></h6>
+            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
+            <b class="ng-scope ng-binding">
+            <% if event.users.size > 0 %>
+              <%= event.debts.where(paid: true).size %>/<%= event.userinvitees.count %> paid
+            <% end %>
+            </b>
+            </div>
+          </div>
+        </div>
+      </article>
+    <% end %>
+    </li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>
+
+                
