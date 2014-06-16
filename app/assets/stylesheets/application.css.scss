@@ -25,9 +25,19 @@ li a:hover{
 
 .form-control {
 	width: auto;
-  .display-none {
-    margin: auto;
-  }
+  margin-bottom: 20px;
+}
+
+.display-inline {
+  display: inline-block;
+}
+
+.userinvitees_list {
+  padding: 0;
+}
+
+.form-group .add-invitees {
+  margin-left: -20px;
 }
 
 html, body {
@@ -41,6 +51,27 @@ html, body {
   padding: 0;
 }
 
+.ui-select label {
+  margin-left: -20px;
+}
+
+section.panel {
+  margin: 2% auto;
+  width: 65%;
+}
+
+.ui-select:after {
+  right: 34px;
+}
+
+.ui-select > select {
+  margin: 10px 24px;
+}
+
+.create-event {
+  text-align: center;
+  margin-top: 150px;
+}
 
 @media (min-width: 200px) and (max-width: 990px) {
   .events {
