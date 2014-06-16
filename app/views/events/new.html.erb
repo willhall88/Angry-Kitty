@@ -45,7 +45,7 @@
                         <%= x.text_field :name, placeholder: 'Name', class: "form-control display-inline" %>
                         <%= x.text_field :mobile, placeholder: 'Mobile', class: "form-control display-inline"%>
                     <% end %>
-                    <button type='button' class='delete_userinvitee btn btn-danger'>&#10006;</button>
+                    <button type='button' class='delete_userinvitee btn btn-danger'>Remove</button>
                   </li>
                 </ol>
             </div>
@@ -65,7 +65,7 @@
       <%= x.text_field :name, placeholder: 'Name', name: 'event[userinvitees_attributes][{{ index }}][name]', class: "form-control display-inline" %>
       <%= x.text_field :mobile, placeholder: 'Mobile', name: 'event[userinvitees_attributes][{{ index }}][mobile]', class: "form-control display-inline" %>
     <% end %>
-    <button type='button' class='delete_userinvitee btn btn-danger'>&#10006;</button>
+    <button type='button' class='delete_userinvitee btn btn-danger'>Remove</button>
   </template>
 <% end %>
 
