@@ -11,12 +11,12 @@ end
 
 When(/^I fill in the event details$/) do
     # page.should have_content('Title') # async
-    fill_in 'Title', with: 'Stag Party'
-    fill_in 'Description', with: 'This is the most outrageous party ever'
-    fill_in 'Total', with: 500
-    fill_in 'Deadline', with: '2014-06-06'
-    select('angry', :from => 'Angerlevel')
-
+    within('#myModal') {
+    fill_in 'event[title]', with: 'Stag Party'
+    fill_in 'event[description]', with: 'This is the most outrageous party ever'
+    fill_in 'event[total]', with: 500
+    fill_in 'event[deadline]', with: '2014-06-06'
+    select('angry', :from => 'event[angerlevel]') }
 end
 
 When(/^I fill in the first invitees name, mobile and email details$/) do
@@ -50,8 +50,8 @@ When(/^I do not fill in the second invitees name, mobile and email details$/) do
 end
 
 Then(/^I expect to see the dashboard contain the new event with its title and description$/) do
-  expect(page).to have_content('Stag Party')
-  expect(page).to have_content('2014-06-06')
+  expect(page).to have_content('STAG PARTY')
+  expect(page).to have_content('06|06|2014')
 end
 
 Then(/^I expect an invitee with a name, number, email to be created$/) do
@@ -62,10 +62,10 @@ Then(/^I expect an invitee with a name, number, email to be created$/) do
 end
 
 Then(/^I expect two invitees with their names, numbers, and emails to be created$/) do
-  invitee = Userinvitee.second
-  expect(invitee.name).to eq 'Daffy'
-  expect(invitee.mobile).to eq '07753205999'
-  expect(invitee.email).to eq 'daffyduck@test.com'
+  invitee2 = Userinvitee.second
+  expect(invitee2.name).to eq 'Daffy'
+  expect(invitee2.mobile).to eq '07753205999'
+  expect(invitee2.email).to eq 'daffyduck@test.com'
 end
 
 

@@ -8,7 +8,7 @@ Feature: viewing an event
     And I make an event
 
   Scenario: an organiser viewing the event
-    When I am on the event page 
+    When I am on the event view page 
     Then I see "not accepted"
     
   Scenario: an organiser viewing an event with 1 unpaid user
