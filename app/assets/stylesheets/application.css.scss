@@ -155,7 +155,6 @@ a.white-text-please {
 
 a.white-text-please:hover {
   color: #ffffff;
-
 }
 
 .mini-logo {
@@ -175,5 +174,15 @@ a.white-text-please:hover {
 
 .smaller-font {
   font-size: 10px;
+}
+
+.drop-down-menu-header {
+  .white-text-please {
+  margin-left: 0px;
+  }
+}
+
+.dropdown-menu.with-arrow.pull-right {
+  margin-top: 4px;
 }
 
