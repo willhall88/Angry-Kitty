@@ -62,10 +62,10 @@ Then(/^I expect an invitee with a name, number, email to be created$/) do
 end
 
 Then(/^I expect two invitees with their names, numbers, and emails to be created$/) do
-  invitee = Userinvitee.second
-  expect(invitee.name).to eq 'Daffy'
-  expect(invitee.mobile).to eq '07753205999'
-  expect(invitee.email).to eq 'daffyduck@test.com'
+  invitee2 = Userinvitee.second
+  expect(invitee2.name).to eq 'Daffy'
+  expect(invitee2.mobile).to eq '07753205999'
+  expect(invitee2.email).to eq 'daffyduck@test.com'
 end
 
 

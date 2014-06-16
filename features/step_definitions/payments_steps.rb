@@ -28,7 +28,7 @@ end
 
 When(/^I click on 'Paid' button next to that unpaid participant$/) do
   expect(current_path).to eq event_path(@event)
-  click_on('Paid')
+  click_on('Mark as paid')
 end
 
 Then(/^I should see the user has paid$/) do
@@ -42,7 +42,7 @@ end
 
 Then(/^I should not see the 'Paid' button$/) do
   # expect(page).to have_content('✗')
-  expect(page).not_to have_link('Paid')
+  expect(page).not_to have_link('Mark as paid')
 end
 
 Given(/^I am the unpaid user$/) do
