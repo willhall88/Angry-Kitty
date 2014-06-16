@@ -46,6 +46,9 @@ html, body {
   overflow: auto !important;
 }
 
+body {
+  margin-top: 50px;
+}
 .events {
 
   width: auto;
@@ -88,12 +91,6 @@ input[type="date"] {
   width: 100%
 }
 
-
-/******************
-
-Media Queries
-******************/
-
 @media (min-width: 200px) and (max-width: 990px) {
   .events {
     margin: 0 5px;
@@ -107,3 +104,26 @@ Media Queries
 .events-headline {
   text-align: center;
 }
+
+.kitty-logo {
+  width: 300px;
+  height: 300px;
+  margin-top: -5px;
+}
+
+a.white-text-please {
+  color: #cccccc;
+  margin-left: 10px;
+}
+
+a.white-text-please:hover {
+  color: #ffffff;
+
+}
+
+.progress-bar-success {
+background-color: #222533;
+}
+
+
+
