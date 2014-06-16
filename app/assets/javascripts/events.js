@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.add_userinvitee').on('click', function() {
+    $('.modal').on('click', '.add_userinvitee', function() {
 
         var template = $('#userinvitee_fields');
         var list_length = $('.userinvitees_list li').length;
@@ -12,9 +12,7 @@ $(document).ready(function() {
 
     });
 
-    $('.userinvitees_list').on('click', '.delete_userinvitee', function() {
+    $('.modal').on('click', '.delete_userinvitee', function() {
         $(this).parent().remove();
     });
-
-
 });

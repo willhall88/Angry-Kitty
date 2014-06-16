@@ -60,7 +60,7 @@ html, body {
 
 section.panel {
   margin: 2% auto;
-  width: 65%;
+  width: 97%;
 }
 
 .ui-select:after {
@@ -78,6 +78,14 @@ section.panel {
 
 input[type="date"] {
   color: red;
+}
+
+.modal-content .panel {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+  width: 100%
 }
 
 

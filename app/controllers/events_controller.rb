@@ -14,6 +14,7 @@ class EventsController < ApplicationController
 	def new
 		@event = Event.new
 		@event.userinvitees.new
+		render :layout => false
 	end
 
 	def create
@@ -22,7 +23,7 @@ class EventsController < ApplicationController
 		@event.save!
 		@event.invite!
 		redirect_to('/events')
-	# rescue 
+	# rescue
 	# 	# flash[:notice] = 'Cannot submit an empty field'
 	# 	render 'new'
 	end
