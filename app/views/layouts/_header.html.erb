@@ -13,15 +13,23 @@
             <span class="glyphicon glyphicon-flash"></span>
           </a>
         <ul class="dropdown-menu with-arrow pull-right list-langs" role="menu">
-          <li class="drop-down-menu-header">
 
+          <li class="drop-down-menu-header">
             <% if user_signed_in? %>
-              <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "white-text-please") %>
-              <%= link_to('Edit registration', edit_user_registration_path, class: "white-text-please") %>
+              <%= link_to('Dashboard', events_path, class: "white-text-please") %>
           </li>
 
           <li class="drop-down-menu-header">
-            <% else %>
+              <%= link_to('Edit registration', edit_user_registration_path, class: "white-text-please") %>
+          </li>
+          
+          <li class="drop-down-menu-header">
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "white-text-please") %>
+          </li>
+
+
+          <li class="drop-down-menu-header">
+              <% else %>
               <%= link_to('Sign in', new_user_session_path, class: "white-text-please") %>
           </li>
                 
@@ -29,7 +37,7 @@
                <%= link_to('Sign up', new_user_registration_path, class: "white-text-please") %>
             <% end %>
           </li>
-          
+
         </ul>
         </li>
       </ul>  
