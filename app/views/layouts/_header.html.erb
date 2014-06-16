@@ -4,6 +4,10 @@
           <span class="ng-binding"> angry kitty</span>
       </div>
       <div class="top-nav">
+      <% if user_signed_in? %>
+            <%= image_tag("angry-kitty-logo.png", class: "kitty-logo mini-logo") %>
+      <% end %>
+
       <div class="nav-right pull-right list-unstyled">
         <div class="hidden-xs">
             <% if user_signed_in? %>
