@@ -10,6 +10,7 @@
               <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "white-text-please") %>
               <%= link_to('Edit registration', edit_user_registration_path, class: "white-text-please") %>
             <% else %>
+              <%= link_to('Sign in', new_user_session_path, class: "white-text-please") %>
               <%= link_to('Sign up', new_user_registration_path, class: "white-text-please") %>
             <% end %>
         </div>
