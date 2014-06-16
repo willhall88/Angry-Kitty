@@ -28,13 +28,13 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-
-        user = User.create(name:auth.extra.raw_info.name,
+        pwd = Devise.friendly_token[0,20]
+        user = User.create!(name:auth.extra.raw_info.name,
                             provider:auth.provider,
                             uid:auth.uid,
                             email:auth.uid+"@twitter.com",
-                            password:Devise.friendly_token[0,20],
-                            password_confirmation:Devise.friendly_token[0,20]
+                            password: pwd,
+                            password_confirmation: pwd
                           )
       end
 
