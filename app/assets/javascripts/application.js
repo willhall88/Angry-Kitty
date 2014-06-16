@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require mustache
 //= require bootstrap/dist/js/bootstrap
+//= require jquery.easypiechart
 //= require_tree .
