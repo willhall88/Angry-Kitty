@@ -99,6 +99,10 @@ input[type="date"] {
   width: 100%
 }
 
+.remove-friend {
+  display: none;
+}
+
 @media (min-width: 200px) and (max-width: 990px) {
   .events {
     margin: 0 5px;
@@ -106,6 +110,31 @@ input[type="date"] {
 
   .post {
     width: 100%;
+  }
+}
+
+@media (max-device-width: 480px) {
+  .form-control {
+    width: 100%;
+  }
+
+  .ui-select:after {
+    right: 37px;
+    margin-top: 20px;
+    }
+
+  button.remove-friend {
+    display: inline-block;
+  }
+
+  button.remove-x {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .create-event {
+    margin: 0;
+    margin-left: 10px;
   }
 }
 
@@ -130,11 +159,10 @@ a.white-text-please:hover {
 }
 
 .progress-bar-success {
-background-color: #222533;
+  background-color: #222533;
 }
 
 .smaller-font {
   font-size: 10px;
 }
-
 

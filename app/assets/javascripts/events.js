@@ -15,4 +15,5 @@ $(document).ready(function() {
     $('.modal').on('click', '.delete_userinvitee', function() {
         $(this).parent().remove();
     });
+
 });
