@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauth_providers => [:twitter]
 
   has_many :events, through: :debts
   has_many :debts
@@ -33,6 +34,7 @@ class User < ActiveRecord::Base
                             uid:auth.uid,
                             email:auth.uid+"@twitter.com",
                             password:Devise.friendly_token[0,20],
+                            password_confirmation:Devise.friendly_token[0,20]
                           )
       end
 
