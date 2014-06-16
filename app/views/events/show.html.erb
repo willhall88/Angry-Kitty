@@ -1,29 +1,55 @@
 <% if @event.debts.any? %>
 
-	<h3>Event title: <%= @event.title %></h3>
-
+	
+	<h3><%= @event.title %></h3>
+	<hr>
 	<h4> Angry Kitty is purrring </h4>
-		<ul>
-			<% @paid.each do |debt| %>
-			  <li> <%= debt.user.email %> | ✓ | <%= debt.payment_amount %> </li>
-			<% end %>
-		</ul>
+	<table class="responsive table table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @paid.each do |debt| %>
+	  			<tr>
+	  			<th> <%= debt.user.email %></th>
+	  			<td> | ✓ | </td>
+	  			<td><%= debt.payment_amount %></td>
+			  	</tr>
+			  <% end %>
+        </tbody>
+	</table>
 
 	<h4> Angry Kitty is still chasing </h4>
-	<ul>
-		<% @unpaid.each do |debt| %>
-		  <li> 
-		  	<%= debt.user.email %> | ✗ | <%= debt.payment_amount %> 
-		  	<% if current_user == debt.event.organiser %>
-		  	  <%= link_to 'Paid', payments_path(debt.user_id, debt.event_id,), method: :post %>
-		  	<% else %>
-		  	  <%= link_to 'PAY NOW!', new_charges_path(debt.user_id, debt.event_id,) %>
-		  	<% end %>
-		  </li>
-		<% end %>
-	</ul>
+	<table class="responsive table table-striped">
+	    <thead>
+	        <tr>
+	            <th>Email</th>
+	            <th>Status</th>
+	            <th>Amount</th>
+	            <th>Paid?</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        	<% @unpaid.each do |debt| %>
+				  	<tr>
+				  	<th><%= debt.user.email %></th>
+				  	<th> | ✗ |</th>
+				  	<th> <%= debt.payment_amount %> </th>
+				  	<% if current_user == debt.event.organiser %>
+				  	  <th><%= link_to 'Paid', payments_path(debt.user_id, debt.event_id,), method: :post %></th>
+				  	<% else %>
+				  	  <th><%= link_to 'PAY NOW!', new_charges_path(debt.user_id, debt.event_id,) %></th>
+				  	<% end %>
+				  	</tr>
+				<% end %>
+	    </tbody>
+	</table>
 <% else %>
 
-	<h3>No payments for this event - note debts will in future always exists for an event</h3>
+	<h3>No payments for this event!</h3>
 
 <% end %>

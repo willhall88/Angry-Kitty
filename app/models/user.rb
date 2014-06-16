@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   end
   
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
+
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
       return user
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
+        puts "Trying to create user!"
         pwd = Devise.friendly_token[0,20]
         user = User.create!(name:auth.extra.raw_info.name,
                             provider:auth.provider,
