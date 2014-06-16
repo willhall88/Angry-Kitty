@@ -2,20 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.container{
-  /*background-color: blue;*/
-}
-
-.column{
-  /*background-color: red;*/
-}
 
 .event-title{
-  height: 100%
+  height: 100%;
+    text-align: center;
 }
 
 
 .event-timer{
   font-size: 20px;
   margin-top: 24px;
+  text-align: right;
+}
+
+.table{
+  background-color: white;
+}
+
+h3{
+  display: inline-block;
 }
