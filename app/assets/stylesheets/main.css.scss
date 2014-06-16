@@ -531,6 +531,15 @@ cite {
   text-align: center;
 }
 
+.small-links {
+  text-align: center;
+}
+
+.small-link {
+  display: inline-block;
+}
+
+
 .text-justify {
   text-align: justify;
 }
@@ -10055,11 +10064,25 @@ button.toast-close-button {
   width: 100%;
   /*padding: 60px 0 0;*/
 }
+
+@font-face {
+  font-family: 'Airplane';
+  src: font-url('Airplane.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo {
+  font-family: Airplane;
+  font-size: 35px;
+}
+
 @media (min-width: 768px) {
   .top-header .top-nav {
     padding: 15px 0 0 220px;
   }
 }
+
 .top-header .top-nav .nav-left,
 .top-header .top-nav .nav-right {
   font-size: 16px;
