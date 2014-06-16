@@ -16,3 +16,9 @@
 //= require mustache
 //= require bootstrap/dist/js/bootstrap
 //= require_tree .
+
+// $(document).ready(function() {
+//   $('.dates').on('focus', function() {
+//     $(this).dateinput();
+//   });
+// });

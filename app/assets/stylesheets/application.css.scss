@@ -24,12 +24,13 @@ li a:hover{
 }
 
 .form-control {
-	width: auto;
+	width: 60%;
   margin-bottom: 20px;
 }
 
 .display-inline {
   display: inline-block;
+  width: 19.3%;
 }
 
 .userinvitees_list {
@@ -38,6 +39,7 @@ li a:hover{
 
 .form-group .add-invitees {
   margin-left: -20px;
+  margin-top: 6px;
 }
 
 html, body {
@@ -53,6 +55,7 @@ html, body {
 
 .ui-select label {
   margin-left: -20px;
+  margin-top: 13px;
 }
 
 section.panel {
@@ -69,9 +72,19 @@ section.panel {
 }
 
 .create-event {
-  text-align: center;
+  margin-left: 193px;
   margin-top: 150px;
 }
+
+input[type="date"] {
+  color: red;
+}
+
+
+/******************
+
+Media Queries
+******************/
 
 @media (min-width: 200px) and (max-width: 990px) {
   .events {
@@ -82,4 +95,6 @@ section.panel {
     width: auto;
   }
 }
+
+
 
