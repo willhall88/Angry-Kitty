@@ -1,55 +1,76 @@
-<% if @event.debts.any? %>
 
-	
-	<h3><%= @event.title %></h3>
-	<hr>
-	<h4> Angry Kitty is purrring </h4>
-	<table class="responsive table table-striped">
+<div class="container row">
+    <div class"title-container col-xs-12">
+      <div class='row'>
+        <h3 class="event-title column col-xs-4 col-xs-offset-4"><%= @event.title %></h3>
+        <h3 class="event-timer column col-xs-4"><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
+      </div>
+    </div>
+  <% if @event.debts.any? %>
+    <div class"user-container row">
+      <table class="responsive table table-striped">
         <thead>
-            <tr>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Amount</th>
-            </tr>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Amount</th>
+          </tr>
         </thead>
         <tbody>
-            <% @paid.each do |debt| %>
-	  			<tr>
-	  			<th> <%= debt.user.email %></th>
-	  			<td> | ✓ | </td>
-	  			<td><%= debt.payment_amount %></td>
-			  	</tr>
-			  <% end %>
+          <% @paid.each do |debt| %>
+            <tr>
+              <th> <%= debt.user.name %></th>
+              <td> | ✓ | </td>
+              <td><%= debt.payment_amount %></td>
+            </tr>
+          <% end %>
+          <% @unpaid.each do |debt| %>
+            <tr>
+              <th><%= debt.user.name %></th>
+              <th>
+                | ✗ |
+                <% if current_user == debt.event.organiser %>
+                  <%= link_to 'Paid', payments_path(debt.user_id, debt.event_id,), method: :post %>
+                <% else %>
+                  <%= link_to 'PAY NOW!', new_charges_path(debt.user_id, debt.event_id,) %>
+                <% end %>
+              </th>
+              <th> <%= debt.payment_amount %> </th>
+              
+            </tr>
+          <% end %>
+          <% @event.userinvitees.each do |invitee| %>
+            <tr>
+              <th> <%= invitee.name %></th>
+              <td> not accepted </td>
+              <td><%= @event.payment_amount %></td>
+            </tr>
+          <% end %>
         </tbody>
-	</table>
-
-	<h4> Angry Kitty is still chasing </h4>
-	<table class="responsive table table-striped">
-	    <thead>
-	        <tr>
-	            <th>Email</th>
-	            <th>Status</th>
-	            <th>Amount</th>
-	            <th>Paid?</th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        	<% @unpaid.each do |debt| %>
-				  	<tr>
-				  	<th><%= debt.user.email %></th>
-				  	<th> | ✗ |</th>
-				  	<th> <%= debt.payment_amount %> </th>
-				  	<% if current_user == debt.event.organiser %>
-				  	  <th><%= link_to 'Paid', payments_path(debt.user_id, debt.event_id,), method: :post %></th>
-				  	<% else %>
-				  	  <th><%= link_to 'PAY NOW!', new_charges_path(debt.user_id, debt.event_id,) %></th>
-				  	<% end %>
-				  	</tr>
-				<% end %>
-	    </tbody>
-	</table>
-<% else %>
-
-	<h3>No payments for this event!</h3>
-
-<% end %>
+      </table>
+    </div>
+  <% elsif @event.userinvitees.any? %>
+    <div class"user-container row">
+      <table class="responsive table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @event.userinvitees.each do |invitee| %>
+          <tr>
+            <th> <%= invitee.name %></th>
+            <td> not accepted </td>
+            <td><%= @event.payment_amount %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <h3>No payments for this event!</h3>
+  <% end %>
+</div>
