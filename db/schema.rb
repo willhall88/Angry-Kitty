@@ -45,11 +45,6 @@ ActiveRecord::Schema.define(version: 20140615120140) do
     t.integer "userinvitee_id", null: false
   end
 
-  create_table "events_users", id: false, force: true do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id",  null: false
-  end
-
   create_table "payments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"

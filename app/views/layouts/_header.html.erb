@@ -1,0 +1,22 @@
+<section data-ng-include=" 'views/header.html' " id="header" class="top-header ng-scope">
+    <header class="clearfix ng-scope">
+      <div class="logo">
+          <span class="ng-binding"> angry kitty</span>
+      </div>
+      <div class="top-nav">
+      <div class="nav-right pull-right list-unstyled">
+        <div class="hidden-xs">
+            <% if user_signed_in? %>
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "white-text-please") %>
+              <%= link_to('Edit registration', edit_user_registration_path, class: "white-text-please") %>
+            <% else %>
+              <%= link_to('Sign up', new_user_registration_path, class: "white-text-please") %>
+            <% end %>
+        </div>
+      </div>
+      </div>
+    </header>
+</section>
+
+
+  
