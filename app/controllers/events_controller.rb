@@ -19,7 +19,7 @@ class EventsController < ApplicationController
 	def create
 		@event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email]))
 		@event.organiser = current_user
-		@event.save
+		@event.save!
 		@event.invite!
 		redirect_to('/events')
 	# rescue 

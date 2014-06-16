@@ -63,11 +63,11 @@ Then(/^they will be re\-directed to the sign up page$/) do
 end
 
 Given(/^the invitee is the current user$/) do
- login_as @user
+  login_as @user
 end
 
 Then(/^they will be re\-directed to the event$/) do
- expect(current_path).to eq "/events/#{@event.id}"
+  expect(current_path).to eq "/events/#{@event.id}"
 end
 
 Then(/^they can fill in their invitee details on the sign up page$/) do
@@ -77,7 +77,9 @@ Then(/^they can fill in their invitee details on the sign up page$/) do
 end
 
 Then(/^they press "(.*?)"$/) do |arg1|
-  click_on arg1.to_s
+  within("#actual-signup") do
+    click_on arg1.to_s
+  end
 end
 
 Given(/^the participant clicks the link in the invitation email$/) do
@@ -86,11 +88,11 @@ Given(/^the participant clicks the link in the invitation email$/) do
 end
 
 Then(/^the participant will not be added to the event$/) do
-  expect(@event.users.count).to eq(1)  
+  expect(@event.users.count).to eq(1)
 end
 
 Then(/^they will be re\-directed to the sign in page$/) do
- expect(current_path).to eq '/users/signin'
+  expect(current_path).to eq '/users/signin'
 end
 
 Then(/^they will be re\-directed to the event page$/) do
