@@ -64,11 +64,6 @@ ActiveRecord::Schema.define(version: 20140615120140) do
     t.integer  "payment_amount"
   end
 
-  create_table "userinvites", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
