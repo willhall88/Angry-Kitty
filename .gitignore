@@ -1,4 +1,4 @@
-secrets.yml
+
 
 # Ignore bundler config.
 /.bundle
@@ -12,3 +12,4 @@ secrets.yml
 /tmp
 
 .DS_Store
+/config/secrets.yml
