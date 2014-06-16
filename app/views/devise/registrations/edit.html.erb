@@ -1,57 +1,66 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="page-signin">
 
-   <div class="container">
-    <div class="form-container">
-      <h2>Edit <%= resource_name.to_s.humanize %></h2>
-      <div class="form-group">
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-envelope"></span>
-            </span>
-              <%= f.email_field :email, autofocus: true, class:"form-control",placeholder:"Mobile" %>
-        
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
-        </div>
-      </div>
+<%= devise_error_messages! %>
 
-      <div class="form-group">
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-lock"></span>
-            </span>
-            <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder: "New password" %>
-        </div>
-      </div>
+  <div class="signin-body">
+    <div class="container">
+      <div class="form-container">
+        <h2>Edit registration</h2>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  
+          <fieldset>
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-envelope"></span>
+                  </span>
+                  <%= f.email_field :email, autofocus: true, class:"form-control",placeholder:"Email" %>
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                  <% end %>
+              </div>
+            </div>
 
-      <div class="form-group">
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-lock"></span>
-            </span>
-            <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm new password" %>
-        </div>
-      </div>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                      <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder: "New password" %>
+                </div>
+            </div>
 
-       <div class="form-group">
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-lock"></span>
-            </span>
-            <%= f.password_field :current_password, autocomplete: "off", class:"form-control", placeholder: "Current password" %>
-        </div>
-      </div>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                      <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm new password" %>
+                </div>
+            </div>
 
-      <div><%= f.submit "Update", class: "btn btn-w-md btn-gap-v btn-primary" %></div>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                      <%= f.password_field :current_password, autocomplete: "off", class:"form-control", placeholder: "Current password" %>
+                </div>
+            </div>
 
-<% end %>
+            <div class="form-group">
+                <%= f.submit "Update", class: "btn btn-primary btn-lg btn-block" %>
+            </div>
+                     
+          </fieldset>
+        <% end %>
 
-        <h3>Cancel my account</h3>
+        <section class="small-links">
+          <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), class: "small-link", data: { confirm: "Are you sure?" }, method: :delete %> | <%= link_to "Go back", :back %><br/></p>
+        </section>
 
-        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-w-md btn-gap-v btn-danger", data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-        <%= link_to "Back", :back %>
       </div>
     </div>
+  </div>
+
+</div>
