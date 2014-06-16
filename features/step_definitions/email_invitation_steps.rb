@@ -71,6 +71,8 @@ Then(/^they will be re\-directed to the event$/) do
 end
 
 Then(/^they can fill in their invitee details on the sign up page$/) do
+  fill_in 'Full Name', with: "Scott"
+  fill_in 'Mobile', with: "07973361616"
   fill_in 'Email', with: "new@newinvitee.com"
   fill_in 'Password', with: "12345678"
   fill_in 'Password confirmation', with: "12345678"
