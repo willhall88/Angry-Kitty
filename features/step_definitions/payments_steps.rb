@@ -13,13 +13,13 @@ And(/^I have one paid user$/) do
 end
 
 Given(/^I have one unpaid user$/) do
-  @user2 = create(:user, email: 'user2@user2.com')
+  @user2 = create(:user)
   @debt2 = create(:debt, user_id: @user2.id, event_id: @event.id, paid: false)
 end
 
 Then(/^I should see a list of paid and a list of unpaid participants$/) do
-  expect(page).to have_content "user@user.com | ✓"
-  expect(page).to have_content "user2@user2.com | ✗"
+  expect(page).to have_content "Sroop | ✓"
+  expect(page).to have_content "Sroop | ✗"
 end
 
 Given(/^I am an organiser$/) do
@@ -32,7 +32,7 @@ When(/^I click on 'Paid' button next to that unpaid participant$/) do
 end
 
 Then(/^I should see the user has paid$/) do
-  expect(page).to have_content "user2@user2.com | ✓"
+  expect(page).to have_content "Sroop | ✓"
 end
 
 Given(/^I am a participant$/) do

@@ -10,11 +10,13 @@ When(/^I click New Event$/) do
 end
 
 When(/^I fill in the event details$/) do
-  fill_in 'Title', with: 'Stag Party'
-  fill_in 'Description', with: 'This is the most outrageous party ever'
-  fill_in 'Deadline', with: '2014-06-06'
-  select('angry', :from => 'Anger level')
-  fill_in 'Total', with: 500
+    # page.should have_content('Title') # async
+    fill_in 'Title', with: 'Stag Party'
+    fill_in 'Description', with: 'This is the most outrageous party ever'
+    fill_in 'Total', with: 500
+    fill_in 'Deadline', with: '2014-06-06'
+    select('angry', :from => 'Angerlevel')
+
 end
 
 When(/^I fill in the first invitees name, mobile and email details$/) do
