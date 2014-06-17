@@ -50,7 +50,7 @@ Given(/^I am the unpaid user$/) do
 end
 
 Then(/^I should see the button 'Pay Now'$/) do
-  expect(page).to have_link('PAY NOW!')
+  expect(page).to have_link('PAY NOW')
 end
 
 Given(/^I am a paid user$/) do
@@ -58,5 +58,5 @@ Given(/^I am a paid user$/) do
 end
 
 Then(/^I should not see the button 'Pay Now'$/) do
-  expect(page).not_to have_link('PAY NOW!')
+  expect(page).not_to have_link('PAY NOW')
 end

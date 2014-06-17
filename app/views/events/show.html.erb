@@ -60,10 +60,9 @@
                 <td> <%= invitee.name %></td>
                 <td>
                   <% if current_user == @event.organiser %>
-                    <%= link_to "Edit", edit_event_userinvitee_path(@event, invitee.id), class: "btn btn-gap btn-success edit-btn", data: { toggle: 'modal', target: "#myModall" } %>
-                    <% else %>
-                      <span class="btn btn-gap btn-warning">Awaiting RSVP</span>
+                    <%= link_to "Edit", edit_event_userinvitee_path(@event, invitee.id), class: "btn btn-gap btn-warning edit-btn", data: { toggle: 'modal', target: "#myModall" } %>
                   <% end %>
+                      <span class="btn btn-gap btn-warning">Awaiting RSVP</span>
                 </td>
                 <td><%= @event.payment_amount %></td>
               </tr>

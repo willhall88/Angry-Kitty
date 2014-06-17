@@ -15,7 +15,7 @@ RSpec.describe ChasersMailer, :type => :mailer do
       debt = create(:debt, user_id: user.id, event_id: event.id)
       ChasersMailer.harass(debt).deliver!
       open_email(user.email)
-      expect(current_email).to have_content "PAY ME!"
+      expect(current_email).to have_content "PAY NOW"
       expect(current_email).to have_content "You owe money for #{debt.event.title}"
     end
 

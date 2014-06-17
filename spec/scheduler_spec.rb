@@ -204,11 +204,11 @@ describe 'accessing unpaid debts from database' do
     end
     send_harassment
     open_email('apo@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('nico@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('dan@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     expect(open_email('scott@test.com')).to eq(nil)
   end
 
@@ -230,13 +230,13 @@ describe 'accessing unpaid debts from database' do
     end
     send_harassment
     open_email('dan@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('nico@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('sroop@sunar.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('robin@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     emails_sent_to('apo@test.com')
     expect(current_emails.first).to have_content 'birthday'
     expect(current_emails.last).to have_content 'diving'
@@ -301,7 +301,7 @@ describe 'anger level' do
     end
     send_harassment
     emails_sent_to('will@test.com')
-    expect(current_emails.first).to have_content('PAY ME!')
+    expect(current_emails.first).to have_content('PAY NOW')
     expect(open_email('sroop@test.com')).to eq(nil)
   end
 
