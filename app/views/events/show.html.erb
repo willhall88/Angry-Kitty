@@ -24,7 +24,13 @@
                       <% if current_user == @event.organiser %>
                         <%= link_to 'Mark as paid', payments_path(user.id, @event.id), method: :post, class:"label label-danger" %>
                       <% else %>
-                        <%= link_to 'PAY NOW!', new_charges_path(user.id, @event.id) %>
+                        <%= link_to 'PAY NOW!', new_charges_path(user.id, @event.id), class:"label label-danger" %>
+                        <%= form_tag charges_path(@user, @event) do %>
+                          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="<%= Rails.application.secrets.stripe_public_key %>"
+                                data-description="What I owe"
+                                data-amount="<%= @payment_amount %>"></script>
+                        <% end %>
                       <% end %>
                     </td>
                   <% end %>
@@ -34,7 +40,7 @@
             <% invitee_tabulator(@event).each do |invitee| %>
               <tr>
                 <td> <%= invitee.name %></td>
-                <td> not accepted </td>
+                <td><span class="label label-warning">Awaiting RSVP</span></td>
                 <td><%= @event.payment_amount %></td>
               </tr>
             <% end %>
