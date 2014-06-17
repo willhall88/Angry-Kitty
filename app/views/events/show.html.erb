@@ -11,14 +11,23 @@
         <table class="table">
           <thead>
             <tr>
+              <% if current_user == @event.organiser %>
+                <th></th>
+              <% end %>
               <th>Name</th>
               <th>Status</th>
               <th>Amount</th>
+
             </tr>
           </thead>
           <tbody>
             <% user_tabulator(@event, current_user).each do |user| %>
-              <tr>
+              <tr id="user-<%= user.id.to_s %>">
+                <% if current_user == @event.organiser %>
+                  <td>
+                    <%= link_to 'x', event_debt_path(@event.id, user.debts.find_by(event: @event).id), method: :delete %>
+                  </td>
+                <% end %>
                 <td> <%= user.name %></td>
                   <% if user.debts.find_by(event: @event).paid %>
                     <td><span class="btn btn-gap btn-success">Paid</span> </td>
