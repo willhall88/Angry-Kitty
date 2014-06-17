@@ -28,12 +28,12 @@
   </section>
 </section>
 
-<div class="organising">
+<div>
 <br>
-<% if !@organising.nil? %>
+<% if !@events.nil? %>
   <ul class="events">
-  <% @organising.each do |event| %>
-    <li>
+  <% @events.each do |event| %>
+    <li class="<%= event.organiser_id == current_user.id ? 'organising' : 'participating' %>">
     <%= link_to event_path(event), class:"col-md-4 post" do %>
       <article class='panel panel-default'>
         <div class='panel-heading'>
@@ -64,42 +64,3 @@
   </ul>
 <% end %>
 </div>
-
-
-<div class="participating">
-<br>
-  <% if !@participating.nil? %>
-    <ul class="events">
-    <% @participating.each do |event| %>
-    <li>
-    <%= link_to event_path(event), class:"col-md-4 post" do %>
-      <article class='panel panel-default'>
-        <div class='panel-heading'>
-          <h3 class='panel-title'>
-            <strong><%= event.title %></strong>
-          <span>
-            <h6>Due in <%= distance_of_time_in_words(DateTime.now, event.deadline) %></h6>
-          </span>
-          </h3>
-        </div>
-        <div class='panel-body'>
-          <i><%= event.description %></i><br><br>
-            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
-            <b class="ng-scope ng-binding">
-            <% if event.users.size > 0 %>
-              <%= event.debts.where(paid: true).size %>/<%= event.userinvitees.count %> 
-            <% end %>
-            </b>
-            </div>
-          </div>
-          <h6 class="smaller-font"> <%= pluralize(event.users.count,'participant') %> and
-          <%= pluralize(event.userinvitees.count, 'invitee') %> for this event </h6>
-        </div>
-      </article>
-    <% end %>
-    </li>
-    <% end %>
-    </ul>
-  <% end %>
-</div>
-
