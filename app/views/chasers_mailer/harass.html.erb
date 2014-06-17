@@ -793,7 +793,7 @@ body.outlook p {
 
                             <td align="center" class="six sub-columns">
                             <center>
-                              <img src="ak-type-logo.jpg" style="width: 200px; text-align:center;">
+                            <%= image_tag("ak-type-logo.jpg", height: '200', width: '200', style: "width: 200px; text-align:center;") %>
                             </center>
                             </td>
                             <td class="six sub-columns last" align="right" style="text-align:right; vertical-align:middle;">
@@ -866,6 +866,7 @@ body.outlook p {
 
        
                 <table class="row">
+                  <center>
                   <tr align="center">
                     <td class="wrapper last">
 
@@ -888,10 +889,8 @@ body.outlook p {
 
                     </td>
                   </tr>
+                  </center>
                 </table>
-       
-
-
             
 
                 <table class="row">
@@ -902,7 +901,7 @@ body.outlook p {
                         <tr>
                           <td align="center">
                             <center>
-                              <p style="text-align:center;"><a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Unsubscribe</a></p>
+                              <p style="text-align:center;"><a href="#">Terms</a> | <a href="#">Privacy</a> |  <%= link_to('Unsubscribe', new_charges_url(@user.id, @event.id)) %></p>
                             </center>
                           </td>
                           <td class="expander"></td>
