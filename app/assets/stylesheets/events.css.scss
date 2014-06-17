@@ -5,14 +5,32 @@
 
 .event-title{
   height: 100%;
-    text-align: center;
+  position: relative;
+  float: left;
+  padding-left: 20px;
 }
-
 
 .event-timer{
   font-size: 20px;
   margin-top: 24px;
-  text-align: right;
+  position: relative;
+  float: right;
+  padding-right: 20px;
+}
+
+@media(max-width: 900px) {
+  .event-title{
+    width: 100%;
+    display: block;
+  }
+
+  .event-timer{
+    position: relative;
+    float: left;
+    padding-left: 20px;
+    display: block;
+    margin-top: 0px;
+  }
 }
 
 .table{
