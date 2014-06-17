@@ -44,7 +44,13 @@
             <% invitee_tabulator(@event).each do |invitee| %>
               <tr>
                 <td> <%= invitee.name %></td>
-                <td><span class="btn btn-gap btn-warning">Awaiting RSVP</span></td>
+                <td>
+                  <% if current_user == @event.organiser %>
+                    <%= link_to "Edit", edit_event_userinvitee_path(@event, invitee.id), class: "btn btn-gap btn-success edit-btn", data: { toggle: 'modal', target: "#myModall" } %>
+                    <% else %>
+                      <span class="btn btn-gap btn-warning">Awaiting RSVP</span>
+                  <% end %>
+                </td>
                 <td><%= @event.payment_amount %></td>
               </tr>
             <% end %>
@@ -54,4 +60,13 @@
     <% else %>
       <h3>Dancing by yourself? No invitees to this party!</h3>
     <% end %>
+</div>
+
+
+<div class="modal fade" id="myModall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    </div>
+  </div>
 </div>
