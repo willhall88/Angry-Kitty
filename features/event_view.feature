@@ -9,7 +9,7 @@ Feature: viewing an event
 
   Scenario: an organiser viewing the event
     When I am on the event view page 
-    Then I see "not accepted"
+    Then I see "Awaiting RSVP"
     
   Scenario: an organiser viewing an event with 1 unpaid user
     And the event has 1 participant who has not paid
@@ -20,4 +20,10 @@ Feature: viewing an event
     And the event has 1 participant who has paid
     When I am on the event page 
     Then I see that the participant has paid
-    Then I see "not accepted"
+    Then I see "Awaiting RSVP"
+    
+  @javascript  
+  Scenario: an organiser can delete the event
+    When I am on the event page
+    And I click on "Delete Event"
+    Then the event will be deleted

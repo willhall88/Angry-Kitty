@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :organiser, :class_name => 'User', :foreign_key => "organiser_id"
 
   has_many :users, through: :debts
-  has_many :debts
+  has_many :debts, dependent: :destroy
 
   validates :organiser_id, presence: true
   validates :deadline, presence: true
