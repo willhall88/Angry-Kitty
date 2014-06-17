@@ -203,7 +203,7 @@ ul li, ol li {
 
       <!-- content -->
 
-      <table class="header-content" style="text-align:center">
+      <table bgcolor="#222533" class="header-content" style="text-align:center;">
         <tr>
           <td class="padding">
             <img src="http://angry-kitty.herokuapp.com/assets/angry-kitty-title-02fcafbc913640e9c8e928f61c750312.png" style="width: 150px; text-align:center;">
@@ -218,16 +218,17 @@ ul li, ol li {
         <tr>
           <td>
              <center>
-
-                            <img width="60%" src="http://angry-kitty.herokuapp.com/assets/angry-kitty-logo-66daf3177b210d57b7d625cc8ab09fc6.png" style="text-align:center; margin-top: 30px;">
-                            </center>
+              <img width="60%" src="http://angry-kitty.herokuapp.com/assets/angry-kitty-logo-66daf3177b210d57b7d625cc8ab09fc6.png" style="text-align:center; margin-top: 30px;">
+            </center>
             <h1 style="text-align:center">Pay the kitty.</h1>
             <p style="text-align:center">You owe money for <%= @event.title %>.</p>
             
             <table style="text-align:center">
               <tr>
-                <td class="padding">
-                  <p> <%= link_to('PAY NOW', new_charges_url(@user.id, @event.id)) %></p>
+                <td class="padding" style="text-align:center">
+                  <center>
+                    <p style="text-align:center"> <%= link_to('PAY NOW', new_charges_url(@user.id, @event.id), class: "btn-primary") %></p>
+                  </center>
                 </td>
               </tr>
             </table>
