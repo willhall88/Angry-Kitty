@@ -14,10 +14,12 @@ end
 
 When(/^I edit a participant$/) do
   click_on('Edit')
-  fill_in 'Name', with: 'Marco'
-  fill_in 'Email', with: 'marco@marco.com'
-  fill_in 'Mobile', with: '87654321'
-  click_on('Save changes')
+  within('#myModall') do
+    fill_in 'userinvitee[name]', with: 'Marco'
+    fill_in 'userinvitee[email]', with: 'marco@marco.com'
+    fill_in 'userinvitee[mobile]', with: '87654321'
+    click_on('Save changes')
+  end
 end
 
 Then(/^I want to be able to see the changes$/) do

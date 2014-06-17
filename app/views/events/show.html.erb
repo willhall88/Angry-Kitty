@@ -41,7 +41,7 @@
             <% invitee_tabulator(@event).each do |invitee| %>
               <tr>
                 <td> <%= invitee.name %> </td>
-                <td><%= link_to "Edit", edit_event_userinvitee_path(@event, invitee.id), class: "btn btn-sm btn-success edit-btn", data: { toggle: 'modal', target: "#myModal" } %></td>
+                <td><%= link_to "Edit", edit_event_userinvitee_path(@event, invitee.id), class: "btn btn-sm btn-success edit-btn", data: { toggle: 'modal', target: "#myModall" } %></td>
                 <td><span class="label label-warning">Awaiting RSVP</span></td>
                 <td><%= @event.payment_amount %></td>
               </tr>
@@ -55,7 +55,7 @@
 </div>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 

@@ -10,7 +10,7 @@ Feature: Organiser
 
 	# Scenario: Can remove participants
 	# 	Then I want to be able to remove participants manually
-
+	@javascript
 	Scenario: Can edit details of participants
 		When I edit a participant
 		Then I want to be able to see the changes
