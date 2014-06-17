@@ -1,11 +1,10 @@
 <section class="panel panel-default">
-   <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Event</strong></div>
-   </div>
-  
-  <div class="modal-body">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Event</strong></div>
+  </div>
 
+  <div class="modal-body">
     <div class="panel-body">
       <%= form_for @event, class: "form-horizontal ng-pristine ng-valid" do |f| %>
         <div class="form-group">
@@ -76,7 +75,3 @@
     <button type='button' class='delete_userinvitee btn btn-danger'>Remove</button>
   </template>
 <% end %>
-
-
-
-

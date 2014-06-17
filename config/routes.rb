@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :events
+  resources :events do
+    resources :userinvitees, only: [:edit, :update]
+  end
 
 
   get 'users/:user_id/:event_id/charges/new', to: 'charges#new', as: 'new_charges'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
   post 'users/:user_id/:event_id/payments', to: 'payments#create', as: 'payments'
 
 
-  get 'userinvitees/:userinvitee_id/:event_id', to: 'userinvitees#show', as: 'userinvitee'
+  get 'userinvitees/:userinvitee_id/:event_id', to: 'userinvitees#show', as: 'accept_userinvitee'
 
 
 

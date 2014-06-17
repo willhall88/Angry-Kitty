@@ -9,6 +9,7 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th></th>
               <th>Status</th>
               <th>Amount</th>
             </tr>
@@ -22,9 +23,9 @@
                   <% else %>
                     <td>
                       <% if current_user == @event.organiser %>
-                        <%= link_to 'Mark as paid', payments_path(user.id, @event.id), method: :post, class:"label label-danger" %>
+                        <%= link_to 'Mark as paid', payments_path(user.id, @event.id), method: :post, class: "label label-danger" %>
                       <% else %>
-                        <%= link_to 'PAY NOW!', new_charges_path(user.id, @event.id), class:"label label-danger" %>
+                        <%= link_to 'PAY NOW!', new_charges_path(user.id, @event.id), class: "label label-danger" %>
                         <%= form_tag charges_path(@user, @event) do %>
                           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                 data-key="<%= Rails.application.secrets.stripe_public_key %>"
@@ -39,7 +40,8 @@
             <% end %>
             <% invitee_tabulator(@event).each do |invitee| %>
               <tr>
-                <td> <%= invitee.name %></td>
+                <td> <%= invitee.name %> </td>
+                <td><%= link_to "Edit", edit_event_userinvitee_path(@event, invitee.id), class: "btn btn-sm btn-success edit-btn", data: { toggle: 'modal', target: "#myModal" } %></td>
                 <td><span class="label label-warning">Awaiting RSVP</span></td>
                 <td><%= @event.payment_amount %></td>
               </tr>
@@ -50,4 +52,13 @@
     <% else %>
       <h3>Dancing by yourself? No invitees to this party!</h3>
     <% end %>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    </div>
+  </div>
 </div>
