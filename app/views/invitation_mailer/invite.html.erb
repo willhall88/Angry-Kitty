@@ -1,5 +1,3 @@
-RSVP
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -223,7 +221,7 @@ ul li, ol li {
                             <img width="60%" src="http://angry-kitty.herokuapp.com/assets/angry-kitty-logo-66daf3177b210d57b7d625cc8ab09fc6.png" style="text-align:center; margin-top: 30px;">
                             </center>
 						<h1 style="text-align:center">RSVP.</h1>
-						<p style="text-align:center">You have been invited to xxx by yyy.</p>
+						<p style="text-align:center">You have been invited to <%= @event.title %>.</p>
 						
 						<table style="text-align:center">
 							<tr>
@@ -256,8 +254,7 @@ ul li, ol li {
 				<table>
 					<tr>
 						<td align="center">
-							<p>Don't like these annoying emails? <a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>.
-							</p>
+						
 						</td>
 					</tr>
 				</table>
