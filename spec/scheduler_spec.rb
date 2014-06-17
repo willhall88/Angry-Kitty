@@ -284,11 +284,11 @@ describe 'anger level' do
     event1 = Event.new(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
     event1.userinvitees << userinvitee
     event1.save
-    event2 = Event.new(angerlevel: 'really_angry', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
+    event2 = Event.new(angerlevel: 'very_angry', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
     event2.userinvitees << userinvitee
     event2.save
     expect(event1.angerlevel).to eq('polite')
-    expect(event2.angerlevel).to eq('really_angry')
+    expect(event2.angerlevel).to eq('very_angry')
     event1.users << user2
     event2.users << user3
     event2.debts.each do|debt|

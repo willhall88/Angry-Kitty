@@ -1,7 +1,7 @@
 ANGER_CHART = {
   'polite' => [0.33, 1, 3, 7, 14],
   'angry' => [0.2, 0.5, 2, 3.5, 7],
-  'really_angry' => [0.05, 0.2, 1, 3.5, 7]
+  'very_angry' => [0.05, 0.2, 1, 3.5, 7]
 }
 
 def send_harassment
