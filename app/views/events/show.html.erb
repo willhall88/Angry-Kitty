@@ -1,9 +1,6 @@
 <div class="container">
     <div class"title-container">
       <h3 class="event-title "><%= @event.title %></h3>
-      <%if current_user == @event.organiser %>
-      <%= link_to "Delete Event", event_path(@event), method: :delete, data: { :confirm => "confirm"}  %>
-      <% end %>
       <h3 class="event-timer "><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
     </div>
     <% if user_tabulator(@event, current_user).any? || invitee_tabulator(@event).any? %>
@@ -12,7 +9,9 @@
           <thead>
             <tr>
               <% if current_user == @event.organiser %>
-                <th></th>
+                <th id="delete-column">
+                  <%= link_to "Delete Event", event_path(@event), method: :delete, data: { :confirm => "confirm"}, class:"label label-danger" %>
+                </th>
               <% end %>
               <th>Name</th>
               <th>Status</th>
@@ -25,7 +24,7 @@
               <tr id="user-<%= user.id.to_s %>">
                 <% if current_user == @event.organiser %>
                   <td>
-                    <%= link_to 'x', event_debt_path(@event.id, user.debts.find_by(event: @event).id), method: :delete, class:"label label-danger" %>
+                    <%= link_to 'Remove', event_debt_path(@event.id, user.debts.find_by(event: @event).id), method: :delete, class:"label label-danger" %>
                   </td>
                 <% end %>
                 <td> <%= user.name %></td>
@@ -54,7 +53,7 @@
               <tr id="invitee-<%= invitee.id.to_s %>">
                 <% if current_user == @event.organiser %>
                   <td>
-                    <%= link_to 'x', event_userinvitee_path(@event.id, invitee.id), method: :delete, class:"label label-danger" %>
+                    <%= link_to 'Remove', event_userinvitee_path(@event.id, invitee.id), method: :delete, class:"label label-danger" %>
                   </td>
                 <% end %>
                 <td> <%= invitee.name %></td>
