@@ -21,7 +21,7 @@ Given(/^the event has (\d+) participant who has not paid$/) do |arg1|
 end
 
 Then(/^I want to see that the participant has not paid$/) do
-  expect(page).to have_content("| ✗ |")
+  expect(page).to have_content("Unpaid")
 end
 
 Given(/^the event has (\d+) participant who has paid$/) do |arg1|
@@ -32,7 +32,7 @@ Given(/^the event has (\d+) participant who has paid$/) do |arg1|
 end
 
 Then(/^I see that the participant has paid$/) do
-  expect(page).to have_content("| ✓ |")
+  expect(page).to have_content("Paid")
 end
 
 Given(/^the event has (\d+) invitee who has not accepted$/) do |arg1|

@@ -142,31 +142,6 @@ input[type="date"] {
   text-align: center;
 }
 
-.kitty-logo {
-  width: 300px;
-  height: 300px;
-  margin-top: -5px;
-}
-
-a.white-text-please {
-  color: #cccccc;
-  margin-left: 10px;
-}
-
-a.white-text-please:hover {
-  color: #ffffff;
-
-}
-
-.mini-logo {
-    margin-top: -9px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40px;
-    height: 40px;
-
-}
-
 
 .progress-bar-success {
   background-color: #222533;
@@ -175,5 +150,9 @@ a.white-text-please:hover {
 
 .smaller-font {
   font-size: 10px;
+}
+
+.dropdown-menu.with-arrow.pull-right {
+  margin-top: 4px;
 }
 

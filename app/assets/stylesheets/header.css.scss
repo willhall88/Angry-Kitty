@@ -1,0 +1,39 @@
+.drop-down-menu-header {
+  .white-text-please {
+  margin-left: 0px;
+  }
+}
+
+.kitty-logo {
+  width: 300px;
+  height: 300px;
+  margin-top: -5px;
+}
+
+a.white-text-please {
+  color: #cccccc;
+  margin-left: 10px;
+}
+
+a.white-text-please:hover {
+  color: #ffffff;
+}
+
+.mini-logo {
+    margin-top: -9px;
+    width: 40px;
+    height: 40px;
+    right: 48%;
+    position: absolute;
+}
+
+@media only screen and (max-width: 767px) {
+  .mini-logo {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    margin-top: 10px;
+  }
+
+}

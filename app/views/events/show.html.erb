@@ -11,6 +11,13 @@
             <tr>
               <th>Name</th>
               <th>Status</th>
+              <th>
+                <% if current_user == @event.organiser %>
+                  Mark as paid
+                <% else %>
+                  Pay now
+                <% end %>
+              </th>
               <th>Amount</th>
             </tr>
           </thead>
@@ -19,11 +26,19 @@
               <tr>
                 <td> <%= user.name %></td>
                   <% if user.debts.find_by(event: @event).paid %>
-                    <td> | ✓ | </td>
+                    <td>
+                      <span class="label label-success">Paid</span>
+                    </td>
                   <% else %>
                     <td>
-                      | ✗ |
+                      <span class="label label-danger">Unpaid</span>
+                    </td>
+                    <td>
                       <% if current_user == @event.organiser %>
+                        <label class="switch switch-danger">
+                          <input type="checkbox" checked>
+                          <i></i>
+                        </label>
                         <%= link_to 'Mark as paid', payments_path(user.id, @event.id), method: :post %>
                       <% else %>
                         <%= link_to 'PAY NOW!', new_charges_path(user.id, @event.id) %>
