@@ -37,6 +37,18 @@ Feature: Creating an event
 		Then I expect to see the dashboard contain the new event with its title and description
 		And I expect an invitee with a name, number, email to be created
 
-	
+		@javascript
+	Scenario: Event creation with the organiser inviting himself and a friend
+		When I click New Event
+		And I fill in the event details 
+		And I fill in the first invitees name, mobile and email details
+		And I click on Add Friend
+		And I fill in the the organisers name, mobile and email details
+		And I click Create Event
+		Then I expect to see the dashboard contain the new event with its title and description
+		And I expect an invitee with a name, number, email to be created
+		And I expect the organiser not to be created as an invitee
 
-		
+
+
+			
