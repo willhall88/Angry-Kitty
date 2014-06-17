@@ -18,8 +18,8 @@ Given(/^I have one unpaid user$/) do
 end
 
 Then(/^I should see a list of paid and a list of unpaid participants$/) do
-  expect(page).to have_content "Sroop | ✓"
-  expect(page).to have_content "Sroop | ✗"
+  expect(page).to have_content "Sroop Paid"
+  expect(page).to have_content "Sroop Unpaid"
 end
 
 Given(/^I am an organiser$/) do
@@ -32,7 +32,7 @@ When(/^I click on 'Paid' button next to that unpaid participant$/) do
 end
 
 Then(/^I should see the user has paid$/) do
-  expect(page).to have_content "Sroop | ✓"
+  expect(page).to have_content "Sroop Paid"
 end
 
 Given(/^I am a participant$/) do
