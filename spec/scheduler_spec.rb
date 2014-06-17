@@ -258,8 +258,8 @@ describe 'updating database' do
     @event.userinvitees << userinvitee
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
-    @event.save
     @event.users << [user3, user2]
+    @event.save
   end
 
   it 'writes last harassment into debt table' do
