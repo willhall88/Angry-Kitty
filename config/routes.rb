@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   resources :events do
-    resources :userinvitees, only: [:edit, :update]
+    resources :debts
+    resources :userinvitees, only: [:edit, :update, :destroy]
   end
 
 

@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :organiser, :class_name => 'User', :foreign_key => "organiser_id"
 
   has_many :users, through: :debts
-  has_many :debts
+  has_many :debts, dependent: :destroy
 
   validates :organiser_id, presence: true
   validates :deadline, presence: true
@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :userinvitees, allow_destroy: true, reject_if: :email_blank
 
   after_create :payment_calculator
+  after_create :remove_organiser_from_invitees
 
   def payment_calculator
     unless self.total == nil
@@ -37,11 +38,15 @@ class Event < ActiveRecord::Base
     (self.debts.where(paid: true).size / self.debts.size.to_f) * 100
   end
 
+  def remove_organiser_from_invitees
+    invited_organiser = userinvitees.find_by(email: organiser.email)
+    userinvitees.delete(invited_organiser) if invited_organiser
+  end
+
   private
 
 
   def email_blank(attributes)
     attributes['email'].blank?
   end
-
 end

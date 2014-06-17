@@ -204,11 +204,11 @@ describe 'accessing unpaid debts from database' do
     end
     send_harassment
     open_email('apo@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('nico@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('dan@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     expect(open_email('scott@test.com')).to eq(nil)
   end
 
@@ -230,13 +230,13 @@ describe 'accessing unpaid debts from database' do
     end
     send_harassment
     open_email('dan@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('nico@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('sroop@sunar.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     open_email('robin@test.com')
-    expect(current_email).to have_content('PAY ME!')
+    expect(current_email).to have_content('PAY NOW')
     emails_sent_to('apo@test.com')
     expect(current_emails.first).to have_content 'birthday'
     expect(current_emails.last).to have_content 'diving'
@@ -258,8 +258,8 @@ describe 'updating database' do
     @event.userinvitees << userinvitee
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
-    @event.save
     @event.users << [user3, user2]
+    @event.save
   end
 
   it 'writes last harassment into debt table' do
@@ -284,11 +284,11 @@ describe 'anger level' do
     event1 = Event.new(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
     event1.userinvitees << userinvitee
     event1.save
-    event2 = Event.new(angerlevel: 'really_angry', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
+    event2 = Event.new(angerlevel: 'very_angry', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
     event2.userinvitees << userinvitee
     event2.save
     expect(event1.angerlevel).to eq('polite')
-    expect(event2.angerlevel).to eq('really_angry')
+    expect(event2.angerlevel).to eq('very_angry')
     event1.users << user2
     event2.users << user3
     event2.debts.each do|debt|
@@ -301,7 +301,7 @@ describe 'anger level' do
     end
     send_harassment
     emails_sent_to('will@test.com')
-    expect(current_emails.first).to have_content('PAY ME!')
+    expect(current_emails.first).to have_content('PAY NOW')
     expect(open_email('sroop@test.com')).to eq(nil)
   end
 

@@ -35,4 +35,11 @@ class UserinviteesController < ApplicationController
       render 'edit'
     end
   end
+
+  def destroy
+    @event = Event.find(params[:event_id])
+    userinvitee = Userinvitee.find(params[:id])
+    userinvitee.destroy
+    redirect_to(event_path(@event))
+  end
 end

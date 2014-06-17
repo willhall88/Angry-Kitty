@@ -21,7 +21,7 @@ Given(/^the event has (\d+) participant who has not paid$/) do |arg1|
 end
 
 Then(/^I want to see that the participant has not paid$/) do
-  expect(page).to have_content("Unpaid")
+  expect(page).to have_content("Mark as paid")
 end
 
 Given(/^the event has (\d+) participant who has paid$/) do |arg1|
@@ -38,5 +38,20 @@ end
 Given(/^the event has (\d+) invitee who has not accepted$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
+
+When(/^I am on the event view page$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I click on "(.*?)"$/) do |arg1|
+  click_on arg1
+end
+
+
+Then(/^the event will be deleted$/) do
+  expect(current_path).to eq "/"
+  expect(page).not_to have_content "REVENGE OF THE HALFLINGS"
+end
+
 
 

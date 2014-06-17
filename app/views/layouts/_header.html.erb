@@ -1,7 +1,7 @@
 <section data-ng-include=" 'views/header.html' " id="header" class="top-header ng-scope">
   <header class="clearfix ng-scope">
     <div class="logo">
-      <span class="ng-binding"> angry kitty</span>
+      <a href="/events" class="title-logo"><%= image_tag("angry-kitty-title.png", class: "angry-title") %></a>
     </div>
     <div class="top-nav">
       <% if user_signed_in? %>

@@ -11,7 +11,7 @@ end
 Then(/^the participant will receive the email and it will contain a link to make payment$/) do
   ChasersMailer.harass(@debt).deliver!
   open_email(@debt.user.email)
-  expect(current_email).to have_content "PAY ME!"
+  expect(current_email).to have_content "PAY NOW"
   expect(current_email).to have_link "Pay now"
 end
 
