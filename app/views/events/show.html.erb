@@ -6,7 +6,7 @@
         <h3 class="event-timer column col-xs-4"><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
       </div>
     </div>
-  <% if user_tabulator(@event, current_user).any? %>
+  <% if user_tabulator(@event, current_user).any? || invitee_tabulator(@event).any? %>
     <div class"user-container row">
       <table class="responsive table table-striped">
         <thead>
@@ -19,7 +19,7 @@
         <tbody>
           <% user_tabulator(@event, current_user).each do |user| %>
             <tr>
-              <td> <%= user.name %></td>
+              <th> <%= user.name %></th>
                 <% if user.debts.find_by(event: @event).paid %>
                   <td> | ✓ | </td>
                 <% else %>
@@ -37,7 +37,7 @@
           <% end %>
           <% invitee_tabulator(@event).each do |invitee| %>
             <tr>
-              <td> <%= invitee.name %></td>
+              <th> <%= invitee.name %></th>
               <td> not accepted </td>
               <td><%= @event.payment_amount %></td>
             </tr>
