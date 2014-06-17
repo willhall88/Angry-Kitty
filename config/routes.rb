@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   resources :events do
     resources :debts
-    resources :userinvitees, only: [:edit, :update]
+    resources :userinvitees, only: [:edit, :update, :destroy]
   end
 
 

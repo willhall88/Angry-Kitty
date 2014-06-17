@@ -1,11 +1,11 @@
 Given(/^I am an organiser of an event$/) do
-  userinvitee = create(:userinvitee)
+  @userinvitee = create(:userinvitee, name: 'Will')
   @organiser = User.create!(email:"nico@tester.com", password:"12345678", password_confirmation:"12345678")
   @user2 = User.create!(email:"robin@test.com", password:"12345678", password_confirmation:"12345678", name: "robin")
   @user3 = User.create!(email:"apo@test.com", password:"12345678", password_confirmation:"12345678")
   @event = Event.new(title:"Stag Party", deadline: DateTime.now + 2, organiser_id: @organiser.id, total:1000)
   @event.users << [@user2, @user3]
-  @event.userinvitees << userinvitee
+  @event.userinvitees << @userinvitee
   @event.save!
 end
 

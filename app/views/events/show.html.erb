@@ -51,8 +51,12 @@
               </tr>
             <% end %>
             <% invitee_tabulator(@event).each do |invitee| %>
-              <tr>
-              <td></td>
+              <tr id="invitee-<%= invitee.id.to_s %>">
+                <% if current_user == @event.organiser %>
+                  <td>
+                    <%= link_to 'x', event_userinvitee_path(@event.id, invitee.id), method: :delete %>
+                  </td>
+                <% end %>
                 <td> <%= invitee.name %></td>
                 <td>
                   <% if current_user == @event.organiser %>

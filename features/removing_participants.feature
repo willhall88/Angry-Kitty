@@ -10,3 +10,10 @@ Feature: removing participants
     And I am on the event page
     When I click 'x'
     Then I should not see the participant
+
+  Scenario: Deleting an invitee
+    Given I am an organiser of an event
+    And I am logged in
+    And I am on the event page
+    When I click the invitees delete button
+    Then I should not see the invitee
