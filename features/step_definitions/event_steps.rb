@@ -10,19 +10,19 @@ When(/^I click New Event$/) do
 end
 
 When(/^I fill in the event details$/) do
-    # page.should have_content('Title') # async
-    within('#myModal') {
+  # page.should have_content('Title') # async
+  within('#myModal') {
     fill_in 'event[title]', with: 'Stag Party'
     fill_in 'event[description]', with: 'This is the most outrageous party ever'
     fill_in 'event[total]', with: 500
     fill_in 'event[deadline]', with: '2014-06-06'
-    select('angry', :from => 'event[angerlevel]') }
+  select('angry', :from => 'event[angerlevel]') }
 end
 
 When(/^I fill in the first invitees name, mobile and email details$/) do
   within('#myModal') {
-  first('li').fill_in 'event[userinvitees_attributes][0][email]', with: 'dave@d.com'
-  first('li').fill_in 'Name', with: 'Zultan'
+    first('li').fill_in 'event[userinvitees_attributes][0][email]', with: 'dave@d.com'
+    first('li').fill_in 'Name', with: 'Zultan'
   first('li').fill_in 'Mobile', with: '07740605789' }
 end
 
@@ -35,7 +35,7 @@ When(/^I click on Add Friend$/) do
 end
 
 When(/^I fill in the second invitees name, mobile and email details$/) do
- within '.userinvitees_list li:last-child' do
+  within '.userinvitees_list li:last-child' do
     fill_in 'Email', with: 'daffyduck@test.com'
     fill_in 'Name', with: 'Daffy'
     fill_in 'Mobile', with: '07753205999'
@@ -69,5 +69,16 @@ Then(/^I expect two invitees with their names, numbers, and emails to be created
   expect(invitee2.email).to eq 'daffyduck@test.com'
 end
 
+When(/^I fill in the the organisers name, mobile and email details$/) do
+  within '.userinvitees_list li:last-child' do
+    fill_in 'Email', with: 'nico@nicosaueressig.de'
+    fill_in 'Name', with: 'Nico'
+    fill_in 'Mobile', with: '012345678'
+  end
+end
 
-
+Then(/^I expect the organiser not to be created as an invitee$/) do
+  event = Event.first
+  userinvitees = event.userinvitees
+  expect(userinvitees.size).to eq 1
+end

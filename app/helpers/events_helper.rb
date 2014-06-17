@@ -20,5 +20,5 @@ module EventsHelper
       end.include?(invitee.email)
     end
   end
-  
+
 end

@@ -33,7 +33,7 @@
 <% if !@events.nil? %>
   <ul class="events">
   <% @events.each do |event| %>
-    <li class="<%= event.organiser_id == current_user.id ? 'organising' : 'participating' %>">
+    <li class="<%= check_for_participating_or_organising(event) %>">
     <%= link_to event_path(event), class:"col-md-4 post" do %>
       <article class='panel panel-default'>
         <div class='panel-heading'>
