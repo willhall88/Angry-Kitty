@@ -20,9 +20,10 @@ When(/^I fill in the event details$/) do
 end
 
 When(/^I fill in the first invitees name, mobile and email details$/) do
-  first('li').fill_in 'Email', with: 'dave@d.com'
+  within('#myModal') {
+  first('li').fill_in 'event[userinvitees_attributes][0][email]', with: 'dave@d.com'
   first('li').fill_in 'Name', with: 'Zultan'
-  first('li').fill_in 'Mobile', with: '07740605789'
+  first('li').fill_in 'Mobile', with: '07740605789' }
 end
 
 When(/^I click Create Event$/) do
@@ -51,7 +52,7 @@ end
 
 Then(/^I expect to see the dashboard contain the new event with its title and description$/) do
   expect(page).to have_content('STAG PARTY')
-  expect(page).to have_content('06|06|2014')
+  expect(page).to have_content('DUE IN')
 end
 
 Then(/^I expect an invitee with a name, number, email to be created$/) do
