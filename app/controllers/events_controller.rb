@@ -34,5 +34,6 @@ class EventsController < ApplicationController
 		@paid = Debt.where(event: @event).where(paid: true)
 		@unpaid = Debt.where(event: @event).where(paid: false)
 		@user = current_user
+		@payment_amount = @event.payment_amount
 	end
 end
