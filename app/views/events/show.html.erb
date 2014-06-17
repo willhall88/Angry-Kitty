@@ -52,6 +52,7 @@
             <% end %>
             <% invitee_tabulator(@event).each do |invitee| %>
               <tr>
+              <td></td>
                 <td> <%= invitee.name %></td>
                 <td>
                   <% if current_user == @event.organiser %>
