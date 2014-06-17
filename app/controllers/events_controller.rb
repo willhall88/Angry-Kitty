@@ -7,8 +7,7 @@ class EventsController < ApplicationController
 			redirect_to event_path(session[:event_id])
 			session[:event_id] = nil
 		end
-		@organising = Event.where(organiser: current_user)
-		@participating = current_user.events
+		@events = (Event.where(organiser: current_user) + current_user.events).sort_by!(&:deadline)
 	end
 
 	def new
