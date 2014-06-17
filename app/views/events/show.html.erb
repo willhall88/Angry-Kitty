@@ -1,10 +1,9 @@
 <div class="container">
     <div class"title-container">
-      <h3 class="event-title "><%= @event.title %>
-      </h3>
-        <h3 class="event-timer "><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
+      <h3 class="event-title "><%= @event.title %></h3>
+      <h3 class="event-timer "><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
     </div>
-    <% if user_tabulator(@event, current_user).any? %>
+    <% if user_tabulator(@event, current_user).any? || invitee_tabulator(@event).any? %>
       <div class"user-container">
         <table class="table">
           <thead>
@@ -19,14 +18,20 @@
               <tr>
                 <td> <%= user.name %></td>
                   <% if user.debts.find_by(event: @event).paid %>
-                    <td> | ✓ | </td>
+                    <td><span class="btn btn-gap btn-success">Paid</span> </td>
                   <% else %>
                     <td>
-                      | ✗ |
                       <% if current_user == @event.organiser %>
-                        <%= link_to 'Mark as paid', payments_path(user.id, @event.id), method: :post %>
+                        <%= link_to 'Mark as paid', payments_path(user.id, @event.id), method: :post, class:"btn btn-gap btn-danger" %>
+                      <% elsif current_user == user %>
+                        <%= form_tag charges_path(@user, @event) do %>
+                          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="<%= Rails.application.secrets.stripe_public_key %>"
+                                data-description="What I owe"
+                                data-amount="<%= @payment_amount %>"></script>
+                        <% end %>
                       <% else %>
-                        <%= link_to 'PAY NOW!', new_charges_path(user.id, @event.id) %>
+                        <span class="btn btn-gap btn-danger label-button">Not paid</span>
                       <% end %>
                     </td>
                   <% end %>
@@ -36,7 +41,7 @@
             <% invitee_tabulator(@event).each do |invitee| %>
               <tr>
                 <td> <%= invitee.name %></td>
-                <td> not accepted </td>
+                <td><span class="btn btn-gap btn-warning">Awaiting RSVP</span></td>
                 <td><%= @event.payment_amount %></td>
               </tr>
             <% end %>

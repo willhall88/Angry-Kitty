@@ -1,28 +1,21 @@
 ANGER_CHART = {
   'polite' => [0.33, 1, 3, 7, 14],
   'angry' => [0.2, 0.5, 2, 3.5, 7],
-  'really_angry' => [0.05, 0.2, 1, 3.5, 7]
+  'very_angry' => [0.05, 0.2, 1, 3.5, 7]
 }
 
 def send_harassment
-  # if Debt.unpaid.nil?
     Debt.unpaid.each do |debt|
       begin
         if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
           debt.harass! 
           # debt.send_sms!
           debt.update(last_harassed: DateTime.now)
-          # debt.last_harassed = DateTime.now
-          # debt.save!
         end
       rescue => e
         puts e
       end
     end
-  # else
-  # rescue
-  #   puts 'No emails to send'
-  # # end
 end
 
 def send_mail?(deadline, last_harassed, angerlevel='polite')
