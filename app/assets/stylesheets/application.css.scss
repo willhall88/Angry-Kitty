@@ -145,7 +145,7 @@ input[type="date"] {
 
 
 .progress-bar-success {
-  background-color: #222533;
+  background-color: #bf8cbc;
 }
 
 
@@ -173,7 +173,11 @@ input[type="date"] {
 .btn.btn-default.btn-lg.col-md-12.post {
   margin-top: 20px;
   margin-bottom: 20px;
+  border-bottom-color: #bf8cbc;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
 }
+
 
 
 
