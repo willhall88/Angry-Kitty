@@ -10,7 +10,7 @@ describe "Scheduler" do
 
   before do
     userinvitee = create(:userinvitee)
-    @event = Event.new(total: 1000)
+    @event = Event.new(total: 1000, title:"Hi zomg")
     @event.userinvitees << userinvitee
     @event.organiser = user
   end
@@ -278,10 +278,10 @@ describe 'anger level' do
 
   it 'will set the harassment frequency based upon the anger level' do
     userinvitee = create(:userinvitee)
-    event1 = Event.new(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
+    event1 = Event.new(angerlevel: 'polite', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000, title:"Hi zomg")
     event1.userinvitees << userinvitee
     event1.save
-    event2 = Event.new(angerlevel: 'very angry', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000)
+    event2 = Event.new(angerlevel: 'very angry', organiser_id: user1.id, deadline: DateTime.now + 10, total: 1000, title:"Hi zomg")
     event2.userinvitees << userinvitee
     event2.save
     expect(event1.angerlevel).to eq('polite')
