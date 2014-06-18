@@ -60,3 +60,20 @@
 h3{
   display: inline-block;
 }
+
+@media (max-width: 768px) {
+  .nav-tabs > li {
+    width: 33.3%;
+  }
+  ul.events > li.organising {
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 991px) {
+
+  ul.events > li.organising {
+    margin-top: -40px;
+  }
+
+}
