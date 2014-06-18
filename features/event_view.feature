@@ -25,5 +25,5 @@ Feature: viewing an event
   @javascript  
   Scenario: an organiser can delete the event
     When I am on the event page
-    And I click on "Delete Event"
+    And I click on "X"
     Then the event will be deleted

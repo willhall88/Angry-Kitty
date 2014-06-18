@@ -13,12 +13,17 @@ Given(/^I click on the event$/) do
 end
 
 When(/^I edit a participant$/) do
-  click_on('Edit')
-  within('#myModall') do
-    fill_in 'userinvitee[name]', with: 'Marco'
-    fill_in 'userinvitee[email]', with: 'marco@marco.com'
-    fill_in 'userinvitee[mobile]', with: '87654321'
-    click_on('Save changes')
+  within(:css, "#user-#{@invitee.id}") do
+    find(:css, "a") do
+        node.trigger('click') 
+        click_on('Edit')
+      within('#myModall') do
+        fill_in 'userinvitee[name]', with: 'Marco'
+        fill_in 'userinvitee[email]', with: 'marco@marco.com'
+        fill_in 'userinvitee[mobile]', with: '87654321'
+        click_on('Save changes') 
+      end 
+    end
   end
 end
 
