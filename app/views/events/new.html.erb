@@ -4,41 +4,49 @@
     <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Event</strong></div>
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body banana">
     <div class="panel-body">
       <%= form_for @event, class: "form-horizontal ng-pristine ng-valid" do |f| %>
         <div class="form-group">
-            <label for="" class="col-sm-2">Title</label>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
+              <label for="" class="col-sm-2">Title</label>
+            </div>
+            <div class="col-sm-12">
                 <%= f.text_field :title, class: "form-control" %>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-2">Description</label>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
+              <label for="" class="col-sm-2">Description</label>
+            </div>
+            <div class="col-sm-12">
                 <%= f.text_area :description, class: "form-control", rows: "4" %>
             </div>
         </div>
         <div class="form-group">
-            <label for="label-focus" class="col-sm-2">Total</label>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
+              <label for="label-focus" class="col-sm-2">Total</label>
+            </div>
+            <div class="col-sm-12">
                 <%= f.text_field :total, class: "form-control", placeholder: "500 GBP" %>
             </div>
         </div>
         <div class="form-group">
-            <label for="label-focus" class="col-sm-2">Deadline</label>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
+              <label for="label-focus" class="col-sm-2">Deadline</label>
+            </div>
+            <div class="col-sm-12">
               <%= f.date_field :deadline, placeholder: 'yyyy/mm/dd', class: "form-control dates", id: "label-focus", placeholder: "Total amount" %>
             </div>
         </div>
         <div class="panel-body">
           <span class="ui-select">
             <label for="" class="col-sm-2">Angerlevel</label>
-            <%= f.select(:angerlevel, ['polite','angry','very angry'], class: "form-control" ) %>
+            <%= f.select(:angerlevel, ['polite','angry','very angry']) %>
           </span>
           <div class="form-group">
-              <label for="" class="col-sm-2 add-invitees">Add Invitees</label>
-              <div class="col-sm-10">
+              <label for="" class="col-sm-12 add-invitees">Add Invitees</label>
+              <div class="col-sm-12 add-friends">
                 <div class="form-group">
                   Add friends, when finished click create event:
                 </div>
@@ -53,7 +61,7 @@
                   </li>
                 </ol>
 
-                <button type='button' class='add_userinvitee btn'>Add Friend</button>
+                <button type='button' class='add_userinvitee btn btn-grey'>Add Friend</button>
                 <br>
                 <%= f.submit 'Create Event', class: "btn btn-lg create-event btn-purple" %>
               </div>

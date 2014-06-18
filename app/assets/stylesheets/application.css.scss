@@ -84,7 +84,12 @@ section.panel {
 }
 
 .create-event {
+  color: #fff;
   width: 70%;
+}
+
+.add_userinvitee:hover {
+  color: #fff;
 }
 
 .create-event:hover {
@@ -92,7 +97,7 @@ section.panel {
 }
 
 input[type="date"] {
-  color: red;
+  color: #bf8cbc;
 }
 
 .modal-content .panel {
@@ -115,9 +120,17 @@ input[type="date"] {
   .post {
     width: 100%;
   }
+
+  .anger-level {
+    width: 40%;
+  }
 }
 
 @media (max-device-width: 480px) {
+  #event_angerlevel {
+    width: 40%;
+  }
+
   .form-control {
     width: 100%;
   }
@@ -241,3 +254,21 @@ button.delete_userinvitee {
   border-color: #a3a3a3;
 }
 
+.modal-body.banana {
+  padding: 0 !important;
+  form input, form textarea, form button.add_userinvitee {
+    width: 100%;
+  }
+}
+
+form .form-group .col-sm-12 label {
+  padding: 0 !important;
+}
+
+.add-invitees {
+  margin-left: -13px !important;
+}
+
+.add-friends {
+  padding: 0 !important;
+}

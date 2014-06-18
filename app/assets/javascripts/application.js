@@ -17,4 +17,3 @@
 //= require bootstrap/dist/js/bootstrap
 //= require jquery.easypiechart
 //= require_tree .
-
