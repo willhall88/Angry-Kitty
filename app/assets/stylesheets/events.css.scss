@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container{
+  padding-bottom: 50px;
+}
 
 .event-title{
   height: 100%;
@@ -34,7 +37,7 @@
 }
 .table {
   #delete-column{
-    width: 90px;
+    width: 45px;
   }
 
   .btn {
