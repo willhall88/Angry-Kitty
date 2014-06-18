@@ -84,8 +84,11 @@ section.panel {
 }
 
 .create-event {
-  margin-left: 88px;
-  margin-bottom: 7px;
+  width: 70%;
+}
+
+.create-event:hover {
+  color: #fff;
 }
 
 input[type="date"] {
@@ -196,7 +199,12 @@ input[type="date"] {
 }
 
 button.delete_userinvitee {
-  width: 70%;
+  width: 25%;
   margin-bottom: 50px;
 }
 
+.add_userinvitee {
+  color: #fff;
+  width: 70%;
+  margin-bottom: 5px;
+}

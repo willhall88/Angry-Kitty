@@ -41,7 +41,6 @@
               <div class="col-sm-10">
                 <div class="form-group">
                   Add friends, when finished click create event:
-                  <button type='button' class='add_userinvitee btn btn-default'>Add Friend</button>
                 </div>
                 <ol class='userinvitees_list'>
                   <li >
@@ -53,7 +52,10 @@
                     <button type='button' class='delete_userinvitee btn btn-danger'>Remove</button>
                   </li>
                 </ol>
-                <%= f.submit 'Create Event', class: "btn btn-success btn-lg create-event" %>
+
+                <button type='button' class='add_userinvitee btn'>Add Friend</button>
+                <br>
+                <%= f.submit 'Create Event', class: "btn btn-lg create-event btn-purple" %>
               </div>
           </div>
         </div> <!-- end of panel-body -->
