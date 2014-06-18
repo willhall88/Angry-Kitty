@@ -1,8 +1,8 @@
 Given(/^There is an event with an organiser$/) do
-  userinvitee = create(:userinvitee)
+  @userinvitee = create(:userinvitee)
   @organiser = User.create(email: 'bar@foo.com', password: '12345678', password_confirmation: '12345678')
   @event = Event.new(organiser_id: @organiser.id, deadline: 3.days.from_now, total:1000)
-  @event.userinvitees << userinvitee
+  @event.userinvitees << @userinvitee
   @event.save
   @debt = @event.debts.first
 end
@@ -99,4 +99,19 @@ end
 
 Then(/^they will be re\-directed to the event page$/) do
   expect(current_path).to eq("/events/1")
+end
+
+Given(/^I am logged in as an organiser$/) do
+  login_as @organiser
+end
+
+When(/^I click on the edit invitee button$/) do
+  within(:css, "#invitee-#{@userinvitee.id}") do
+    click_on "Edit"
+  end
+end
+
+Then(/^I want to send an invitation email to the invitee$/) do
+  open_email(@userinvitee.email)
+  expect(current_email).to have_content "RSVP."
 end

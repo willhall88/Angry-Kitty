@@ -171,10 +171,16 @@ input[type="date"] {
   margin-top: 15px;
 }
 
-.top-header .langs .list-langs a {
-  padding: 8px 21px 7px 33px;
+.modal-dialog .modal-content section {
+  z-index: -99999;
+  header {
+    z-index: -9999;
+  }
 }
 
+.modal-header {
+  z-index: 1;
+}
 
 .modal-body {
   padding: 1px !important;

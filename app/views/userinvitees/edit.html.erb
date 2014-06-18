@@ -1,4 +1,8 @@
 <section class="panel panel-default">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Invitee settings</strong></div>
+  </div>
   <div class="modal-body">
     <div class="panel-body">
       <%= form_for [@event, @userinvitee] do |f| %>
@@ -24,6 +28,7 @@
         </div>
 
         <%= f.submit 'Save changes', class: "btn btn-md btn-success" %>
+        <%= f.submit 'Save and resend invite', class: "btn btn-md btn-alert", name: 'resend' %>
       <% end %>
     </div> <!-- end of panel-body -->
   </div>

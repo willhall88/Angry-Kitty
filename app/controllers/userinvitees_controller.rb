@@ -28,12 +28,22 @@ class UserinviteesController < ApplicationController
     @userinvitee = Userinvitee.find(params[:id])
     @event = Event.find(params[:event_id])
 
-    if @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile))
-     # @restaurant.update(params[:restaurant].permit(:name, :address, :cuisine))
+    # if @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile))
+    #  # @restaurant.update(params[:restaurant].permit(:name, :address, :cuisine))
+    #   redirect_to "/events/#{@event.id}"
+    # else
+    #   render 'edit'
+    # end
+
+    if params[:resend]
+      @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile))
+      InvitationMailer.invite(@userinvitee, @event).deliver!
       redirect_to "/events/#{@event.id}"
     else
-      render 'edit'
+      @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile))
+      redirect_to "/events/#{@event.id}"
     end
+
   end
 
   def destroy
