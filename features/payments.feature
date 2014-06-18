@@ -39,3 +39,4 @@ Feature: Payments
     And I am a paid user
     And I am on the event page
     Then I should not see the button 'PAY NOW'
+

@@ -221,7 +221,7 @@ ul li, ol li {
                             <img width="60%" src="http://angry-kitty.herokuapp.com/assets/angry-kitty-logo-66daf3177b210d57b7d625cc8ab09fc6.png" style="text-align:center; margin-top: 30px;">
                             </center>
 						<h1 style="text-align:center">Pleased.</h1>
-						<p style="text-align:center">Payment confirmed for <%= @event.title %>.</p>
+						<p style="text-align:center">Payment of <%= convert_to_pounds(@event.payment_amount) %> confirmed for <%= @event.title %>.</p>
 						
 						<table style="text-align:center">
 							<tr>
