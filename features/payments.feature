@@ -25,12 +25,13 @@ Feature: Payments
     And I am on the event page
     Then I should not see the 'Paid' button
 
+  @javascript
   Scenario: An unpaid participant paying for the event
     Given I am a participant
     And I have an event
     And I am the unpaid user
     And I am on the event page
-    Then I should see the button 'PAY NOW'
+    Then I should see the button 'Pay with Card'
 
   Scenario: A paid participant viewing the event
     Given I am a participant

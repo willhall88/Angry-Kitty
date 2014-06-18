@@ -8,6 +8,7 @@ Given(/^I make an event$/) do
   @event = build(:event, organiser: @user)
   @event.userinvitees << @invitee
   @event.save
+  visit '/'
 end
 
 Then(/^I see "(.*?)"$/) do |arg1|
@@ -40,7 +41,8 @@ Given(/^the event has (\d+) invitee who has not accepted$/) do |arg1|
 end
 
 When(/^I am on the event view page$/) do
-  pending # express the regexp above with the code you wish you had
+  first(".col-md-4.post").click
+  expect(current_path).to eq("/events/#{@event.id}")
 end
 
 When(/^I click on "(.*?)"$/) do |arg1|
