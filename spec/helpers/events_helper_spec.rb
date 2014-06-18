@@ -19,29 +19,25 @@ RSpec.describe EventsHelper, :type => :helper do
     @unpaid_ppt = create(:user, email: 'unpaid@user.com')
     paid_ppt = create(:user, email: 'paid@user.com')
     @event.users << [@unpaid_ppt, paid_ppt]
-    @event.save
     @event.debts.last.update(paid: true)
-  end
-
-  it 'will not contain an invitee if a user exists with the same email' do
     accepted_invitee = create(:userinvitee, email: 'unpaid@user.com')
     @invitee = create(:userinvitee, email: 'nonaccepted@invitee.com')
     @event.userinvitees << [@invitee, accepted_invitee]
-    expect(invitee_tabulator(@event).count).to eq 1
+    @event.save
+  end
+
+  it 'will not contain an invitee if a user exists with the same email' do
+    expect(tabulator(@event, @unpaid_ppt).count).to eq 3
   end
 
   specify 'if current user has not paid' do
-    expect(user_tabulator(@event, @unpaid_ppt).first).to eq @unpaid_ppt
-    expect(invitee_tabulator(@event).last).to eq @invitee
+    expect(tabulator(@event, @unpaid_ppt).first).to eq @unpaid_ppt
+    expect(tabulator(@event, @unpaid_ppt).last).to eq @invitee
   end
 
   specify 'if current user has paid' do
-    expect(user_tabulator(@event, @paid_ppt).first).to eq @unpaid_ppt
-    expect(invitee_tabulator(@event).last).to eq @invitee
-  end
-
-  specify 'organiser is not displayed' do
-    expect(user_tabulator(@event, @organiser).select{|element| element == @organiser}.count).to eq 0
+    expect(tabulator(@event, @paid_ppt).first).to eq @unpaid_ppt
+    expect(tabulator(@event, @paid_ppt).last).to eq @invitee
   end
 
  end

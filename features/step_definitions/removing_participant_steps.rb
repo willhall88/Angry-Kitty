@@ -2,12 +2,18 @@ Given(/^I am logged in$/) do
   login_as @organiser
 end
 
-When(/^I click 'x'$/) do
-  within(:css, "#user-#{@user2.id}") {click_on "x"}
+When(/^I click the remove user button$/) do
+  within(:css, "#user-#{@user2.id}") do
+  	find('.dropdown a').click
+  	find('a', text: 'Remove user').trigger('click')
+  end
 end
 
-When(/^I click the invitees delete button$/) do
-  within(:css, "#invitee-#{@userinvitee.id}") {click_on "x"}
+When(/^I click the remove invitee button$/) do
+  within(:css, "#user-#{@userinvitee.id}") do
+  	find('.dropdown a').click
+  	find('a', text: 'Remove invitee').trigger('click')
+  end
 end
 
 Then(/^I should not see the participant$/) do

@@ -171,8 +171,11 @@ input[type="date"] {
   margin-top: 15px;
 }
 
-.top-header .langs .list-langs a {
-  padding: 8px 21px 7px 33px;
+.modal-dialog .modal-content section {
+  z-index: -99999;
+  header {
+    z-index: -9999;
+  }
 }
 
 .btn.btn-default.btn-lg.col-md-12.post {
@@ -181,6 +184,10 @@ input[type="date"] {
   border-bottom-color: #bf8cbc;
   border-bottom-style: solid;
   border-bottom-width: 4px;
+}
+
+.modal-header {
+  z-index: 1;
 }
 
 .panel-body {

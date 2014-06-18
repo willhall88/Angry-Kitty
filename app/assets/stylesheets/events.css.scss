@@ -2,7 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container{
+  padding-bottom: 50px;
+}
 
+.delete-event{
+  margin-top: 22px;
+  margin-left: 10px;
+  display: inline-block;
+}
 .event-title{
   height: 100%;
   position: relative;
@@ -31,30 +39,47 @@
     display: block;
     margin-top: 0px;
   }
+
+  .delete-event{
+    display: block;
+  }
+
 }
 .table {
+  background-color: white;
+  #delete-column{
+    width: 45px;
+  }
+
   .btn {
     border-radius: 5px;
     font-weight: bold;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     margin: 0px;
     height: 30px;
+    width: 121px;
     padding-top: 3px;
+    cursor: default;
   }
 
-  .label-button:hover {
+  .red-button:hover {
     background-color: rgb(233,75,59);
     border-color: rgb(233,75,59);
     cursor: default;
   }
 
-  .label-button:active{
+  .green-button:hover {
+    color: white;
+    background-color: #23ae89;
+    border-color: #1f9978;
+    cursor: default;
   }
-}
-
-.table{
-  background-color: white;
+  .yellow-button:hover {
+    color: white;
+    background-color: #ffb61c;
+    border-color: #ffae02;
+    cursor: default;
+  }
 }
 
 h3{
