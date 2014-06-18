@@ -7,7 +7,7 @@ describe 'Sending SMS' do
       userinvitee = create(:userinvitee)
       user = User.create(email: 'goo@bar.com', mobile: '+447432865747', password: '12345678', password_confirmation: '12345678')
       organiser = User.create(email: 'bar@goo.com', password: '12345678', password_confirmation: '12345678')
-      event = Event.new(organiser_id: organiser.id, deadline: 3.days.from_now, total:1000)
+      event = Event.new(organiser_id: organiser.id, deadline: 3.days.from_now, total:1000, title:"Hi zomg")
       event.userinvitees << userinvitee
       event.users << user
       event.save

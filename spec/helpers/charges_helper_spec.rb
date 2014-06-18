@@ -11,5 +11,18 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ChargesHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+	before do
+		@organiser = create(:user)
+		user = create(:userinvitee)
+		user1 = create(:userinvitee)
+		@event = Event.new(title:"Charges Party", deadline:"", total: 5234, organiser_id: @organiser.id)
+		@event.userinvitees << [user, user1]
+		@event.save
+	end
+
+	it 'converts payment amount to pound' do
+		payment_amount = @event.payment_amount
+		expect(convert_to_pounds(payment_amount)).to eq "£26.17"
+	end
 end

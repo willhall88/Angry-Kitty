@@ -21,7 +21,7 @@ RSpec.describe ConfirmationMailer, :type => :mailer do
 
       ConfirmationMailer.receipt(@debt).deliver!
       open_email('foo@bar.com')
-      expect(current_email).to have_content "Payment confirmed"
+      expect(current_email).to have_content "Payment of £10.00 confirmed for need a title here."
     end
 
     it 'can send a notification email to the organiser' do

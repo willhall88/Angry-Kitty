@@ -1,5 +1,6 @@
 class ConfirmationMailer < ActionMailer::Base
   default from: "noreply@angrykitty.co.uk"
+  add_template_helper(ChargesHelper)
 
   def receipt(debt)
     @user = debt.user

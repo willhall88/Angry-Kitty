@@ -47,7 +47,7 @@
                       <% end %>
                     </td>
                   <% end %>
-                <td><%= @event.payment_amount %></td>
+                <td><%= convert_to_pounds(@event.payment_amount) %></td>
               </tr>
             <% end %>
             <% invitee_tabulator(@event).each do |invitee| %>
@@ -64,7 +64,7 @@
                   <% end %>
                       <span class="btn btn-gap btn-warning">Awaiting RSVP</span>
                 </td>
-                <td><%= @event.payment_amount %></td>
+                <td><%= convert_to_pounds(@event.payment_amount) %></td>
               </tr>
             <% end %>
           </tbody>
