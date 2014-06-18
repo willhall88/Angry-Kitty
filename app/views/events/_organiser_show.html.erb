@@ -16,13 +16,13 @@
         </td>
         <td> <%= user.name %></td>
           <% if user.class == User && user.debts.find_by(event: @event).paid %>
-            <td><span class="btn btn-gap btn-success">Paid</span> </td>
+            <td><span class="btn btn-gap btn-success green-button">Paid</span> </td>
           <% elsif user.class == User && !user.debts.find_by(event: @event).paid%>
             <td>
-              <span class="btn btn-gap btn-danger label-button">Not paid</span>
+              <span class="btn btn-gap btn-danger red-button">Not paid</span>
             </td>
           <% else %>
-            <td><span class="btn btn-gap btn-warning">Awaiting RSVP</span></td>
+            <td><span class="btn btn-gap btn-warning yellow-button">Awaiting RSVP</span></td>
           <% end %>
         <td><%= @event.payment_amount %></td>
       </tr>
