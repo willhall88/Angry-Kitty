@@ -170,7 +170,16 @@ input[type="date"] {
   margin-top: 15px;
 }
 
+.modal-dialog .modal-content section {
+  z-index: -99999;
+  header {
+    z-index: -9999;
+  }
+}
 
+.modal-header {
+  z-index: 1;
+}
 
 
 
