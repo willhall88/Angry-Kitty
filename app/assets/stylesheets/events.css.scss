@@ -36,6 +36,7 @@
   }
 }
 .table {
+  background-color: white;
   #delete-column{
     width: 45px;
   }
@@ -47,20 +48,27 @@
     margin: 0px;
     height: 30px;
     padding-top: 3px;
+    cursor: default;
   }
 
-  .label-button:hover {
+  .red-button:hover {
     background-color: rgb(233,75,59);
     border-color: rgb(233,75,59);
     cursor: default;
   }
 
-  .label-button:active{
+  .green-button:hover {
+    color: white;
+    background-color: #23ae89;
+    border-color: #1f9978;
+    cursor: default;
   }
-}
-
-.table{
-  background-color: white;
+  .yellow-button:hover {
+    color: white;
+    background-color: #ffb61c;
+    border-color: #ffae02;
+    cursor: default;
+  }
 }
 
 h3{
