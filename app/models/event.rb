@@ -36,7 +36,19 @@ class Event < ActiveRecord::Base
   end
 
   def percentage_of_paid
-    (self.debts.where(paid: true).size / self.debts.size.to_f) * 100
+    (self.debts.where(paid: true).size / self.userinvitees.size.to_f) * 100
+  end
+
+  def unconfirmed_participants
+    self.userinvitees_count - self.users_count
+  end
+
+  def users_count
+    self.users.count
+  end
+
+  def userinvitees_count
+    self.userinvitees.count
   end
 
   def remove_organiser_from_invitees
