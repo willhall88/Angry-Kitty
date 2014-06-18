@@ -3,11 +3,13 @@ class ConfirmationMailer < ActionMailer::Base
 
   def receipt(debt)
     @user = debt.user
+    @event = debt.event
     mail(to: @user.email, subject: 'Purrrr! Kitty thanks you for your payment!')
   end
 
   def notification(debt)
     @organiser = debt.event.organiser
+    @event = debt.event
     mail(to: @organiser.email, subject: 'Purrrr! Kitty has received a payment!')
   end
 
