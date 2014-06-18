@@ -80,6 +80,27 @@
     border-color: #ffae02;
     cursor: default;
   }
+  .red-button:active {
+    background-color: rgb(233,75,59);
+    border-color: rgb(233,75,59);
+    cursor: default;
+    box-shadow: none;
+  }
+
+  .green-button:active {
+    color: white;
+    background-color: #23ae89;
+    border-color: #1f9978;
+    cursor: default;
+    box-shadow: none;
+  }
+  .yellow-button:active {
+    color: white;
+    background-color: #ffb61c;
+    border-color: #ffae02;
+    cursor: default;
+    box-shadow: none;
+  }
 }
 
 h3{
