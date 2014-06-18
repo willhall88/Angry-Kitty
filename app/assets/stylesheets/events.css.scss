@@ -6,6 +6,11 @@
   padding-bottom: 50px;
 }
 
+.delete-event{
+  margin-top: 22px;
+  margin-left: 10px;
+  display: inline-block;
+}
 .event-title{
   height: 100%;
   position: relative;
@@ -34,6 +39,11 @@
     display: block;
     margin-top: 0px;
   }
+
+  .delete-event{
+    display: block;
+  }
+
 }
 .table {
   #delete-column{
