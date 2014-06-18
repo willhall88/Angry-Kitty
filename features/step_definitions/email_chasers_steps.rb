@@ -2,9 +2,8 @@ Given(/^there is an event with a due date and participants$/) do
   userinvitee = create(:userinvitee)
   organiser = create(:user)
   user = create(:user, email: 'user@user.com')
-  event = build(:event, organiser: organiser)
+  event = create(:event, organiser: organiser)
   event.userinvitees << userinvitee
-  event.save
   @debt = create(:debt, user_id: user.id, event_id: event.id)
 end
 
