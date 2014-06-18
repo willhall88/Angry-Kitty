@@ -14,9 +14,9 @@ class ConfirmationMailer < ActionMailer::Base
   end
 
   def celebration(event)
-  	@organiser = event.organiser
-    mail(to: @organiser.email, subject: 'Congratulations, all debts have been collected') if event.debts.unpaid.none?
+    @event = event
+  	@organiser = @event.organiser
+    mail(to: @organiser.email, subject: 'Congratulations, all debts have been collected') if @event.debts.unpaid.none?
   end
 
-  
 end

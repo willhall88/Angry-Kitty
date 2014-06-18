@@ -16,9 +16,6 @@ RSpec.describe EventsHelper, :type => :helper do
   before do
     @organiser = create(:user, email: 'org@niser.com')
     @event = build(:event, organiser: @organiser)
-    accepted_invitee = create(:userinvitee, email: 'unpaid@user.com')
-    @invitee = create(:userinvitee, email: 'nonaccepted@invitee.com')
-    @event.userinvitees << [@invitee, accepted_invitee]
     @unpaid_ppt = create(:user, email: 'unpaid@user.com')
     paid_ppt = create(:user, email: 'paid@user.com')
     @event.users << [@unpaid_ppt, paid_ppt]
@@ -27,6 +24,9 @@ RSpec.describe EventsHelper, :type => :helper do
   end
 
   it 'will not contain an invitee if a user exists with the same email' do
+    accepted_invitee = create(:userinvitee, email: 'unpaid@user.com')
+    @invitee = create(:userinvitee, email: 'nonaccepted@invitee.com')
+    @event.userinvitees << [@invitee, accepted_invitee]
     expect(invitee_tabulator(@event).count).to eq 1
   end
 
