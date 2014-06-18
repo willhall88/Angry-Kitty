@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tabulator(@event, current_user).each do |user| %>
+      <tr id="user-<%= user.id.to_s %>">
+        <td> <%= user.name %></td>
+          <% if user.class == User && user.debts.find_by(event: @event).paid %>
+            <td><span class="btn btn-gap btn-success">Paid</span> </td>
+          <% elsif user.class == User && !user.debts.find_by(event: @event).paid %>
+            <td>
+              <% if current_user == user %>
+                <%= form_tag charges_path(@user, @event) do %>
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="<%= Rails.application.secrets.stripe_public_key %>"
+                        data-description="What I owe"
+                        data-amount="<%= @payment_amount %>"></script>
+                <% end %>
+              <% else %>
+                <span class="btn btn-gap btn-danger label-button">Not paid</span>
+              <% end %>
+            </td>
+          <% else %>
+            <td>
+              <span class="btn btn-gap btn-warning">Awaiting RSVP</span>
+            </td>
+          <% end %>
+        <td><%= @event.payment_amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

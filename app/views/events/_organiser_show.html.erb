@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th id="delete-column">
+        <%= link_to "X", event_path(@event), method: :delete, data: { :confirm => "confirm"}, class:"label label-danger" %>
+      </th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tabulator(@event, current_user).each do |user| %>
+      <tr id="user-<%= user.id.to_s %>">
+        <td>
+          <%= render "events/drop_down_menu", user: user %>  
+        </td>
+        <td> <%= user.name %></td>
+          <% if user.class == User && user.debts.find_by(event: @event).paid %>
+            <td><span class="btn btn-gap btn-success">Paid</span> </td>
+          <% elsif user.class == User && !user.debts.find_by(event: @event).paid%>
+            <td>
+              <span class="btn btn-gap btn-danger label-button">Not paid</span>
+            </td>
+          <% else %>
+            <td><span class="btn btn-gap btn-warning">Awaiting RSVP</span></td>
+          <% end %>
+        <td><%= @event.payment_amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
