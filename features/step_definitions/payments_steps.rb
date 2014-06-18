@@ -1,7 +1,8 @@
 Given(/^I have an event$/) do
+
   userinvitee = create(:userinvitee)
   @event = Event.new(total:1000)
-  @event.deadline = DateTime.now + 4 
+  @event.deadline = DateTime.now + 4
   @event.organiser_id = @nico.id
   @event.userinvitees << userinvitee
   @event.save!
@@ -18,8 +19,7 @@ Given(/^I have one unpaid user$/) do
 end
 
 Then(/^I should see a list of paid and a list of unpaid participants$/) do
-  expect(page).to have_content "Sroop Paid"
-  expect(page).to have_content "Sroop Unpaid"
+  expect(page).to have_content "Mark as paid"
 end
 
 Given(/^I am an organiser$/) do
@@ -32,7 +32,7 @@ When(/^I click on 'Paid' button next to that unpaid participant$/) do
 end
 
 Then(/^I should see the user has paid$/) do
-  expect(page).to have_content "Sroop Paid"
+  expect(page).to have_content "Paid"
 end
 
 Given(/^I am a participant$/) do
@@ -49,14 +49,15 @@ Given(/^I am the unpaid user$/) do
   @debt3 = create(:debt, user_id: @participant.id, event_id: @event.id, paid: false)
 end
 
-Then(/^I should see the button 'Pay Now'$/) do
-  expect(page).to have_link('PAY NOW')
+Then(/^I should see the button 'Pay with Card'$/) do
+  expect(page).to have_button('Pay with Card')
 end
 
 Given(/^I am a paid user$/) do
   @debt3 = create(:debt, user_id: @participant.id, event_id: @event.id, paid: true)
 end
 
-Then(/^I should not see the button 'Pay Now'$/) do
-  expect(page).not_to have_link('PAY NOW')
+Then(/^I should not see the button 'PAY NOW'$/) do
+  expect(page).not_to have_content('PAY NOW')
 end
+
