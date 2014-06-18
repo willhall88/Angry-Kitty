@@ -158,6 +158,17 @@ input[type="date"] {
   margin-top: 4px;
 }
 
+.top-nav .nav-right > li ul.dropdown-menu a:hover {
+background-color: #bf8cbc !important;
+color: white !important;
+}
+
+.dropdown-menu > li > a:hover {
+text-decoration: none;
+color: white;
+background-color: #bf8cbc;
+}
+
 .edit-btn {
   height: 19px;
   width: 53px;
