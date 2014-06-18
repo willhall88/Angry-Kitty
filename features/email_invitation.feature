@@ -26,9 +26,10 @@ Feature: Invitation email
     And the existing user will be added to the event
     Then they will be re-directed to the event
 
-  Scenario: an new user clicks the link
+  Scenario: an unregistered user clicks the link
     When an unregistered user clicks the link in the invitation email
     Then they will be re-directed to the sign up page
+    And they will see their details in the form
     Then they can fill in their invitee details on the sign up page
     And they press "Sign up"
     Then the new user will be added to the event
@@ -37,6 +38,7 @@ Feature: Invitation email
   Scenario: a new user clicks the link and signs up, then clicks the link again while signed in
     When an unregistered user clicks the link in the invitation email
     Then they will be re-directed to the sign up page
+    And they will see their details in the form
     Then they can fill in their invitee details on the sign up page
     And they press "Sign up"
     Then the new user will be added to the event

@@ -1,5 +1,6 @@
 class ConfirmationMailer < ActionMailer::Base
   default from: "noreply@angrykitty.co.uk"
+  add_template_helper(ChargesHelper)
 
   def receipt(debt)
     @user = debt.user
@@ -14,9 +15,9 @@ class ConfirmationMailer < ActionMailer::Base
   end
 
   def celebration(event)
-  	@organiser = event.organiser
-    mail(to: @organiser.email, subject: 'Congratulations, all debts have been collected') if event.debts.unpaid.none?
+    @event = event
+  	@organiser = @event.organiser
+    mail(to: @organiser.email, subject: 'Congratulations, all debts have been collected') if @event.debts.unpaid.none?
   end
 
-  
 end

@@ -7,7 +7,7 @@ RSpec.describe InvitationMailer, :type => :mailer do
       userinvitee = create(:userinvitee)
       user    = create(:user)
   	  invitee = Userinvitee.create(email: "foo@bar.com") 
-  	  event   = Event.new(deadline: DateTime.now + 4, organiser_id: user.id, total: 1000) 
+  	  event   = Event.new(deadline: DateTime.now + 4, organiser_id: user.id, total: 1000, title:"Hi zomg") 
       event.userinvitees << userinvitee
       event.save
       InvitationMailer.invite(invitee, event).deliver!

@@ -1,22 +1,22 @@
 Given(/^There is an event with an organiser$/) do
   @userinvitee = create(:userinvitee)
   @organiser = User.create(email: 'bar@foo.com', password: '12345678', password_confirmation: '12345678')
-  @event = Event.new(organiser_id: @organiser.id, deadline: 3.days.from_now, total:1000)
+  @event = Event.new(organiser_id: @organiser.id, deadline: 3.days.from_now, total:1000, title: 'Hiii zomg')
   @event.userinvitees << @userinvitee
   @event.save
   @debt = @event.debts.first
 end
 
 Given(/^there is a participant with an email address$/) do
-  @user = User.create(email: 'foo@bar.com', password: '12345678', password_confirmation: '12345678')
+  @user = User.create!(email: 'foo@bar.com', password: '12345678', password_confirmation: '12345678')
 end
 
 Given(/^there is an unregistered invitee$/) do
-  @unreginvitee = Userinvitee.create(email: 'new@newinvitee.com', events: [@event])
+  @unreginvitee = Userinvitee.create!(email: 'new@newinvitee.com', events: [@event])
 end
 
 Given(/^there is a registered invitee$/) do
-  @reginvitee = Userinvitee.create(email: 'foo@bar.com', events: [@event])
+  @reginvitee = Userinvitee.create!(email: 'foo@bar.com', events: [@event])
 end
 
 Then(/^an email containing a link will be sent to the participant$/) do
@@ -55,6 +55,8 @@ When(/^the existing user will be added to the event$/) do
 end
 
 Then(/^the new user will be added to the event$/) do
+  puts "event: #{@event.users.first}"
+  puts "unreginvitee: #{@unreginvitee}"
   expect(@event.users.first.email).to eq @unreginvitee.email
 end
 
@@ -71,9 +73,6 @@ Then(/^they will be re\-directed to the event$/) do
 end
 
 Then(/^they can fill in their invitee details on the sign up page$/) do
-  fill_in 'Full Name', with: "Scott"
-  fill_in 'Mobile', with: "07973361616"
-  fill_in 'Email', with: "new@newinvitee.com"
   fill_in 'Password', with: "12345678"
   fill_in 'Password confirmation', with: "12345678"
 end
@@ -106,7 +105,7 @@ Given(/^I am logged in as an organiser$/) do
 end
 
 When(/^I click on the edit invitee button$/) do
-  within(:css, "#invitee-#{@userinvitee.id}") do
+  within(:css, "#user-#{@userinvitee.id}") do
     click_on "Edit"
   end
 end
@@ -114,4 +113,8 @@ end
 Then(/^I want to send an invitation email to the invitee$/) do
   open_email(@userinvitee.email)
   expect(current_email).to have_content "RSVP."
+end
+
+Then(/^they will see their details in the form$/) do
+  expect(find_field('Email').value).to eq "new@newinvitee.com"
 end

@@ -161,6 +161,17 @@ input[type="date"] {
   margin-top: 4px;
 }
 
+.top-nav .nav-right > li ul.dropdown-menu a:hover {
+background-color: #bf8cbc !important;
+color: white !important;
+}
+
+.dropdown-menu > li > a:hover {
+text-decoration: none;
+color: white;
+background-color: #bf8cbc;
+}
+
 .edit-btn {
   height: 19px;
   width: 53px;
@@ -203,8 +214,30 @@ button.delete_userinvitee {
   margin-bottom: 50px;
 }
 
+
 .add_userinvitee {
   color: #fff;
   width: 70%;
   margin-bottom: 5px;
 }
+
+.btn-purple {
+  background-color: #bf8cbc;
+  border-color: #bf8cbc;
+}
+
+.btn-purple:hover{
+  background-color: #ad78aa;
+  border-color: #ad78aa;
+}
+
+.btn-grey{
+  background-color: #babdcc;
+  border-color: #babdcc;
+}
+
+.btn-grey:hover{
+  background-color: #a3a3a3;
+  border-color: #a3a3a3;
+}
+

@@ -1,7 +1,7 @@
 Given(/^I have an event$/) do
 
   userinvitee = create(:userinvitee)
-  @event = Event.new(total:1000)
+  @event = Event.new(total:1000, title:"Hi zomg! ! !")
   @event.deadline = DateTime.now + 4
   @event.organiser_id = @nico.id
   @event.userinvitees << userinvitee
@@ -49,14 +49,15 @@ Given(/^I am the unpaid user$/) do
   @debt3 = create(:debt, user_id: @participant.id, event_id: @event.id, paid: false)
 end
 
-Then(/^I should see the button 'Pay Now'$/) do
-  expect(page).to have_link('PAY NOW')
+Then(/^I should see the button 'Pay with Card'$/) do
+  expect(page).to have_button('Pay with Card')
 end
 
 Given(/^I am a paid user$/) do
   @debt3 = create(:debt, user_id: @participant.id, event_id: @event.id, paid: true)
 end
 
-Then(/^I should not see the button 'Pay Now'$/) do
-  expect(page).not_to have_link('PAY NOW')
+Then(/^I should not see the button 'PAY NOW'$/) do
+  expect(page).not_to have_content('PAY NOW')
 end
+

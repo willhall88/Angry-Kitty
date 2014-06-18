@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   validates :organiser_id, presence: true
   validates :deadline, presence: true
   validates :total, presence: true
+  validates :title, presence: true
 
   has_and_belongs_to_many :userinvitees, after_add: :payment_calculator
   accepts_nested_attributes_for :userinvitees, allow_destroy: true, reject_if: :email_blank
@@ -36,7 +37,19 @@ class Event < ActiveRecord::Base
   end
 
   def percentage_of_paid
-    (self.debts.where(paid: true).size / self.debts.size.to_f) * 100
+    (self.debts.where(paid: true).size / self.userinvitees.size.to_f) * 100
+  end
+
+  def unconfirmed_participants
+    self.userinvitees_count - self.users_count
+  end
+
+  def users_count
+    self.users.count
+  end
+
+  def userinvitees_count
+    self.userinvitees.count
   end
 
   def remove_organiser_from_invitees

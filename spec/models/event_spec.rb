@@ -6,7 +6,7 @@ RSpec.describe Event, :type => :model do
     user1 = create(:user, email:'1@1.com')
     userinvitee1 = create(:userinvitee)
     userinvitee2 = create(:userinvitee)
-    event = Event.new(organiser: user1, deadline: DateTime.now + 4, total: 1000)
+    event = Event.new(organiser: user1, deadline: DateTime.now + 4, total: 1000, title:"Hi zomg")
     event.userinvitees << [userinvitee1, userinvitee2]
     event.save
     expect(event.userinvitees.count).to eq 2
