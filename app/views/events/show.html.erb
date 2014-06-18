@@ -3,7 +3,7 @@
       <h3 class="event-title "><%= @event.title %></h3>
       <h3 class="event-timer "><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
     </div>
-    <% if user_tabulator(@event, current_user).any? || invitee_tabulator(@event).any? %>
+    <% if tabulator(@event, current_user).any? %>
       <div class"user-container">
         <% if current_user == @event.organiser %>
           <%= render "events/organiser_show" %>
