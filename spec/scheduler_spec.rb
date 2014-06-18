@@ -188,13 +188,28 @@ describe 'accessing unpaid debts from database' do
   let(:user7){ create( :user, email: 'apo@test.com'   ) }
 
   before do
-    userinvitee = create(:userinvitee)
     @event = Event.new(title: "birthday", angerlevel: 'polite', total: 1000)
     @event.organiser = user1
     @event.deadline = DateTime.now + 5
-    @event.userinvitees << userinvitee
+    # userinvitee = create(:userinvitee)
+    # @event.userinvitees << userinvitee
     @event.users << [user2, user3, user4, user5, user6, user7]
     @event.save
+    Debt.first(3).each do|debt|
+      debt.last_harassed = DateTime.now - 1
+      debt.save
+    end
+    userinvitee2 = create(:userinvitee)
+    event2 = Event.new(title: "diving", angerlevel: 'polite', total:1000)
+    event2.organiser = user2
+    event2.deadline = DateTime.now + 10
+    event2.userinvitees << userinvitee2
+    event2.users << [user1, user3, user7]
+    event2.save
+    event2.debts.each do|debt|
+      debt.last_harassed = DateTime.now - 4
+      debt.save
+    end
   end
 
   it 'should only email the unpaid participants' do
@@ -213,21 +228,6 @@ describe 'accessing unpaid debts from database' do
   end
 
   it 'unpaying people in multiple events can be emailed multiple times' do
-    Debt.first(3).each do|debt|
-      debt.last_harassed = DateTime.now - 1
-      debt.save
-    end
-    userinvitee2 = create(:userinvitee)
-    event2 = Event.new(title: "diving", angerlevel: 'polite', total:1000)
-    event2.organiser = user2
-    event2.deadline = DateTime.now + 10
-    event2.userinvitees << userinvitee2
-    event2.users << [user1, user3, user7]
-    event2.save
-    event2.debts.each do|debt|
-      debt.last_harassed = DateTime.now - 4
-      debt.save
-    end
     send_harassment
     open_email('dan@test.com')
     expect(current_email).to have_content('PAY NOW')
@@ -241,9 +241,6 @@ describe 'accessing unpaid debts from database' do
     expect(current_emails.first).to have_content 'birthday'
     expect(current_emails.last).to have_content 'diving'
   end
-
-
-
 end
 
 describe 'updating database' do

@@ -10,7 +10,7 @@ class ChargesController < ApplicationController
     # Amount in pennys
   	user = User.find(params[:user_id])
   	debt = user.debts.find_by(event_id: params[:event_id])
-      event = debt.event
+    event = debt.event
   	@payment_amount = event.payment_amount
 
     @email = debt.user.email

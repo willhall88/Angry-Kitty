@@ -8,8 +8,8 @@ Given(/^I have created an event$/) do
 end
 
 Given(/^I click on the event$/) do
-  visit '/events/'
-  click_on("#{@event.id}")
+  visit "/events/"
+  click_on "#{@event.id}"
 end
 
 When(/^I edit a participant$/) do

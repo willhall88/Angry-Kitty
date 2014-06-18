@@ -1,66 +1,65 @@
-<h1 class="events-headline">Events</h1>
-
-<%= link_to 'New Event', new_event_path, class:'btn btn-default btn-lg col-md-12 post', data: { toggle: 'modal', target: "#myModal" } %>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-     
-
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!--modal content rendered in here -->
+      </div>
     </div>
   </div>
-</div>
 
-<section class="task-container ng-scope" data-ng-controller="taskCtrl">
-  <section>
-      <ul class="filters list-inline nav nav-tabs">
-          <li data-ng-class="{active: statusFilter == ''}"  class="active">
-              <a href="" data-toggle="tab" data-ng-click="participating-organizing" class="click-all">All</a>
-          </li>
-          <li data-ng-class="{active: statusFilter.completed == false }">
-              <a href="" data-toggle="tab" data-ng-click="organizing" class="click-organising">Organising</a>
-          </li>
-          <li data-ng-class="{active: statusFilter.completed == true }">
-              <a href="" data-toggle="tab" data-ng-click="participating" class="click-participating">Participating</a>
-          </li>
-      </ul>
+
+  <section class="task-container ng-scope" data-ng-controller="taskCtrl">
+    <section>
+        <ul class="filters list-inline nav nav-tabs">
+            <li data-ng-class="{active: statusFilter == ''}"  class="active">
+                <a href="" data-toggle="tab" data-ng-click="participating-organizing" class="click-all">All</a>
+            </li>
+            <li data-ng-class="{active: statusFilter.completed == false }">
+                <a href="" data-toggle="tab" data-ng-click="organizing" class="click-organising">Organising</a>
+            </li>
+            <li data-ng-class="{active: statusFilter.completed == true }">
+                <a href="" data-toggle="tab" data-ng-click="participating" class="click-participating">Participating</a>
+            </li>
+        </ul>
+    </section>
   </section>
-</section>
 
-<div>
-<br>
-<% if !@events.nil? %>
-  <ul class="events">
-  <% @events.each do |event| %>
-    <li class="<%= check_for_participating_or_organising(event) %>">
-    <%= link_to event_path(event), class:"col-md-4 post" do %>
-      <article class='panel panel-default'>
-        <div class='panel-heading'>
-          <h3 class='panel-title'>
-            <strong><%= event.title %></strong>
-          <span>
-            <h6>Due in <%= distance_of_time_in_words(DateTime.now, event.deadline) %></h6>
-          </span>
-          </h3>
-        </div>
-        <div class='panel-body'>
-          <i><%= event.description %></i><br><br>
-            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
-            <b class="ng-scope ng-binding">
-            <% if event.users.size > 0 %>
-              <%= event.debts.where(paid: true).size %>/<%= event.userinvitees.count %>
-            <% end %>
-            </b>
-            </div>
+<div class="container">
+  <%= link_to 'New Event', new_event_path, class:'btn btn-default btn-lg col-md-12 post', data: { toggle: 'modal', target: "#myModal" } %>
+  <div>
+  <br>
+  <% if !@events.nil? %>
+    <ul class="events">
+    <% @events.each do |event| %>
+      <li class="<%= check_for_participating_or_organising(event) %>">
+      <%= link_to event_path(event), class:"col-md-4 post" do %>
+        <article class='panel panel-default'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>
+              <strong><%= event.title %></strong>
+            <span>
+              <h6>Due in <%= distance_of_time_in_words(DateTime.now, event.deadline) %></h6>
+            </span>
+            </h3>
           </div>
-          <h6 class="smaller-font"> <%= pluralize(event.users.count,'participant') %> and
-          <%= pluralize(event.userinvitees.count, 'invitee') %> for this event </h6>
-        </div>
-      </article>
+          <div class='panel-body'>
+            <i><%= event.description %></i><br><br>
+              <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success"><div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="transition: none; -webkit-transition: none; width: <%= event.percentage_of_paid %>%;">
+              <b class="ng-scope ng-binding">
+              <%= event.percentage_of_paid %>
+            <!-- If you want something to be displayed in the bar itself, it goes here -->
+              </b>
+              </div>
+            </div>
+            <h6 class="smaller-font"> <%= pluralize(event.users_count,'participant') %> and
+            <%= pluralize(event.unconfirmed_participants  , 'invitee') %> for this event </h6>
+          </div>
+        </article>
+      <% end %>
+      </li>
     <% end %>
-    </li>
+    </ul>
   <% end %>
-  </ul>
-<% end %>
 </div>
+  </div>

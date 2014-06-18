@@ -13,6 +13,7 @@ module EventsHelper
     end
   end
 
+  #returns array of invitees that are NOT users for this event
   def invitee_tabulator(event)
     invitees = event.userinvitees.reject do |invitee|
       event.users.map do |user|
