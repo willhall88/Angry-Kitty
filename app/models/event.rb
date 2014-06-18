@@ -9,17 +9,18 @@ class Event < ActiveRecord::Base
   validates :deadline, presence: true
   validates :total, presence: true
 
-  has_and_belongs_to_many :userinvitees
+  has_and_belongs_to_many :userinvitees, after_add: :payment_calculator
   accepts_nested_attributes_for :userinvitees, allow_destroy: true, reject_if: :email_blank
 
-  after_create :payment_calculator
+  # after_create :payment_calculator
   after_create :remove_organiser_from_invitees
 
-  def payment_calculator
-    unless self.total == nil
-      self.payment_amount = self.total / self.userinvitees.count
+  def payment_calculator(new_invitee)
+    if total && userinvitees.any?
+      self.payment_amount = self.total / self.userinvitees.length
       self.save
     end
+    return true
   end
 
   def invite!

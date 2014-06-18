@@ -9,7 +9,6 @@ Given(/^I have completed payment$/) do
 end
 
 Then(/^they should receive a receipt by email$/) do
-  p "debt: #{@debt.inspect}"
   ConfirmationMailer.receipt(@debt).deliver!
   open_email(@debt.user.email)
   expect(current_email).to have_content "Payment confirmed"
