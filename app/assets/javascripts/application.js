@@ -17,3 +17,18 @@
 //= require bootstrap/dist/js/bootstrap
 //= require jquery.easypiechart
 //= require_tree .
+$(document).ready(function() {
+    setTimeout(hideFlash, 2500);
+
+    function hideFlash() {
+        $('.alert-success').animate({
+            'left': '-196px'
+        }, 'slow');
+    };
+
+
+    $('.alert-success').animate({
+        'left': '0px'
+    }, 'slow');
+
+});

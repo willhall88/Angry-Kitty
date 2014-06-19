@@ -10,13 +10,17 @@
   <link rel="shortcut icon" href="/favicon.png" />
 </head>
 <body>
+  <% unless notice.blank? %>
+    <div class="alert alert-success"><%= notice %></div>
+  <% end %>
+  <% unless alert.blank? %>
+	 <div class="alert alert-success"><%= alert %></div>
+  <% end %>
 
-	<%= render "layouts/header" %>
+  <%= render "layouts/header" %>
 
+  <%= yield %>
 
-	<%= yield %>
-	<%= alert %>
-	<%= notice %>
 
 
 </body>

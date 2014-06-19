@@ -8,8 +8,8 @@ def send_harassment
     Debt.unpaid.each do |debt|
       begin
         if send_mail?(debt.deadline, debt.last_harassed, debt.event.angerlevel)
-          debt.harass! 
-          # debt.send_sms!
+          debt.harass!
+          debt.send_sms! unless Rails.env.production? 
           debt.update(last_harassed: DateTime.now)
         end
       rescue => e
