@@ -49,11 +49,27 @@ When(/^I click on "(.*?)"$/) do |arg1|
   click_on arg1
 end
 
-
 Then(/^the event will be deleted$/) do
   expect(current_path).to eq "/"
   expect(page).not_to have_content "REVENGE OF THE HALFLINGS"
 end
+
+Given(/^I am a paid participant$/) do
+  @user = User.create(email:'wills@test.com', password:"12345678", password_confirmation: "12345678")
+  @event.users << @user
+  @event.save
+  @event.debts.first.update(paid: true)
+  login_as @user
+end
+
+Then(/^I will see the link "(.*?)"$/) do |arg1|
+  expect(page).to have_content(arg1)
+end
+
+
+
+
+
 
 
 
