@@ -12,7 +12,7 @@
               <label for="" class="col-sm-2">Title</label>
             </div>
             <div class="col-sm-12">
-                <%= f.text_field :title, class: "form-control" %>
+                <%= f.text_field :title, class: "form-control", required: true %>
             </div>
         </div>
         <div class="form-group">
@@ -28,7 +28,7 @@
               <label for="label-focus" class="col-sm-2">Total</label>
             </div>
             <div class="col-sm-12">
-                <%= f.text_field :total, class: "form-control", placeholder: "500 GBP" %>
+                <%= f.text_field :total, class: "form-control", placeholder: "500 GBP", required: true %>
             </div>
         </div>
         <div class="form-group">
@@ -36,7 +36,7 @@
               <label for="label-focus" class="col-sm-2">Deadline</label>
             </div>
             <div class="col-sm-12">
-              <%= f.date_field :deadline, placeholder: 'yyyy/mm/dd', class: "form-control dates", id: "label-focus", placeholder: "Total amount" %>
+              <%= f.date_field :deadline, placeholder: 'yyyy/mm/dd', class: "form-control dates", id: "label-focus", placeholder: "Total amount", required: true%>
             </div>
         </div>
         <div class="panel-body">
