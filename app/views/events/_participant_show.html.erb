@@ -9,7 +9,7 @@
   <tbody>
     <% tabulator(@event, current_user).each do |user| %>
       <tr id="user-<%= user.id.to_s %>">
-        <td> <%= user.name %></td>
+        <td><p class="render-stuff"> <%= user.name %></p></td>
           <% if user.class == User && user.debts.find_by(event: @event).paid %>
             <td><span class="btn btn-gap btn-success green-button">Paid</span> </td>
           <% elsif user.class == User && !user.debts.find_by(event: @event).paid %>
@@ -33,7 +33,7 @@
               <span class="btn btn-gap btn-warning yellow-button">Awaiting RSVP</span>
             </td>
           <% end %>
-        <td><%= convert_to_pounds(@event.payment_amount) %></td>
+        <td><p class="render-stuff"><%= convert_to_pounds(@event.payment_amount) %></p></td>
       </tr>
     <% end %>
   </tbody>

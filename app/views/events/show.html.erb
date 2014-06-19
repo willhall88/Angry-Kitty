@@ -1,13 +1,8 @@
 <div class="container">
     <div class"title-container">
-      <h3 class="event-title "><%= @event.title %></h3>
-      <%= link_to "", "#", data: { toggle: 'modal', target: "#eventDescription" }, class:"glyphicon glyphicon-info-sign" %>
+      <h3 class="event-title "><%= @event.title %> <%= render "events/event_drop_down" %></h3>
       <h3 class="event-timer "><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
-      <div class="delete-event">
-        <% if current_user == @event.organiser %>
-          <%= link_to "Delete Event", event_path(@event), method: :delete, data: { :confirm => "confirm"}, class:"label label-danger" %></div>
-        <% end %>
-      </div>
+    </div>
     <% if tabulator(@event, current_user).any? %>
       <div class"user-container">
         <% if current_user == @event.organiser %>
