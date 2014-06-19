@@ -24,6 +24,10 @@
           </li>
 
           <li class="drop-down-menu-header">
+            <%= link_to "About", page_path("about") %>
+          </li>
+
+          <li class="drop-down-menu-header">
               <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "white-text-please") %>
           </li>
 
@@ -37,7 +41,6 @@
                <%= link_to('Sign up', new_user_registration_path, class: "white-text-please") %>
             <% end %>
           </li>
-
         </ul>
         </li>
       </ul>

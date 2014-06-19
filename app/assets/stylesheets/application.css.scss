@@ -15,6 +15,7 @@
  *= require_self
  */
 
+
 @font-face {
   font-family: 'Glyphicons Halflings';
 
@@ -283,5 +284,94 @@ form .form-group .col-sm-12 label {
   h2 {
     display: none;
   }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #222533;
+  color: white;
+  line-height: 50px;
+  a {
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+
+.wrapper {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.about-page {
+  background: image-url('testing.png') no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: auto;
+}
+
+.angry-team {
+  font-size: 80px;
+  text-shadow: -1px 1px 25px rgba(0, 0, 150, 1);
+  line-height: 1.1;
+  color: #fff;
+  font-weight: bold;
+  float: right;
+  margin-top: 11%;
+  margin-right: 33%;
+}
+
+.scott {
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding-right: 50px;
+  // overflow: hidden;
+  img.placeholder {
+    // width: 100px;
+    height: 200px;
+    float: left;
+    margin-right: 50px;
+    border-radius: 100%;
+  }
+
+  p {
+    margin-top: 65px;
+    margin-bottom: 19px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.github-glyph {
+  width: 27px;
+  height: 27px;
+  margin-right: 2px;
+}
+
+.twitter-glyph {
+  width: 27px;
+  height: 27px;
+  margin-right: 2px;
+}
+
+.social-links {
+  float: right;
+  margin-top: -1px !important;
 }
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
 
+
   get 'users/:user_id/:event_id/charges/new', to: 'charges#new', as: 'new_charges'
   post 'users/:user_id/:event_id/charges', to: 'charges#create', as: 'charges'
 
@@ -16,7 +17,6 @@ Rails.application.routes.draw do
 
 
   get 'userinvitees/:userinvitee_id/:event_id', to: 'userinvitees#show', as: 'accept_userinvitee'
-
 
 
   # You can have the root of your site routed with "root"

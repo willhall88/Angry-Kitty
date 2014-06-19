@@ -107,6 +107,7 @@ GEM
     haml (4.0.5)
       tilt
     hashie (2.1.2)
+    high_voltage (2.1.0)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (2.1.1)
@@ -296,6 +297,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   heroku_secrets!
+  high_voltage (~> 2.1.0)
   jbuilder (~> 2.0)
   jquery-rails
   launchy
