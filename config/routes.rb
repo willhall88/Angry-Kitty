@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'userinvitees/:userinvitee_id/:event_id', to: 'userinvitees#show', as: 'accept_userinvitee'
 
 
-
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

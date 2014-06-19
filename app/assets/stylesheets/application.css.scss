@@ -272,3 +272,34 @@ form .form-group .col-sm-12 label {
 .add-friends {
   padding: 0 !important;
 }
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #222533;
+  color: white;
+  line-height: 50px;
+  a {
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+
+.wrapper {
+  width: 60%;
+  margin: 0 auto;
+}
+
