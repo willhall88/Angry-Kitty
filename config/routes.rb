@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
 
+
   get 'users/:user_id/:event_id/charges/new', to: 'charges#new', as: 'new_charges'
   post 'users/:user_id/:event_id/charges', to: 'charges#create', as: 'charges'
 
