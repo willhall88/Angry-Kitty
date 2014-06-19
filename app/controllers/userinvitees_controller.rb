@@ -29,11 +29,11 @@ class UserinviteesController < ApplicationController
     @event = Event.find(params[:event_id])
 
     if params[:resend]
-      @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile))
+      @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile, :twitterhandle))
       InvitationMailer.invite(@userinvitee, @event).deliver!
       redirect_to "/events/#{@event.id}"
     else
-      @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile))
+      @userinvitee.update(params[:userinvitee].permit(:name, :email, :mobile, :twitterhandle))
       redirect_to "/events/#{@event.id}"
     end
   end

@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email]))
+    @event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email, :twitterhandle]))
     @event.organiser = current_user
     @event.save!
     @event.invite!
@@ -30,8 +30,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     #below is empty until userinvitees have confirmed participation
-    @paid = Debt.where(event: @event).where(paid: true)
-    @unpaid = Debt.where(event: @event).where(paid: false)
     @user = current_user
     @payment_amount = @event.payment_amount
   end

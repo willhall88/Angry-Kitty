@@ -56,6 +56,7 @@
                         <%= x.text_field :email, placeholder: 'Email', required: true, class: "form-control display-inline" %>
                         <%= x.text_field :name, placeholder: 'Name', class: "form-control display-inline" %>
                         <%= x.text_field :mobile, placeholder: 'Mobile', class: "form-control display-inline"%>
+                        <%= x.text_field :twitterhandle, placeholder: 'Twitter Handle', class: "form-control display-inline"%>
                     <% end %>
                     <button type='button' class='delete_userinvitee btn btn-danger'>Remove</button>
                   </li>
@@ -79,6 +80,7 @@
       <%= x.text_field :email, placeholder: 'Email', name: 'event[userinvitees_attributes][{{ index }}][email]', class: "form-control display-inline" %>
       <%= x.text_field :name, placeholder: 'Name', name: 'event[userinvitees_attributes][{{ index }}][name]', class: "form-control display-inline" %>
       <%= x.text_field :mobile, placeholder: 'Mobile', name: 'event[userinvitees_attributes][{{ index }}][mobile]', class: "form-control display-inline" %>
+      <%= x.text_field :twitterhandle, placeholder: 'Twitter Handle', name: 'event[userinvitees_attributes][{{ index }}][twitterhandle]', class: "form-control display-inline"%>
     <% end %>
     <button type='button' class='delete_userinvitee btn btn-danger'>Remove</button>
   </template>

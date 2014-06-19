@@ -28,4 +28,12 @@ module EventsHelper
     end
   end
 
+  def tweet_handle_or_name(user)
+    if user.twitterhandle.nil?
+      return user.name
+    else
+      return user.twitterhandle
+    end
+  end
+
 end

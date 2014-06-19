@@ -1,0 +1,20 @@
+<ul class="list-unstyled">
+  <li class="dropdown langs text-normal" data-ng-controller="LangCtrl">
+    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-chevron-down event"></span>
+    </a>
+  <ul class="dropdown-menu list-langs" role="menu">
+
+    <li class="drop-down-menu-header">
+     <%= link_to "Event description", "#", data: { toggle: 'modal', target: "#eventDescription" }, class: "white-text-please" %>
+    </li>
+    
+    <li class="drop-down-menu-header">
+     <% if current_user == @event.organiser %>
+       <%= link_to "Delete event", event_path(@event), method: :delete, data: { :confirm => "confirm"}, class: "white-text-please" %>
+     <% end %>
+    </li>
+
+  </ul>
+  </li>
+</ul> 

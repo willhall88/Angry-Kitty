@@ -14,17 +14,18 @@
         <td>
           <%= render "events/drop_down_menu", user: user %>  
         </td>
-        <td> <%= user.name %></td>
+        <td><p class="render-stuff"><%= user.name %></p></td>
           <% if user.class == User && user.debts.find_by(event: @event).paid %>
             <td><span class="btn btn-gap btn-success green-button">Paid</span> </td>
           <% elsif user.class == User && !user.debts.find_by(event: @event).paid%>
             <td>
               <span class="btn btn-gap btn-danger red-button">Not paid</span>
+              <%= link_to image_tag("twitter-logo.png", class:'twitter-logo'), "http://twitter.com/home?status=#{tweet_handle_or_name(user)} has not paid for #{@event.title}", class:"btn btn-twitter"%>
             </td>
           <% else %>
             <td><span class="btn btn-gap btn-warning yellow-button">Awaiting RSVP</span></td>
           <% end %>
-        <td><%= convert_to_pounds(@event.payment_amount) %></td>
+        <td><p class="render-stuff"><%= convert_to_pounds(@event.payment_amount) %></p></td>
       </tr>
     <% end %>
   </tbody>

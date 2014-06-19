@@ -1,12 +1,8 @@
 <div class="container">
     <div class="title-container clearfix">
-      <h3 class="event-title "><%= @event.title %></h3>
+      <h3 class="event-title "><%= @event.title %> <%= render "events/event_drop_down" %></h3>
       <h3 class="event-timer "><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
-      <div class="delete-event">
-        <% if current_user == @event.organiser %>
-          <%= link_to "Delete Event", event_path(@event), method: :delete, data: { :confirm => "confirm"}, class:"label label-danger" %></div>
-        <% end %>
-      </div>
+    </div>
     <% if tabulator(@event, current_user).any? %>
       <div class"user-container">
         <% if current_user == @event.organiser %>
@@ -21,10 +17,23 @@
 </div>
 
 
-<div class="modal fade" id="myModall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="editInviteeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="eventDescription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+          <h3><%= @event.title %></h3>
+        </div>
+        <div class="modal-body">
+          <%= @event.description %>
+        </div>
     </div>
   </div>
 </div>
