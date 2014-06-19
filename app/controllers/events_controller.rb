@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email]))
+    @event = Event.new(params[:event].permit(:title, :description, :deadline, :total, :angerlevel, userinvitees_attributes: [:name, :mobile, :email, :twitterhandle]))
     @event.organiser = current_user
     @event.save!
     @event.invite!
