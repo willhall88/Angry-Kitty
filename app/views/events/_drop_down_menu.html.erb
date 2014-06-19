@@ -9,7 +9,7 @@
       <% if user.class == User && !user.debts.find_by(event: @event).paid%>
           <%= link_to 'Mark as paid', payments_path(user.id, @event.id), method: :post, class: "white-text-please" %>
       <% elsif user.class == Userinvitee %>
-        <%= link_to "Edit", edit_event_userinvitee_path(@event, user.id), class: "white-text-please", data: { toggle: 'modal', target: "#myModall" } %>
+        <%= link_to "Edit", edit_event_userinvitee_path(@event, user.id), class: "white-text-please", data: { toggle: 'modal', target: "#editInviteeModal" } %>
       <% end %>
     </li>
     
