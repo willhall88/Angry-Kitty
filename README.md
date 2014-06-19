@@ -74,4 +74,4 @@ We are [Apo], [Dan], [Nico], [Robin], [Scott], [Sroop] and [Will] from the March
 [Apo]:https://github.com/apostoiis
 [Nico]:https://github.com/NicoSa
 [Dan]:https://github.com/danldb
-[App on Heroku]:http://angry-kitty.herokuapp.com
+[App on Heroku]:http://www.angrykitty.co.uk
