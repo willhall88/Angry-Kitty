@@ -18,11 +18,14 @@
                 <%= form_tag charges_path(@user, @event) do %>
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="<%= Rails.application.secrets.stripe_public_key %>"
-                        data-description="What I owe"
+                        data-description="Pay the kitty."
                         data-amount="<%= @payment_amount %>"></script>
                 <% end %>
               <% else %>
                 <span class="btn btn-gap btn-danger red-button">Not paid</span>
+                <% if current_user.debts.find_by(event: @event).paid %>
+                  <%= link_to "tweet this", "http://twitter.com/home?status=#{user.name} has not paid for #{@event.title}"%>
+                <% end %>
               <% end %>
             </td>
           <% else %>
