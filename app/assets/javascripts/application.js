@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     function hideFlash() {
         $('.alert-success').animate({
-            'left': '-196px'
+            'left': '-300px'
         }, 'slow');
     };
 

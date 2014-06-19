@@ -278,4 +278,10 @@ form .form-group .col-sm-12 label {
   position: absolute;
   color: #fff;
   left: -196px;
+  max-width: 200px;
+  max-height: 200pxs;
+  h2 {
+    display: none;
+  }
 }
+

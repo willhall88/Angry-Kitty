@@ -1,7 +1,9 @@
 <div class="page-signin">
-
-<%= devise_error_messages! %>
-
+<% unless devise_error_messages!.blank? %>
+<div class="error-message alert alert-success">
+  <%= devise_error_messages! %>
+</div>
+<% end %>
   <div class="signin-body">
     <div class="container">
       <div class="form-container">
@@ -65,7 +67,7 @@
                       <%= f.password_field :current_password, autocomplete: "off", class:"form-control", placeholder: "Current password" %>
                 </div>
             </div>
-
+            <br>
             <div class="form-group">
                 <%= f.submit "Update", class: "btn btn-primary btn-lg btn-block btn-purple" %>
             </div>
