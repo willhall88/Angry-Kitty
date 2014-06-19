@@ -328,7 +328,7 @@ body {
   margin-bottom: 50px;
   padding-right: 50px;
   // overflow: hidden;
-  img {
+  img.placeholder {
     // width: 100px;
     height: 200px;
     float: left;
@@ -338,5 +338,27 @@ body {
 
   p {
     margin-top: 65px;
+    margin-bottom: 19px;
   }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.github-glyph {
+  width: 27px;
+  height: 27px;
+  margin-right: 2px;
+}
+
+.twitter-glyph {
+  width: 27px;
+  height: 27px;
+  margin-right: 2px;
+}
+
+.social-links {
+  float: right;
+  margin-top: -1px !important;
 }
