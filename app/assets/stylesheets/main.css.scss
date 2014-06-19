@@ -9571,11 +9571,13 @@ button.toast-close-button {
 .page-signup .signin-header {
   padding: 25px 0;
   background-color: #dfe0e6;
+  height: 360px;
 }
 .page-signin .logo,
 .page-signup .logo {
   font-size: 46px;
   font-weight: bold;
+  margin-top: 10px;
 }
 .page-signin .logo a:hover,
 .page-signup .logo a:hover {
