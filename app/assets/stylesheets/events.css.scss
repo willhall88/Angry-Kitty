@@ -26,21 +26,6 @@
   padding-right: 20px;
 }
 
-@media(max-width: 900px) {
-  .event-title{
-    width: 100%;
-    display: block;
-  }
-
-  .event-timer{
-    position: relative;
-    float: left;
-    padding-left: 20px;
-    display: block;
-    margin-top: 0px;
-  }
-
-}
 .table {
   background-color: white;
   #delete-column{
@@ -123,7 +108,20 @@ h3{
     margin-top: -40px;
   }
 
+  .event-title{
+    width: 100%;
+  }
+
+  h3.event-list{
+    margin-top: 0px;
+  }
+
+  .event-timer{
+    margin-top: 0px;
+  }
 }
+
+
 
 .glyphicon.glyphicon-info-sign {
   top: 5px;
@@ -139,11 +137,10 @@ h3{
   margin-bottom: 0px;
 }
 
-
-.glyphicon.glyphicon-chevron-down.event {
-  position: absolute;
-  top: -17px;
-  left: 144px;
+.event-list{
+  float: left;
+  margin-left: 20px;
+  margin-top: 16px;
 }
 
 .btn.btn-twitter {
