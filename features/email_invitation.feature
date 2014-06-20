@@ -47,11 +47,12 @@ Feature: Invitation email
     Then the participant will not be added to the event
     And they will be re-directed to the event
 
+  @javascript
   Scenario: an organiser can send an invitation email to an invitee
     Given I am logged in as an organiser
     When I am on the event page
     When I click on the edit invitee button
-    And  I click on "Save and resend invite"
+    And  I click on Save and resend invite
     Then I want to send an invitation email to the invitee
 
 

@@ -106,15 +106,23 @@ end
 
 When(/^I click on the edit invitee button$/) do
   within(:css, "#user-#{@userinvitee.id}") do
+    find(".dropdown-toggle").click
     click_on "Edit"
   end
 end
 
 Then(/^I want to send an invitation email to the invitee$/) do
+  sleep 1 # wait for email to be sent
   open_email(@userinvitee.email)
   expect(current_email).to have_content "RSVP."
 end
 
 Then(/^they will see their details in the form$/) do
   expect(find_field('Email').value).to eq "new@newinvitee.com"
+end
+
+When(/^I click on Save and resend invite$/) do
+  within(:css, ".modal") do
+    find(:css, ".btn-grey").trigger('click')
+  end
 end
