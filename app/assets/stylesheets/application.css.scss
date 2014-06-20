@@ -317,7 +317,7 @@ body {
 }
 
 .about-page {
-  background: image-url('testing.png') no-repeat;
+  background: image-url('group-photo22.png') no-repeat;
   background-size: cover;
   height: 500px;
   width: auto;
@@ -349,12 +349,16 @@ body {
   }
 
   p {
-    margin-top: 65px;
+    margin-top: 25px;
     margin-bottom: 19px;
   }
 
   a {
     text-decoration: none;
+  }
+
+  h3 {
+    margin-top: 39px;
   }
 }
 
@@ -374,4 +378,3 @@ body {
   float: right;
   margin-top: -1px !important;
 }
-

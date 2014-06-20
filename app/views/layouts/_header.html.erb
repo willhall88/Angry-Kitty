@@ -14,33 +14,34 @@
           </a>
         <ul class="dropdown-menu with-arrow pull-right list-langs" role="menu">
 
-          <li class="drop-down-menu-header">
-            <% if user_signed_in? %>
-              <%= link_to('Dashboard', events_path, class: "white-text-please") %>
-          </li>
+          <% if user_signed_in? %>
+            <li class="drop-down-menu-header">
+                <%= link_to('Dashboard', events_path, class: "white-text-please") %>
+            </li>
 
-          <li class="drop-down-menu-header">
-              <%= link_to('Edit registration', edit_user_registration_path, class: "white-text-please") %>
-          </li>
+            <li class="drop-down-menu-header">
+                <%= link_to('Edit registration', edit_user_registration_path, class: "white-text-please") %>
+            </li>
 
-          <li class="drop-down-menu-header">
-            <%= link_to "About", page_path("about") %>
-          </li>
+            <li class="drop-down-menu-header">
+              <%= link_to "About", page_path("about") %>
+            </li>
 
-          <li class="drop-down-menu-header">
-              <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "white-text-please") %>
-          </li>
+            <li class="drop-down-menu-header">
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "white-text-please") %>
+            </li>
 
-
-          <li class="drop-down-menu-header">
-              <% else %>
-              <%= link_to('Sign in', new_user_session_path, class: "white-text-please") %>
-          </li>
-
-          <li class="drop-down-menu-header">
+          <% else %>
+            <li class="drop-down-menu-header">
+              <%= link_to "About", page_path("about") %>
+            </li>
+            <li class="drop-down-menu-header">
+                <%= link_to('Sign in', new_user_session_path, class: "white-text-please") %>
+            </li>
+            <li class="drop-down-menu-header">
                <%= link_to('Sign up', new_user_registration_path, class: "white-text-please") %>
-            <% end %>
-          </li>
+            </li>
+          <% end %>
         </ul>
         </li>
       </ul>
