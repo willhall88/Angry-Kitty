@@ -2,7 +2,7 @@
     <div class="title-container clearfix">
       <h3 class="event-title "><%= @event.title %> </h3>
       <h3 class="event-list"><%= render "events/event_drop_down" %></h3>
-      <h3 class="event-timer "><%= @event.deadline.strftime("%d-%m-%y") %> </h3>
+      <h3 class="event-timer ">Due in <%= distance_of_time_in_words(DateTime.now, @event.deadline) %> </h3>
     </div>
     <% if tabulator(@event, current_user).any? %>
       <div class"user-container">
