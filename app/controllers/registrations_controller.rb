@@ -9,4 +9,14 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def create
+      if session.has_key? :userinvitee_id
+        @userinvitee = Userinvitee.find(session[:userinvitee_id])
+      else
+        @userinvitee = Userinvitee.new
+      end
+    
+    super
+  end
+
 end

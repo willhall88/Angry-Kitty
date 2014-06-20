@@ -13,6 +13,10 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  html_tag.html_safe
+end
+
 module AngryKitty
   class Application < Rails::Application
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'fonts')
