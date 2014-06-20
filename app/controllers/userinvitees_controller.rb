@@ -22,6 +22,7 @@ class UserinviteesController < ApplicationController
   def edit
     @event = Event.find(params[:event_id])
     @userinvitee = Userinvitee.find(params[:id])
+    render layout: false
   end
 
   def update
