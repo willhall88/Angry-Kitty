@@ -24,7 +24,7 @@
               <% else %>
                 <span class="btn btn-gap btn-danger red-button">Not paid</span>
                 <% if current_user.debts.find_by(event: @event).paid %>
-                  <%= link_to image_tag("twitter-logo.png", class:'twitter-logo'), "http://twitter.com/home?status=#{tweet_handle_or_name(user)} has not paid for #{@event.title}"%>
+                  <%= link_to image_tag("twitter-logo.png", class:'twitter-logo'), "http://twitter.com/home?status=#{tweet_handle_or_name(user)} has not paid for #{@event.title}", class:"btn btn-twitter"%>
                 <% end %>
               <% end %>
             </td>
