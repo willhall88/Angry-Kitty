@@ -4,6 +4,7 @@ Let the kitty do the chasing!
 ----
 Angry Kitty is an app designed to help organisers chase participants of an event for contributions. We created this application in 2 weeks as our final project at Makers Academy, London.
 
+
 ![](app/assets/images/angrykittyscreenshot.png)
 
 Heroku
@@ -74,4 +75,5 @@ We are [Apo], [Dan], [Nico], [Robin], [Scott], [Sroop] and [Will] from the March
 [Apo]:https://github.com/apostoiis
 [Nico]:https://github.com/NicoSa
 [Dan]:https://github.com/danldb
+
 [App on Heroku]:http://www.angrykitty.co.uk
