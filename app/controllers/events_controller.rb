@@ -22,9 +22,9 @@ class EventsController < ApplicationController
     @event.save!
     @event.invite!
     redirect_to('/events')
-    rescue
-    	flash[:notice] = 'Cannot submit an empty field'
-    	render 'new'
+  rescue
+  	flash[:notice] = 'Cannot submit an empty field'
+  	render 'new'
   end
 
   def show
