@@ -46,11 +46,13 @@ When(/^I am on the event view page$/) do
 end
 
 When(/^I click on "(.*?)"$/) do |arg1|
-  click_on arg1
+  within(:css, "#event-dropdown") do
+    find('.dropdown-toggle').click
+    find('a', text: 'Delete event').trigger('click')
+  end
 end
 
 Then(/^the event will be deleted$/) do
-  expect(current_path).to eq "/"
   expect(page).not_to have_content "REVENGE OF THE HALFLINGS"
 end
 
@@ -62,8 +64,8 @@ Given(/^I am a paid participant$/) do
   login_as @user
 end
 
-Then(/^I will see the link "(.*?)"$/) do |arg1|
-  expect(page).to have_content(arg1)
+Then(/^I will see the link Not paid and a Twitter button$/) do
+  find('.twitter-logo')
 end
 
 

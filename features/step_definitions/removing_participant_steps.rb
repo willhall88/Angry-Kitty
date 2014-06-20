@@ -17,9 +17,13 @@ When(/^I click the remove invitee button$/) do
 end
 
 Then(/^I should not see the participant$/) do
-  expect(page).not_to have_content("robin")
+  within(:css, ".table") do
+    expect(page).not_to have_content("robin")
+  end
 end
 
 Then(/^I should not see the invitee$/) do
-  expect(page).not_to have_content("Will")
+  within(:css, ".table") do
+    expect(page).not_to have_content("Will")
+  end
 end

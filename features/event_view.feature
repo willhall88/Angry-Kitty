@@ -37,7 +37,7 @@ Feature: viewing an event
     Given I am a paid participant
     And the event has 1 participant who has not paid
     When I am on the event page
-    Then I will see the link "Not paid tweet this"
+    Then I will see the link Not paid and a Twitter button
 
   Scenario: an organiser can tweet about unpaid people
     Given I am a user
@@ -45,6 +45,6 @@ Feature: viewing an event
     And the event has 1 participant who has not paid
     And the event has 1 participant who has paid
     When I am on the event page 
-    Then I will see the link "Not paid tweet this"
+    Then I will see the link Not paid and a Twitter button
 
 
