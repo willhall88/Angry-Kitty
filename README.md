@@ -42,6 +42,7 @@ Technologies used
 - CSS3
 - Git
 - Heroku
+- Google Analytics
 
 How to run it
 ----
