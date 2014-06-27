@@ -1,29 +1,30 @@
 $(document).ready(function() {
   $('.nextlink').click(function(event) {
     event.preventDefault();
-    $('.first-text').remove();
-    $('.second-text').css('visibility', 'visible');
+      
+    $('.text').text("Let me harass them and collect the money for you. The longer they take the angrier I get and the more I chase!");
 
 
     $('.nextlink').click(function(event) {
-      $('.second-text').remove();
-      $('.third-text').css('visibility', 'visible');
+      $('.text').text("You can see who has paid and who hasn't and harass them with me.");
+
 
       $('.nextlink').click(function(event) {
-        $('.third-text').remove();
-        $('.fourth-text').css('visibility', 'visible');
+        $('.nextlink').remove();
+        $('.yeslink').css('visibility', 'visible');
+        $('.nolink').css('visibility', 'visible');
+        $('.text').text("Angry Kitty loves chasing people for money, would you consider letting Angry Kitty do this for you?");
 
-        $('.Yeslink').click(function(event) {
-          $('.fourth-text').remove();
-          $('.Yestext').css('visibility', 'visible');
-
+        $('.yeslink').click(function(event) {
+          $('.text').text('Register for the newsletter');
+          $('.yeslink').remove();
+          $('.nolink').remove();
         });
 
-          $('.Nolink').click(function(event) {
-          $('.fourth-text').remove();
-          $('.Yestext').remove();
-          $('.Notext').css('visibility', 'visible');
-
+        $('.nolink').click(function(event) {
+          $('.text').text('Thanks for your time');
+          $('.yeslink').remove();
+          $('.nolink').remove();
         });
 
       });

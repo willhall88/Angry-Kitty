@@ -416,14 +416,11 @@ blockquote {
   border-left: none;
 }
 
-.second-text,
-.third-text,
-.fourth-text,
-.Yestext,
-.Notext {
-  visibility: hidden;
-}
-
 .nextlink {
   color: white;
+}
+
+.yeslink,
+.nolink {
+  visibility: hidden;
 }

@@ -1,5 +1,3 @@
-<%= render 'layouts/header' unless @disable_nav %>
-
 <div class="page-signup">
   <div class="signin-header">
     <div class="container text-center">
@@ -11,61 +9,13 @@
   <div class="signup-body">
     <div class="container">
       <div class="form-container">
-        <blockquote class="example-twitter first-text">
-
-          <p>
+        <blockquote class="example-twitter">
+          <p class="text">
             Have you ever found it frustrating chasing friends for money?
           </p>
-
-          <%= link_to("next", "#", class: "nextlink btn btn-purple") %>
-
-        </blockquote>
-
-        <blockquote class="example-twitter second-text">
-
-          <p>
-           Let me harass them and collect the money for you. The longer they take the angrier I get and the more I chase!  .........
-          </p>
-
-          <%= link_to("next", "#", class: "nextlink btn btn-purple") %>
-
-        </blockquote>
-
-        <blockquote class="example-twitter third-text">
-
-          <p>
-            You can see who has paid and who hasn't and harass them with me.
-          </p>
-
-          <%= link_to("next", "#", class: "nextlink btn btn-purple") %>
-
-        </blockquote>
-
-        <blockquote class="example-twitter fourth-text">
-
-          <p>
-            Angry Kitty loves chasing people for money, would you consider letting Angry Kitty do this for you?
-          </p>
-
-          <%= link_to("Yes", "#", class: "Yeslink btn btn-success") %>
-          <%= link_to("No", "#", class: "Nolink btn btn-danger") %>
-
-        </blockquote>
-
-        <blockquote class="example-twitter Yestext">
-
-          <p>
-            Register for the newsletter
-          </p>
-
-        </blockquote>
-
-        <blockquote class="example-twitter Notext">
-
-          <p>
-            Thanks for your time
-          </p>
-
+          <%= link_to("next", "#", class: "nextlink btn btn-purple") %>     
+          <%= link_to("Yes", "#", class: "yeslink btn btn-success") %>
+          <%= link_to("No", "#", class: "nolink btn btn-danger") %>
         </blockquote>
 
       </div>
