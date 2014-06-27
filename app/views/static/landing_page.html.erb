@@ -1,0 +1,42 @@
+<%= render 'layouts/header' unless @disable_nav %>
+
+<div class="page-signup">
+  <div class="signin-header">
+    <div class="container text-center">
+      <section class="logo">
+          <%= image_tag("angry-kitty-logo.png", class: "kitty-logo") %>
+      </section>
+    </div>
+  </div>
+  <div class="signup-body">
+    <div class="container">
+      <div class="form-container">
+        <blockquote class="example-twitter">
+
+        <p class="first-text">
+        1  Have you ever found it frustrating chasing friends for money?
+        </p>
+
+        <%= link_to("next", "#", class: "nextlink nextlink2 nextlink3") %>
+
+        <p class="second-text">
+         2 Let me harass them and collect the money for you. The longer they take the angrier I get and the more I chase!  .........
+        </p>
+
+        <p class="third-text">
+          3You can see who has paid and who hasn't and harass them with me.
+        </p>
+
+        <p class="fourth-text">
+          4Angry Kitty loves chasing people for money, would you consider letting Angry Kitty do this for you?
+        </p>
+
+          <!-- Don’t worry its still them paying you directly, but we facilitate the payment and chase them via emails and texts until they do so. -->
+
+        </blockquote>
+
+        YES/NO
+      </div>
+    </div>
+  </div>
+</div>

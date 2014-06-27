@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
   def show
   end
 
+  def disable_nav
+    @disable_nav = true
+  end
+
 end
