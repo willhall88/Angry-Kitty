@@ -1,17 +1,31 @@
 $(document).ready(function() {
   $('.nextlink').click(function(event) {
     event.preventDefault();
-    $('.first-text').css('visibility', 'hidden');
+    $('.first-text').remove();
     $('.second-text').css('visibility', 'visible');
 
 
     $('.nextlink').click(function(event) {
-      $('.second-text').css('visibility', 'hidden');
+      $('.second-text').remove();
       $('.third-text').css('visibility', 'visible');
 
       $('.nextlink').click(function(event) {
-        $('.third-text').css('visibility', 'hidden');
+        $('.third-text').remove();
         $('.fourth-text').css('visibility', 'visible');
+
+        $('.Yeslink').click(function(event) {
+          $('.fourth-text').remove();
+          $('.Yestext').css('visibility', 'visible');
+
+        });
+
+          $('.Nolink').click(function(event) {
+          $('.fourth-text').remove();
+          $('.Yestext').remove();
+          $('.Notext').css('visibility', 'visible');
+
+        });
+
       });
 
     });
