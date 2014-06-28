@@ -6,3 +6,18 @@
 	background-color: #dfe0e6;
 	border-top: #dfe0e6;
 }
+
+.progress-circles {
+	width: 25px;
+	height: 25px;
+	background-color: white;
+	border-radius: 100%;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+#progress-circles-container {
+	text-align: center;
+	position: relative;
+	margin-top: 60px;
+}
