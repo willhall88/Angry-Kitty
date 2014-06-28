@@ -314,6 +314,7 @@ body {
 .wrapper {
   width: 60%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .about-page {
@@ -385,8 +386,8 @@ body {
 
 .example-twitter {
   position:relative;
-  padding:15px;
-  margin:30px 0 0.5em;
+  padding:20px;
+  margin:-20px 0 0.5em;
   color:#333;
   background:#fff;
   /* css3 */
@@ -395,7 +396,7 @@ body {
   border-radius:10px;
 }
 
-.example-twitter p {font-size:28px; line-height:1.25em;}
+.example-twitter p {font-size:25px; line-height:1.25em;}
 
 
 
@@ -417,6 +418,10 @@ blockquote {
 }
 
 .nextlink {
+  color: white;
+}
+
+.nextlink:hover {
   color: white;
 }
 
