@@ -1,4 +1,15 @@
 $(document).ready(function() {
+
+  // added the below event listeners to send GA event info each time yes/no are clicked
+  $('.yeslink').on('click', function() {
+    ga('send', 'event', 'button', 'click', 'yeslink', {'nonInteraction': 1});
+  });
+
+  $('.nolink').on('click', function() {
+    ga('send', 'event', 'button', 'click', 'nolink', {'nonInteraction': 1});
+  });
+
+
   $('.nextlink').click(function(event) {
     event.preventDefault();
       
