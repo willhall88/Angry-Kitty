@@ -1,14 +1,5 @@
 $(document).ready(function() {
 
-  // added the below event listeners to send GA event info each time yes/no are clicked
-  $('.yeslink').on('click', function() {
-    ga('send', 'event', 'button', 'click', 'yeslink', {'nonInteraction': 1});
-  });
-
-  $('.nolink').on('click', function() {
-    ga('send', 'event', 'button', 'click', 'nolink', {'nonInteraction': 1});
-  });
-
 
   $('.nextlink').click(function(event) {
     event.preventDefault();
@@ -39,6 +30,18 @@ $(document).ready(function() {
               $('.text').text("Liking this so far?");
               $(".progress-circles:nth-child(7)").addClass("purple");
 
+                // added the below event listeners to send GA event info each time yes/no are clicked
+                
+                $('.yeslink').on('click', function() {
+                  ga('send', 'event', 'button', 'click', 'yeslink');
+                });
+
+                $('.nolink').on('click', function() {
+                  ga('send', 'event', 'button', 'click', 'nolink');
+                });
+
+                // end
+
               $('.yeslink').click(function(event) {
                 $('.text').text('Awesome! Register your interest.');
                 $('.yeslink').remove();
@@ -52,6 +55,7 @@ $(document).ready(function() {
                 $('.nolink').remove();
                 $(".progress-circles:nth-child(8)").addClass("purple");
               });
+
 
             });
 
