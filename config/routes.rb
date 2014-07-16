@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   post 'users/:user_id/:event_id/payments', to: 'payments#create', as: 'payments'
 
+  post 'emailcollectors', to: 'emailcollectors#create'
 
   get 'userinvitees/:userinvitee_id/:event_id', to: 'userinvitees#show', as: 'accept_userinvitee'
 

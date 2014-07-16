@@ -13,18 +13,32 @@
           <p class="text">
             Have you ever found it frustrating chasing friends for money?
           </p>
-          <%= link_to("next", "#", class: "nextlink btn btn-purple") %>     
+          <%= link_to("Yes", "#", class: "nextlink btn btn-purple") %>     
           <%= link_to("Yes", "#", class: "yeslink btn btn-success") %>
           <%= link_to("No", "#", class: "nolink btn btn-danger") %>
+          
         </blockquote>
+          
+        <div>
+        </div>
 
         <section id="progress-circles-container">
-          <% 8.times do %>
+          <% 3.times do %>
             <div class="progress-circles"></div>
           <% end %>
         </section>
+
+
 
       </div>
     </div>
   </div>
 </div>
+
+
+<template id='emailcollectors-form'>
+      <%= form_for @email do |f| %>
+      <%= f.text_field :email, class: "form-control", required: true %>
+      <%= f.submit 'Submit email', class: "btn btn-lg create-event btn-purple" %>
+      <% end %>
+</template>

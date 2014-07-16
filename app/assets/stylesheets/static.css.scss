@@ -19,7 +19,7 @@
 #progress-circles-container {
 	text-align: center;
 	position: relative;
-	margin-top: 60px;
+	margin-top: 20px;
 }
 
 .progress-circles:nth-child(1) {
@@ -28,4 +28,25 @@
 
 .progress-circles.purple {
 	background-color: #bf8cbc;
+}
+
+blockquote {
+  border-left: none;
+}
+
+.nextlink {
+  color: white;
+}
+
+.nextlink:hover {
+  color: white;
+}
+
+.yeslink,.nolink {
+  visibility: hidden;
+}
+
+
+#emailcollectors-form {
+	visibility: hidden;
 }
